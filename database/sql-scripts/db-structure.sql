@@ -6,14 +6,14 @@ USE bsc_payroll_sys_db;
 CREATE TABLE Empresa(
 	RFC_Empresa		VARCHAR(12) NOT NULL,
 	Nom_Empresa		VARCHAR(60),
-	Reg_Patronal	INT,
-	Razon_Social	INT,
+	Reg_Patronal	BIGINT,
+	Razon_Social	VARCHAR(80),
 	Dom_Fiscal		INT,
-	Tel_Empresa		INT,
+	Tel_Empresa		BIGINT,
 	Correo_Empresa	VARCHAR(50),
 	Frec_Pago		TINYINT,
 	Inicio_Ops		DATE,
-	Gerente_Empresa	INT NOT NULL,
+	Gerente_Empresa	INT,
 	Inicio_Gestion	DATE,
 
 	CONSTRAINT PK_Empresa
@@ -37,19 +37,19 @@ CREATE TABLE Empleado(
 	Fecha_Nac		DATE,
 	CURP_Empleado	VARCHAR(18),
 	RFC_Empleado	VARCHAR(13),
-	NSS_Empleado	INT,
+	NSS_Empleado	BIGINT,
 	Dom_Empleado	INT,
-	Tel_Empleado	INT,
+	Tel_Empleado	BIGINT,
 	Correo_Empleado	VARCHAR(50),
 	Banco_Empleado	INT,
-	Num_Cuenta		INT,
-	ID_Empresa		VARCHAR(12) NOT NULL,
+	Num_Cuenta		BIGINT,
+	ID_Empresa		VARCHAR(12),
 	Fecha_Contrato	DATE,
-	ID_Dpto			INT NOT NULL,
+	ID_Dpto			INT,
 	Fecha_Incorp	DATE,
-	ID_Puesto		INT NOT NULL,
+	ID_Puesto		INT,
 	Fecha_Obt		DATE,
-	ID_Usuario		INT NOT NULL,
+	ID_Usuario		INT,
 
 	CONSTRAINT PK_Empleado
 		PRIMARY KEY (ID_Empleado)
@@ -58,7 +58,7 @@ CREATE TABLE Empleado(
 CREATE TABLE Departamento(
 	ID_Dpto			INT NOT NULL IDENTITY,
 	Nom_Dpto		VARCHAR(30),
-	Gerente_Dpto	INT NOT NULL,
+	Gerente_Dpto	INT,
 	Inicio_Gestion	DATE,
 	Cant_Bono		FLOAT,
 
@@ -178,14 +178,6 @@ CREATE TABLE Dpto_Puesto(
 
 -- Tablas de normalizacion
 
-CREATE TABLE RazonSocial(
-	ID_RS			INT NOT NULL IDENTITY,
-	Nom_RS			VARCHAR(30),
-
-	CONSTRAINT PK_RazonSocial
-		PRIMARY KEY (ID_RS)
-);
-
 CREATE TABLE Domicilio(
 	ID_Domicilio	INT NOT NULL IDENTITY,
 	Calle			VARCHAR(30),
@@ -213,9 +205,6 @@ ALTER TABLE Empresa
 	ADD CONSTRAINT FK_Gerente_Empresa
 			FOREIGN KEY (Gerente_Empresa)
 			REFERENCES Empleado(ID_Empleado),
-		CONSTRAINT FK_Razon_Social_Empresa
-			FOREIGN KEY (Razon_Social)
-			REFERENCES RazonSocial(ID_RS),
 		CONSTRAINT FK_Domicilio_Fiscal_Empresa
 			FOREIGN KEY (Dom_Fiscal)
 			REFERENCES Domicilio(ID_Domicilio);
