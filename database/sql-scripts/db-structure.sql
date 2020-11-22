@@ -15,6 +15,7 @@ CREATE TABLE Empresa(
 	Inicio_Ops		DATE,
 	Gerente_Empresa	INT,
 	Inicio_Gestion	DATE,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_Empresa
 		PRIMARY KEY (RFC_Empresa)
@@ -50,6 +51,7 @@ CREATE TABLE Empleado(
 	ID_Puesto		INT,
 	Fecha_Obt		DATE,
 	ID_Usuario		INT,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_Empleado
 		PRIMARY KEY (ID_Empleado)
@@ -58,9 +60,7 @@ CREATE TABLE Empleado(
 CREATE TABLE Departamento(
 	ID_Dpto			INT NOT NULL IDENTITY,
 	Nom_Dpto		VARCHAR(30),
-	Gerente_Dpto	INT,
-	Inicio_Gestion	DATE,
-	Cant_Bono		FLOAT,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_Departamento
 		PRIMARY KEY (ID_Dpto)
@@ -69,6 +69,7 @@ CREATE TABLE Departamento(
 CREATE TABLE Puesto(
 	ID_Puesto		INT NOT NULL IDENTITY,
 	Nom_Puesto		VARCHAR(20),
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_Puesto
 		PRIMARY KEY (ID_Puesto)
@@ -105,6 +106,7 @@ CREATE TABLE Nomina(
 	ID_Empleado		INT NOT NULL,
 	Inicio_Periodo	DATE,
 	Fin_Periodo		DATE,
+	Fecha_Gen	DATETIME DEFAULT GETDATE()
 
 	CONSTRAINT PK_Nomina
 		PRIMARY KEY (ID_Nomina)
@@ -134,6 +136,10 @@ CREATE TABLE Empresa_Dpto(
 	ID_Empresa		VARCHAR(12),
 	ID_Dpto			INT,
 	Sueldo_Base		FLOAT,
+	Gerente_Dpto	INT,
+	Inicio_Gestion	DATE,
+	Cant_Bono		FLOAT,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_EmpresaDpto
 		PRIMARY KEY (ID_Emp_Dpto),
@@ -142,13 +148,17 @@ CREATE TABLE Empresa_Dpto(
 		REFERENCES Empresa(RFC_Empresa),
 	CONSTRAINT FK_Departamento_ED
 		FOREIGN KEY (ID_Dpto)
-		REFERENCES Departamento(ID_Dpto)
+		REFERENCES Departamento(ID_Dpto),
+	CONSTRAINT FK_GerenteDpto_ED
+		FOREIGN KEY (Gerente_Dpto)
+		REFERENCES Empleado(ID_Empleado)
 );
 
 CREATE TABLE Empresa_Puesto(
 	ID_Emp_Puesto	INT NOT NULL IDENTITY,
 	ID_Empresa		VARCHAR(12),
 	ID_Puesto		INT,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_EmpresaPuesto
 		PRIMARY KEY (ID_Emp_Puesto),
@@ -165,6 +175,7 @@ CREATE TABLE Dpto_Puesto(
 	ID_Dpto			INT,
 	ID_Puesto		INT,
 	Porcent_Sueldo	FLOAT,
+	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_DptoPuesto
 		PRIMARY KEY (ID_Dpto_Puesto),
@@ -228,11 +239,6 @@ ALTER TABLE Empleado
 		CONSTRAINT FK_Usuario_Empleado
 			FOREIGN KEY (ID_Usuario)
 			REFERENCES Usuario(ID_Usuario);
-
-ALTER TABLE Departamento
-	ADD CONSTRAINT FK_GerenteDpto_Departamento
-			FOREIGN KEY (Gerente_Dpto)
-			REFERENCES Empleado(ID_Empleado);
 
 ALTER TABLE Percepcion
 	ADD CONSTRAINT FK_Empleado_Percepcion

@@ -259,3 +259,8 @@ EXEC RegistrarEmpleado
 	@Estado = 'Aguascalientes';
 
 SELECT * FROM Empleado;
+SELECT * FROM Usuario;
+
+SELECT * FROM Empresa_Dpto;
+SELECT * FROM Dpto_Puesto;
+SELECT * FROM Empresa_Puesto;
