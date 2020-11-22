@@ -73,6 +73,20 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\dto\Banco.vb" />
+    <Compile Include="models\dto\Deduccion.vb" />
+    <Compile Include="models\dto\Departamento.vb" />
+    <Compile Include="models\dto\Domicilio.vb" />
+    <Compile Include="models\dto\DptoPuesto.vb" />
+    <Compile Include="models\dto\Empleado.vb" />
+    <Compile Include="models\dto\Empresa.vb" />
+    <Compile Include="models\dto\EmpresaDpto.vb" />
+    <Compile Include="models\dto\EmpresaPuesto.vb" />
+    <Compile Include="models\dto\Incidencia.vb" />
+    <Compile Include="models\dto\Nomina.vb" />
+    <Compile Include="models\dto\Percepcion.vb" />
+    <Compile Include="models\dto\Puesto.vb" />
+    <Compile Include="models\dto\Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -119,7 +133,6 @@
   <ItemGroup>
     <Folder Include="controllers\" />
     <Folder Include="models\dao\" />
-    <Folder Include="models\dto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
