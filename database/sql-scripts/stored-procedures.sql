@@ -174,7 +174,6 @@ CREATE PROCEDURE RegistrarEmpresa
 	@Nom_Empresa VARCHAR(60),
 	@Reg_Patronal BIGINT,
 	@Razon_Social VARCHAR(80),
-	@Dom_Fiscal INT,
 	@Tel_Empresa BIGINT,
 	@Correo_Empresa VARCHAR(50),
 	@Frec_Pago TINYINT,
@@ -228,7 +227,6 @@ CREATE PROCEDURE EditarEmpresa
 	@Nom_Empresa VARCHAR(60),
 	@Reg_Patronal BIGINT,
 	@Razon_Social VARCHAR(80),
-	@Dom_Fiscal INT,
 	@Tel_Empresa BIGINT,
 	@Correo_Empresa VARCHAR(50),
 	@Frec_Pago TINYINT,
@@ -238,7 +236,6 @@ AS
 		SET Nom_Empresa = @Nom_Empresa,
 			Reg_Patronal = @Reg_Patronal,
 			Razon_Social = @Razon_Social,
-			Dom_Fiscal = @Dom_Fiscal,
 			Tel_Empresa = @Tel_Empresa,
 			Correo_Empresa = @Correo_Empresa,
 			Frec_Pago = @Frec_Pago,
@@ -757,6 +754,7 @@ AS
 	IF (@UnauthorizedOnly = 0)
 		BEGIN
 			SELECT
+				-- TODO: ID
 				Desc_Inciden,
 				Inicio_Inciden,
 				Fin_Inciden,
@@ -772,6 +770,7 @@ AS
 	ELSE
 		BEGIN
 			SELECT
+				-- TODO: ID
 				Desc_Inciden,
 				Inicio_Inciden,
 				Fin_Inciden,
