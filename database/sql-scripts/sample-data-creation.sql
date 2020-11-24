@@ -258,8 +258,25 @@ EXEC RegistrarEmpleado
 	@Ciudad = 'Aguascalientes',
 	@Estado = 'Aguascalientes';
 
+
+-- Select tables
+
 SELECT * FROM Empleado;
 SELECT * FROM Usuario;
+
+SELECT * FROM Domicilio;
+
+SELECT * FROM Empresa;
+SELECT * FROM Puesto;
+
+SELECT * FROM Departamento;
+
+SELECT * FROM [Employees Daily Salary];
+
+SELECT * FROM Percepcion;
+SELECT * FROM Deduccion;
+SELECT * FROM Nomina;
+SELECT * FROM Incidencia;
 
 SELECT * FROM Empresa_Dpto;
 SELECT * FROM Dpto_Puesto;

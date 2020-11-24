@@ -1,6 +1,61 @@
 USE bsc_payroll_sys_db;
 GO
 
+-- PROCEDIMIENTOS DE DOMICILIO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'RegistrarDomicilio')
+	DROP PROCEDURE RegistrarDomicilio;
+GO
+
+CREATE PROCEDURE RegistrarDomicilio
+	@Calle				VARCHAR(30),
+	@Numero				INT,
+	@Colonia			VARCHAR(30),
+	@Cod_Post			INT,
+	@Ciudad				VARCHAR(30),
+	@Estado				VARCHAR(30)
+AS
+	INSERT INTO Domicilio (
+		Calle,
+		Numero,
+		Colonia,
+		Cod_Post,
+		Ciudad,
+		Estado	
+	)
+	VALUES (
+		@Calle,
+		@Numero,
+		@Colonia,
+		@Cod_Post,
+		@Ciudad,
+		@Estado
+	);
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'EditarDomicilio')
+	DROP PROCEDURE EditarDomicilio;
+GO
+
+CREATE PROCEDURE EditarDomicilio
+	@ID_Domicilio		INT,
+	@Calle				VARCHAR(30),
+	@Numero				INT,
+	@Colonia			VARCHAR(30),
+	@Cod_Post			INT,
+	@Ciudad				VARCHAR(30),
+	@Estado				VARCHAR(30)
+AS
+	UPDATE Domicilio
+		SET Calle = @Calle,
+			Numero = @Numero,
+			Colonia = @Colonia,
+			Cod_Post = @Cod_Post,
+			Ciudad = @Ciudad,
+			Estado = @Estado
+		WHERE ID_Domicilio = @ID_Domicilio;
+GO
+
 -- PROCEDIMIENTOS DE EMPLEADO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'RegistrarEmpleado')
@@ -78,6 +133,10 @@ AS
 		CONVERT(VARCHAR(20), @CurrentEmployee),
 		1
 	);
+
+	UPDATE Empleado
+		SET ID_Usuario = @CurrentEmployee
+		WHERE ID_Empleado = @CurrentEmployee;
 
 GO
 
@@ -256,9 +315,12 @@ AS
 			Inicio_Gestion = GETDATE()
 		WHERE RFC_Empresa = @RFC_Empresa;
 
-	UPDATE Usuario
-		SET Nivel_Usuario = 3
-		WHERE ID_Usuario = @ID_Gerente;
+	IF ((SELECT Nivel_Usuario FROM Usuario WHERE ID_Usuario = @ID_Gerente) != 4)
+		BEGIN
+			UPDATE Usuario
+			SET Nivel_Usuario = 3
+			WHERE ID_Usuario = @ID_Gerente;
+		END
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AgregarDptoEmpresa')
@@ -381,9 +443,18 @@ AS
 			Cant_Bono = @Cant_Bono
 		WHERE ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto;
 
-	UPDATE Usuario
-		SET Nivel_Usuario = 2
-		WHERE ID_Usuario = @ID_Gerente;
+	IF ((SELECT Nivel_Usuario FROM Usuario WHERE ID_Usuario = @ID_Gerente) = 3)
+		BEGIN
+			UPDATE Usuario
+			SET Nivel_Usuario = 4
+			WHERE ID_Usuario = @ID_Gerente;
+		END
+	ELSE
+		BEGIN
+			UPDATE Usuario
+			SET Nivel_Usuario = 2
+			WHERE ID_Usuario = @ID_Gerente;
+		END
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AgregarPuestoDpto')
@@ -589,7 +660,7 @@ CREATE PROCEDURE GenerarNomina
 AS
 
 	DECLARE @SueldoDiario	FLOAT;
-	SET @SueldoDiario = (SELECT 'Sueldo diario' FROM [Employees Daily Salary] AS EDS WHERE EDS.ID = @ID_Empleado);
+	SET @SueldoDiario = (SELECT [Sueldo diario] FROM [Employees Daily Salary] AS EDS WHERE EDS.ID = @ID_Empleado);
 	
 	DECLARE @DiasPeriodo INT;
 	SET @DiasPeriodo = DATEDIFF(DAY, @Inicio_Periodo, @Fin_Periodo);
@@ -605,6 +676,18 @@ AS
 		@Cant_Fija = @SueldoBruto,
 		@Cant_Porcent = 0,
 		@ID_Empleado = @ID_Empleado; -- The second @ID_Empleado is a local parameter
+
+	IF(EXISTS(SELECT Gerente_Dpto FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado))
+		BEGIN
+			DECLARE @Bono_Gerente FLOAT
+			SET @Bono_Gerente = (SELECT Cant_Bono FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado)
+
+			EXEC GenerarPercepcion
+				@Desc_Percep = 'Bono por gerencia',
+				@Cant_Fija = @Bono_Gerente,
+				@Cant_Porcent = 0,
+				@ID_Empleado = @ID_Empleado; -- The second @ID_Empleado is a local parameter
+		END
 
 	-- TODO: GENERAR DEDUCCIONES BASE
 
@@ -786,70 +869,15 @@ AS
 		END
 GO
 
--- PROCEDIMIENTOS DE DOMICILIO
+--IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReporteNomina')
+--	DROP PROCEDURE GenReporteNomina;
+--GO
 
-IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'RegistrarDomicilio')
-	DROP PROCEDURE RegistrarDomicilio;
-GO
+--CREATE PROCEDURE GenReporteNomina
 
-CREATE PROCEDURE RegistrarDomicilio
-	@Calle				VARCHAR(30),
-	@Numero				INT,
-	@Colonia			VARCHAR(30),
-	@Cod_Post			INT,
-	@Ciudad				VARCHAR(30),
-	@Estado				VARCHAR(30)
-AS
-	INSERT INTO Domicilio (
-		Calle,
-		Numero,
-		Colonia,
-		Cod_Post,
-		Ciudad,
-		Estado	
-	)
-	VALUES (
-		@Calle,
-		@Numero,
-		@Colonia,
-		@Cod_Post,
-		@Ciudad,
-		@Estado
-	);
-GO
-
-IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'EditarDomicilio')
-	DROP PROCEDURE EditarDomicilio;
-GO
-
-CREATE PROCEDURE EditarDomicilio
-	@ID_Domicilio		INT,
-	@Calle				VARCHAR(30),
-	@Numero				INT,
-	@Colonia			VARCHAR(30),
-	@Cod_Post			INT,
-	@Ciudad				VARCHAR(30),
-	@Estado				VARCHAR(30)
-AS
-	UPDATE Domicilio
-		SET Calle = @Calle,
-			Numero = @Numero,
-			Colonia = @Colonia,
-			Cod_Post = @Cod_Post,
-			Ciudad = @Ciudad,
-			Estado = @Estado
-		WHERE ID_Domicilio = @ID_Domicilio;
-GO
-
-IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReporteNomina')
-	DROP PROCEDURE GenReporteNomina;
-GO
-
-CREATE PROCEDURE GenReporteNomina
-
-AS
-	-- TODO
-GO
+--AS
+--	-- TODO
+--GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReciboNomina')
 	DROP PROCEDURE GenReciboNomina;
