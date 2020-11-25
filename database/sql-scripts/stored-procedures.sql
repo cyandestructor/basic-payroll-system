@@ -82,7 +82,8 @@ CREATE PROCEDURE RegistrarEmpleado
 	@Ciudad				VARCHAR(30),
 	@Estado				VARCHAR(30)
 AS
-
+	BEGIN TRAN;
+	
 	EXEC RegistrarDomicilio
 		@Calle = @Calle,
 		@Numero = @Numero,
@@ -120,23 +121,10 @@ AS
 		IDENT_CURRENT('Domicilio')	--ADD THE LAST INSERTED REGISTER
 	);
 
-	DECLARE @CurrentEmployee INT;
-	SET @CurrentEmployee = IDENT_CURRENT('Empleado');
-
-	INSERT INTO Usuario (
-		ID_Usuario,
-		Contrasena,
-		Nivel_Usuario
-	)
-	VALUES (
-		@CurrentEmployee,
-		CONVERT(VARCHAR(20), @CurrentEmployee),
-		1
-	);
-
-	UPDATE Empleado
-		SET ID_Usuario = @CurrentEmployee
-		WHERE ID_Empleado = @CurrentEmployee;
+	IF @@ERROR = 0
+		COMMIT;
+	ELSE
+		ROLLBACK;
 
 GO
 
@@ -231,7 +219,7 @@ GO
 CREATE PROCEDURE RegistrarEmpresa
 	@RFC_Empresa VARCHAR(12),
 	@Nom_Empresa VARCHAR(60),
-	@Reg_Patronal BIGINT,
+	@Reg_Patronal VARCHAR(11),
 	@Razon_Social VARCHAR(80),
 	@Tel_Empresa BIGINT,
 	@Correo_Empresa VARCHAR(50),
@@ -245,6 +233,8 @@ CREATE PROCEDURE RegistrarEmpresa
 	@Ciudad				VARCHAR(30),
 	@Estado				VARCHAR(30)
 AS
+	BEGIN TRAN;
+	
 	EXEC RegistrarDomicilio
 		@Calle = @Calle,
 		@Numero = @Numero,
@@ -275,6 +265,12 @@ AS
 		@Frec_Pago,
 		@Inicio_Ops
 	);
+
+	IF @@ERROR = 0
+		COMMIT;
+	ELSE
+		ROLLBACK;
+
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'EditarEmpresa')
@@ -284,7 +280,7 @@ GO
 CREATE PROCEDURE EditarEmpresa
 	@RFC_Empresa VARCHAR(12),
 	@Nom_Empresa VARCHAR(60),
-	@Reg_Patronal BIGINT,
+	@Reg_Patronal VARCHAR(11),
 	@Razon_Social VARCHAR(80),
 	@Tel_Empresa BIGINT,
 	@Correo_Empresa VARCHAR(50),
@@ -310,6 +306,8 @@ CREATE PROCEDURE AsignarGerenteEmpresa
 	@RFC_Empresa VARCHAR(12),
 	@ID_Gerente INT
 AS
+	BEGIN TRAN;
+
 	UPDATE Empresa
 		SET Gerente_Empresa = @ID_Gerente,
 			Inicio_Gestion = GETDATE()
@@ -321,6 +319,11 @@ AS
 			SET Nivel_Usuario = 3
 			WHERE ID_Usuario = @ID_Gerente;
 		END
+
+	IF @@ERROR = 0
+		COMMIT;
+	ELSE
+		ROLLBACK;
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AgregarDptoEmpresa')
@@ -338,21 +341,28 @@ AS
 	-- Mode 2: Edit Sueldo_Base
 	-- Mode 3: Deactivate relationship
 
+	DECLARE @MakeUpdate BIT = 0
+
 	IF (@Mode = 1)
 		BEGIN
-			INSERT INTO Empresa_Dpto (
-				ID_Empresa,
-				ID_Dpto,
-				Sueldo_Base
-			)
-			VALUES (
-				@ID_Empresa,
-				@ID_Dpto,
-				@Sueldo_Base
-			);
+			IF (EXISTS(SELECT ID_Emp_Dpto FROM Empresa_Dpto WHERE ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto))
+				SET @MakeUpdate = 1;
+			ELSE
+				BEGIN
+					INSERT INTO Empresa_Dpto (
+						ID_Empresa,
+						ID_Dpto,
+						Sueldo_Base
+					)
+					VALUES (
+						@ID_Empresa,
+						@ID_Dpto,
+						@Sueldo_Base
+					);
+				END
 		END
 
-	IF (@Mode = 2)
+	IF (@Mode = 2 OR @MakeUpdate = 1)
 		BEGIN
 			Update Empresa_Dpto
 				SET Sueldo_Base = @Sueldo_Base
@@ -383,14 +393,17 @@ AS
 
 	IF (@Mode = 1)
 		BEGIN
-			INSERT INTO Empresa_Puesto(
-				ID_Empresa,
-				ID_Puesto
-			)
-			VALUES (
-				@ID_Empresa,
-				@ID_Puesto
-			);
+			IF (NOT EXISTS(SELECT ID_Emp_Puesto FROM Empresa_Puesto WHERE ID_Empresa = @ID_Empresa AND ID_Puesto = @ID_Puesto))
+				BEGIN
+					INSERT INTO Empresa_Puesto(
+						ID_Empresa,
+						ID_Puesto
+					)
+					VALUES (
+						@ID_Empresa,
+						@ID_Puesto
+					);
+				END
 		END
 
 	IF (@Mode = 2)
@@ -467,21 +480,28 @@ CREATE PROCEDURE AgregarPuestoDpto
 	@Porcent_Sueldo	FLOAT,
 	@Mode			TINYINT
 AS
+	DECLARE @MakeUpdate BIT = 0;
+
 	IF (@Mode = 1)
 		BEGIN
-			INSERT INTO Dpto_Puesto (
-				ID_Dpto,
-				ID_Puesto,
-				Porcent_Sueldo
-			)
-			VALUES (
-				@ID_Dpto,
-				@ID_Puesto,
-				@Porcent_Sueldo
-			);
+			IF (EXISTS(SELECT ID_Dpto_Puesto FROM Dpto_Puesto WHERE ID_Dpto = @ID_Dpto AND ID_Puesto = @ID_Puesto))
+				SET @MakeUpdate = 1;
+			ELSE
+				BEGIN
+					INSERT INTO Dpto_Puesto (
+						ID_Dpto,
+						ID_Puesto,
+						Porcent_Sueldo
+					)
+					VALUES (
+						@ID_Dpto,
+						@ID_Puesto,
+						@Porcent_Sueldo
+					);
+				END
 		END
 
-	IF (@Mode = 2)
+	IF (@Mode = 2 OR @MakeUpdate = 1)
 		BEGIN
 			UPDATE Dpto_Puesto
 				SET Porcent_Sueldo = @Porcent_Sueldo

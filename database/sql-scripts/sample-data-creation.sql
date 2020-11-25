@@ -3,230 +3,76 @@ GO
 
 -- Sample data
 
-INSERT
-	INTO Empresa(
-		RFC_Empresa,
-		Nom_Empresa,
-		Reg_Patronal,
-		Tel_Empresa,
-		Correo_Empresa,
-		Frec_Pago,
-		Inicio_Ops
-		)
-	VALUES(
-		'APP4810391F2',
-		'Appricot',
-		12910139101,
-		83611208,
-		'contacto@appricot.com',
-		15,
-		CONVERT(DATE, GETDATE())
-	);
+EXEC RegistrarEmpresa
+	@RFC_Empresa = 'APP050523P85',
+	@Nom_Empresa = 'Appricot',
+	@Reg_Patronal = 'Y6012345103',
+	@Razon_Social = 'Soluciones informátias Appricot S.A. de C.V.',
+	@Tel_Empresa = 8122509904,
+	@Correo_Empresa = 'empresa@appricot.com',
+	@Frec_Pago = 15,
+	@Inicio_Ops = '2005-05-23',
+	--Direccion
+	@Calle = 'Zaragoza',
+	@Numero = 1589,
+	@Colonia = 'Centro',
+	@Cod_Post = 67000,
+	@Ciudad = 'Monterrey',
+	@Estado = 'Nuevo León'
 
-INSERT
-	INTO Empresa(
-		RFC_Empresa,
-		Nom_Empresa,
-		Reg_Patronal,
-		Tel_Empresa,
-		Correo_Empresa,
-		Frec_Pago,
-		Inicio_Ops
-		)
-	VALUES(
-		'EDF4820493G5',
-		'Edificios Montana',
-		11980532601,
-		83631585,
-		'contact@edifmontana.com',
-		15,
-		CONVERT(DATE, GETDATE())
-	);
+EXEC RegistrarEmpresa
+	@RFC_Empresa = 'MAG060715P85',
+	@Nom_Empresa = 'Magnesium',
+	@Reg_Patronal = 'Y5012446143',
+	@Razon_Social = 'Quimicos Industriales Magnesium S.A. de C.V.',
+	@Tel_Empresa = 8122509904,
+	@Correo_Empresa = 'empresa@magnesium.com',
+	@Frec_Pago = 15,
+	@Inicio_Ops = '2006-07-15',
+	--Direccion
+	@Calle = 'Eugenio Garza Sada',
+	@Numero = 1729,
+	@Colonia = 'Contry',
+	@Cod_Post = 68100,
+	@Ciudad = 'Monterrey',
+	@Estado = 'Nuevo León'
 
-INSERT
-	INTO Empresa(
-		RFC_Empresa,
-		Nom_Empresa,
-		Reg_Patronal,
-		Tel_Empresa,
-		Correo_Empresa,
-		Frec_Pago,
-		Inicio_Ops
-		)
-	VALUES(
-		'PAN6870492H4',
-		'Productos Nacionales',
-		329161298134,
-		8232160981,
-		'productos@pnacional.com',
-		7,
-		CONVERT(DATE, GETDATE())
-	);
-
-INSERT
-	INTO Empresa(
-		RFC_Empresa,
-		Nom_Empresa,
-		Reg_Patronal,
-		Tel_Empresa,
-		Correo_Empresa,
-		Frec_Pago,
-		Inicio_Ops
-		)
-	VALUES(
-		'SRL4312321F2',
-		'Strtup',
-		149501491510,
-		8564150844,
-		'negocios@strtup.com',
-		15,
-		CONVERT(DATE, GETDATE())
-	);
-
-UPDATE Empresa SET Razon_Social = 'Soluciones de Software Appricot SA de CV' WHERE RFC_Empresa = 'APP4810391F2';
-UPDATE Empresa SET Razon_Social = 'Edificios Montana SA de CV' WHERE RFC_Empresa = 'EDF4820493G5';
-UPDATE Empresa SET Razon_Social = 'Productos Nacionales SA de CV' WHERE RFC_Empresa = 'PAN6870492H4';
-UPDATE Empresa SET Razon_Social = 'Asesorias tecnologicas Strtup SA de CV' WHERE RFC_Empresa = 'SRL4312321F2';
+EXEC RegistrarEmpresa
+	@RFC_Empresa = 'SPR190407P85',
+	@Nom_Empresa = 'SPrint',
+	@Reg_Patronal = 'Y4514456243',
+	@Razon_Social = 'Impresiones Graficas Sprint S.A. de C.V.',
+	@Tel_Empresa = 8122509904,
+	@Correo_Empresa = 'empresa@sprint.com',
+	@Frec_Pago = 7,
+	@Inicio_Ops = '2019-04-07',
+	--Direccion
+	@Calle = 'Revolución',
+	@Numero = 1529,
+	@Colonia = 'Contry',
+	@Cod_Post = 68100,
+	@Ciudad = 'Monterrey',
+	@Estado = 'Nuevo León'
 
 --SELECT * FROM Empresa;
 
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Administracion'
-);
-
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Recursos humanos'
-);
-
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Innovacion'
-);
-
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Produccion'
-);
-
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Ventas'
-);
-
-INSERT INTO Departamento (
-	Nom_Dpto
-)
-VALUES (
-	'Investigacion'
-);
+EXEC RegistrarDepartamento @Nom_Dpto = 'Administración';
+EXEC RegistrarDepartamento @Nom_Dpto = 'Recursos humanos';
+EXEC RegistrarDepartamento @Nom_Dpto = 'Innovación';
+EXEC RegistrarDepartamento @Nom_Dpto = 'Producción';
+EXEC RegistrarDepartamento @Nom_Dpto = 'Ventas';
+EXEC RegistrarDepartamento @Nom_Dpto = 'Investigación';
 
 --SELECT * FROM Departamento;
 
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Asistente');
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Jefe');
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Director');
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Contador Junior');
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Asociado');
-INSERT INTO Puesto (Nom_Puesto) VALUES ('Asesor');
+EXEC RegistrarPuesto @Nom_Puesto = 'Asistente';
+EXEC RegistrarPuesto @Nom_Puesto = 'Jefe';
+EXEC RegistrarPuesto @Nom_Puesto = 'Director';
+EXEC RegistrarPuesto @Nom_Puesto = 'Contador Junior';
+EXEC RegistrarPuesto @Nom_Puesto = 'Asociado';
+EXEC RegistrarPuesto @Nom_Puesto = 'Asesor';
 
 --SELECT * FROM Puesto;
-
-INSERT INTO Domicilio (
-	Calle,
-	Numero,
-	Colonia,
-	Cod_Post,
-	Ciudad,
-	Estado
-)
-VALUES (
-	'Morones Prieto',
-	1589,
-	'Centro',
-	67000,
-	'Guadalajara',
-	'Jalisco'
-);
-
-INSERT INTO Domicilio (
-	Calle,
-	Numero,
-	Colonia,
-	Cod_Post,
-	Ciudad,
-	Estado
-)
-VALUES (
-	'Morones Prieto',
-	1596,
-	'Centro',
-	67000,
-	'Guadalajara',
-	'Jalisco'
-);
-
-INSERT INTO Domicilio (
-	Calle,
-	Numero,
-	Colonia,
-	Cod_Post,
-	Ciudad,
-	Estado
-)
-VALUES (
-	'Mariano Garza',
-	119,
-	'Espinosa',
-	67200,
-	'Monterrey',
-	'Nuevo Leon'
-);
-
-INSERT INTO Domicilio (
-	Calle,
-	Numero,
-	Colonia,
-	Cod_Post,
-	Ciudad,
-	Estado
-)
-VALUES (
-	'Romo',
-	189,
-	'Independientes',
-	68195,
-	'Monterrey',
-	'Nuevo Leon'
-);
-
-INSERT INTO Domicilio (
-	Calle,
-	Numero,
-	Colonia,
-	Cod_Post,
-	Ciudad,
-	Estado
-)
-VALUES (
-	'Gaspar Fernandez',
-	159,
-	'Nopal',
-	67130,
-	'Guadalajara',
-	'Jalisco'
-);
 
 --SELECT * FROM Domicilio;
 
@@ -258,18 +104,343 @@ EXEC RegistrarEmpleado
 	@Ciudad = 'Aguascalientes',
 	@Estado = 'Aguascalientes';
 
+EXEC RegistrarEmpleado
+	@Nom_Empleado = 'Mariel',
+	@Apellido_Pat = 'Espinos',
+	@Apellido_Mat = 'Ramos',
+	@Fecha_Nac = '1995-12-10',
+	@CURP_Empleado = 'MAER951210MNLNRN02',
+	@RFC_Empleado = 'MAER9512108L8',
+	@NSS_Empleado = 45064319302,
+	@Tel_Empleado = 8183611208,
+	@Correo_Empleado = 'mariel.ramos@gmail.com',
+	@Banco_Empleado = 1,
+	@Num_Cuenta = 82032371391,
+	--Direccion
+	@Calle = 'Macapa',
+	@Numero = 154,
+	@Colonia = 'Esperanza',
+	@Cod_Post = 68459,
+	@Ciudad = 'Guadalupe',
+	@Estado = 'Nuevo León';
+
+EXEC RegistrarEmpleado
+	@Nom_Empleado = 'Enrique',
+	@Apellido_Pat = 'Campos',
+	@Apellido_Mat = 'Torres',
+	@Fecha_Nac = '1997-10-31',
+	@CURP_Empleado = 'ENCT971031HNLNRN02',
+	@RFC_Empleado = 'ENCT9710318F8',
+	@NSS_Empleado = 65234393670,
+	@Tel_Empleado = 8122511208,
+	@Correo_Empleado = 'ecampostorres@hotmail.com',
+	@Banco_Empleado = 1,
+	@Num_Cuenta = 92022351421,
+	--Direccion
+	@Calle = 'Ensenada',
+	@Numero = 191,
+	@Colonia = 'Bajas',
+	@Cod_Post = 69659,
+	@Ciudad = 'Escobedo',
+	@Estado = 'Nuevo León';
+
+EXEC RegistrarEmpleado
+	@Nom_Empleado = 'Margarita',
+	@Apellido_Pat = 'Mieles',
+	@Apellido_Mat = 'Manzano',
+	@Fecha_Nac = '2000-05-05',
+	@CURP_Empleado = 'MAMM009505MNLNRN02',
+	@RFC_Empleado = 'MAMM0005058G8',
+	@NSS_Empleado = 61274093870,
+	@Tel_Empleado = 8152541200,
+	@Correo_Empleado = 'margarita-manz@outlook.com.mx',
+	@Banco_Empleado = 1,
+	@Num_Cuenta = 71228371921,
+	--Direccion
+	@Calle = 'República',
+	@Numero = 200,
+	@Colonia = 'Mexicanos',
+	@Cod_Post = 65649,
+	@Ciudad = 'Apodaca',
+	@Estado = 'Nuevo León';
+
+EXEC RegistrarEmpleado
+	@Nom_Empleado = 'Lizeth',
+	@Apellido_Pat = 'Duarte',
+	@Apellido_Mat = 'Valdéz',
+	@Fecha_Nac = '2000-12-10',
+	@CURP_Empleado = 'LIDV001210MNLNDN02',
+	@RFC_Empleado = 'LIDV0012108B8',
+	@NSS_Empleado = 69284692871,
+	@Tel_Empleado = 8122601401,
+	@Correo_Empleado = 'liz101200@outlook.com.mx',
+	@Banco_Empleado = 1,
+	@Num_Cuenta = 71328272931,
+	--Direccion
+	@Calle = 'Mozart',
+	@Numero = 156,
+	@Colonia = 'Robles',
+	@Cod_Post = 68629,
+	@Ciudad = 'Apodaca',
+	@Estado = 'Nuevo León';
+
+-- Agregar departamentos a empresas
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 1,
+	@Sueldo_Base = 500,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 5,
+	@Sueldo_Base = 400,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 2,
+	@Sueldo_Base = 450,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Dpto = 1,
+	@Sueldo_Base = 550,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Dpto = 3,
+	@Sueldo_Base = 550,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Dpto = 4,
+	@Sueldo_Base = 450,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Dpto = 1,
+	@Sueldo_Base = 450,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Dpto = 2,
+	@Sueldo_Base = 450,
+	@Mode = 1
+
+EXEC AgregarDptoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Dpto = 4,
+	@Sueldo_Base = 450,
+	@Mode = 1
+
+-- Agregar puesto a empresa
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Puesto = 1,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Puesto = 2,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'APP050523P85',
+	@ID_Puesto = 3,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Puesto = 1,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Puesto = 5,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Puesto = 6,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Puesto = 1,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Puesto = 2,
+	@Mode = 1;
+
+EXEC AgregarPuestoEmpresa
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Puesto = 3,
+	@Mode = 1;
+
+-- Agregar puestos a departamentos
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 1,
+	@ID_Puesto = 1,
+	@Porcent_Sueldo = 1.0,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 2,
+	@ID_Puesto = 2,
+	@Porcent_Sueldo = 1.0,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 3,
+	@ID_Puesto = 1,
+	@Porcent_Sueldo = 1.25,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 4,
+	@ID_Puesto = 2,
+	@Porcent_Sueldo = 1.2,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 5,
+	@ID_Puesto = 3,
+	@Porcent_Sueldo = 1.3,
+	@Mode = 1;
+
+-- Agregar empresa a empleado
+
+EXEC AgregarEmpresaEmpleado
+	@ID_Empleado = 1000,
+	@RFC_Empresa = 'APP050523P85',
+	@Fecha_Contrato = '2006-06-12';
+
+EXEC AgregarEmpresaEmpleado
+	@ID_Empleado = 1001,
+	@RFC_Empresa = 'APP050523P85',
+	@Fecha_Contrato = '2006-06-12';
+
+EXEC AgregarEmpresaEmpleado
+	@ID_Empleado = 1002,
+	@RFC_Empresa = 'MAG060715P85',
+	@Fecha_Contrato = '2006-06-12';
+
+EXEC AgregarEmpresaEmpleado
+	@ID_Empleado = 1003,
+	@RFC_Empresa = 'MAG060715P85',
+	@Fecha_Contrato = '2006-06-12';
+
+EXEC AgregarEmpresaEmpleado
+	@ID_Empleado = 1004,
+	@RFC_Empresa = 'SPR190407P85',
+	@Fecha_Contrato = '2006-06-12';
+
+-- Agregar departamento y puesto a empleados
+
+EXEC AsignarDptoEmpleado
+	@ID_Empleado = 1000,
+	@ID_Dpto = 1;
+
+EXEC AsignarDptoEmpleado
+	@ID_Empleado = 1001,
+	@ID_Dpto = 5;
+
+EXEC AsignarDptoEmpleado
+	@ID_Empleado = 1002,
+	@ID_Dpto = 3;
+
+EXEC AsignarDptoEmpleado
+	@ID_Empleado = 1003,
+	@ID_Dpto = 1;
+
+EXEC AsignarDptoEmpleado
+	@ID_Empleado = 1004,
+	@ID_Dpto = 4;
+
+-- Asignar puesto a empleados
+
+EXEC AsignarPuestoEmpleado
+	@ID_Empleado = 1000,
+	@ID_Puesto = 1;
+
+EXEC AsignarPuestoEmpleado
+	@ID_Empleado = 1001,
+	@ID_Puesto = 3;
+
+EXEC AsignarPuestoEmpleado
+	@ID_Empleado = 1002,
+	@ID_Puesto = 1;
+
+EXEC AsignarPuestoEmpleado
+	@ID_Empleado = 1003,
+	@ID_Puesto = 1;
+
+EXEC AsignarPuestoEmpleado
+	@ID_Empleado = 1004,
+	@ID_Puesto = 2;
+
+-- Asignar gerente a empresa
+
+EXEC AsignarGerenteEmpresa
+	@RFC_Empresa = 'APP050523P85',
+	@ID_Gerente = 1000;
+
+EXEC AsignarGerenteEmpresa
+	@RFC_Empresa = 'MAG060715P85',
+	@ID_Gerente = 1003;
+
+EXEC AsignarGerenteEmpresa
+	@RFC_Empresa = 'SPR190407P85',
+	@ID_Gerente = 1004;
+
+-- Asignar gerente a departamento
+
+EXEC AsignarGerenteDpto
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 5,
+	@ID_Gerente = 1001,
+	@Cant_Bono = 100;
+
+EXEC AsignarGerenteDpto
+	@ID_Empresa = 'MAG060715P85',
+	@ID_Dpto = 3,
+	@ID_Gerente = 1002,
+	@Cant_Bono = 300;
+
+EXEC AsignarGerenteDpto
+	@ID_Empresa = 'SPR190407P85',
+	@ID_Dpto = 4,
+	@ID_Gerente = 1004,
+	@Cant_Bono = 200;
 
 -- Select tables
-
 SELECT * FROM Empleado;
+
 SELECT * FROM Usuario;
+SELECT * FROM Banco;
 
 SELECT * FROM Domicilio;
 
 SELECT * FROM Empresa;
+SELECT * FROM Departamento;
 SELECT * FROM Puesto;
 
-SELECT * FROM Departamento;
+
+SELECT * FROM [Company Employees];
+SELECT * FROM [Company Departments];
+SELECT * FROM [Departments Positions];
+SELECT * FROM Headcounter2;
+SELECT * FROM [Payroll Receipt];
 
 SELECT * FROM [Employees Daily Salary];
 

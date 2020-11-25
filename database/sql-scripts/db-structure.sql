@@ -6,7 +6,7 @@ USE bsc_payroll_sys_db;
 CREATE TABLE Empresa(
 	RFC_Empresa		VARCHAR(12) NOT NULL,
 	Nom_Empresa		VARCHAR(60),
-	Reg_Patronal	BIGINT,
+	Reg_Patronal	VARCHAR(11),
 	Razon_Social	VARCHAR(80),
 	Dom_Fiscal		INT,
 	Tel_Empresa		BIGINT,
