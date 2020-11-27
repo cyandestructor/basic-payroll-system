@@ -54,6 +54,93 @@ Public Class EmpleadoDAO
 
         Return True
     End Function
+    Public Function VerEmpleados(Optional ByVal idEmpleado As Integer = Nothing) As List(Of Empleado)
+        Dim command As New SqlCommand("VerDomicilios", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        Dim empleados As New List(Of Empleado)
+
+        If (idEmpleado <> Nothing) Then
+            command.Parameters.AddWithValue("@ID_Empleado", idEmpleado)
+        End If
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim empleado As New Empleado With {
+                .ID = reader.GetInt32(0),
+                .Nombre = reader.GetString(1),
+                .ApellidoPaterno = reader.GetString(2),
+                .ApellidoMaterno = reader.GetString(3),
+                .FechaNacimiento = reader.GetDateTime(4),
+                .CURP = reader.GetString(5),
+                .RFC = reader.GetString(6),
+                .NSS = reader.GetInt64(7),
+                .Domicilio = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(8)),
+                .Telefono = reader.GetInt64(9),
+                .Correo = reader.GetString(10),
+                .Banco = New BancoDAO().ObtenerBanco(reader.GetInt32(11)),
+                .CuentaBancaria = reader.GetInt64(12),
+                .EmpresaContratante = New EmpresaDAO().ObtenerEmpresa(reader.GetString(13)),
+                .FechaContrato = reader.GetDateTime(14),
+                .DepartamentoActual = New DepartamentoDAO().ObtenerDepartamento(reader.GetInt32(15)),
+                .FechaIncorporacion = reader.GetDateTime(16),
+                .PuestoActual = New PuestoDAO().ObtenerPuesto(reader.GetInt32(17)),
+                .FechaObtencion = reader.GetDateTime(18),
+                .Activo = reader.GetBoolean(20)
+            }
+            empleados.Add(empleado)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return empleados
+    End Function
+    Public Function ObtenerEmpleado(ByVal idEmpleado As Integer) As Empleado
+        Dim empleado As New Empleado
+
+        Dim command As New SqlCommand("VerEmpleados", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empleado", idEmpleado)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        If (reader.Read()) Then
+            empleado.ID = reader.GetInt32(0)
+            empleado.Nombre = reader.GetString(1)
+            empleado.ApellidoPaterno = reader.GetString(2)
+            empleado.ApellidoMaterno = reader.GetString(3)
+            empleado.FechaNacimiento = reader.GetDateTime(4)
+            empleado.CURP = reader.GetString(5)
+            empleado.RFC = reader.GetString(6)
+            empleado.NSS = reader.GetInt64(7)
+            empleado.Domicilio = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(8))
+            empleado.Telefono = reader.GetInt64(9)
+            empleado.Correo = reader.GetString(10)
+            empleado.Banco = New BancoDAO().ObtenerBanco(reader.GetInt32(11))
+            empleado.CuentaBancaria = reader.GetInt64(12)
+            empleado.EmpresaContratante = New EmpresaDAO().ObtenerEmpresa(reader.GetString(13))
+            empleado.FechaContrato = reader.GetDateTime(14)
+            empleado.DepartamentoActual = New DepartamentoDAO().ObtenerDepartamento(reader.GetInt32(15))
+            empleado.FechaIncorporacion = reader.GetDateTime(16)
+            empleado.PuestoActual = New PuestoDAO().ObtenerPuesto(reader.GetInt32(17))
+            empleado.FechaObtencion = reader.GetDateTime(18)
+            empleado.Activo = reader.GetBoolean(20)
+        End If
+
+        reader.Close()
+        connection.Close()
+
+        Return empleado
+    End Function
     Public Function AgregarEmpresa(ByVal idEmpleado As Integer, ByVal rfcEmpresa As String, ByVal fechaContrato As Date) As Boolean
         Dim command As New SqlCommand("AgregarEmpresaEmpleado", connection)
         command.CommandType = CommandType.StoredProcedure

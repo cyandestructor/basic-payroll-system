@@ -5,6 +5,7 @@ Public Class EmpresaDAO
     Public Function Registrar(ByVal empresa As Empresa) As Boolean
         Dim command As New SqlCommand("RegistrarEmpresa", connection)
         command.CommandType = CommandType.StoredProcedure
+
         command.Parameters.AddWithValue("@RFC_Empresa", empresa.RFC)
         command.Parameters.AddWithValue("@Nom_Empresa", empresa.Nombre)
         command.Parameters.AddWithValue("@Reg_Patronal", empresa.RegistroPatronal)
@@ -45,6 +46,73 @@ Public Class EmpresaDAO
         connection.Close()
 
         Return True
+    End Function
+    Public Function VerEmpresas() As List(Of Empresa)
+        Dim command As New SqlCommand("VerEmpresas", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        Dim empresas As New List(Of Empresa)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim empresa As New Empresa With {
+                .RFC = reader.GetString(0),
+                .Nombre = reader.GetString(1),
+                .RegistroPatronal = reader.GetString(2),
+                .RazonSocial = reader.GetString(3),
+                .DomicilioFiscal = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(4)),
+                .Telefono = reader.GetInt64(5),
+                .Correo = reader.GetString(6),
+                .FrecuenciaPago = reader.GetByte(7),
+                .InicioOperaciones = reader.GetDateTime(8),
+                .Gerente = New EmpleadoDAO().ObtenerEmpleado(reader.GetInt32(9)),
+                .InicioGestion = reader.GetDateTime(10),
+                .Activo = reader.GetBoolean(11)
+            }
+            empresas.Add(empresa)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return empresas
+    End Function
+    Public Function ObtenerEmpresa(ByVal idEmpresa As String) As Empresa
+        Dim empresa As New Empresa
+
+        Dim command As New SqlCommand("VerEmpresas", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empresa", idEmpresa)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        If (reader.Read()) Then
+            empresa.RFC = reader.GetString(0)
+            empresa.Nombre = reader.GetString(1)
+            empresa.RegistroPatronal = reader.GetString(2)
+            empresa.RazonSocial = reader.GetString(3)
+            empresa.DomicilioFiscal = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(4))
+            empresa.Telefono = reader.GetInt64(5)
+            empresa.Correo = reader.GetString(6)
+            empresa.FrecuenciaPago = reader.GetByte(7)
+            empresa.InicioOperaciones = reader.GetDateTime(8)
+            empresa.Gerente = New EmpleadoDAO().ObtenerEmpleado(reader.GetInt32(9))
+            empresa.InicioGestion = reader.GetDateTime(10)
+            empresa.Activo = reader.GetBoolean(11)
+        End If
+
+        reader.Close()
+        connection.Close()
+
+        Return empresa
     End Function
     Public Function AsignarGerente(ByVal rfc As String, ByVal idGerente As Integer) As Boolean
         Dim command As New SqlCommand("AsignarGerenteEmpresa", connection)

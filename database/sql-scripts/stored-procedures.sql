@@ -93,6 +93,49 @@ AS
 		END
 GO
 
+-- PROCEDIMIENTOS DE USUARIO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'EditarPasswordUsuario')
+	DROP PROCEDURE EditarPasswordUsuario;
+GO
+
+CREATE PROCEDURE EditarPasswordUsuario
+	@ID_Usuario		INT,
+	@Old_Password	VARCHAR(20),
+	@New_Password	VARCHAR(20)
+AS
+	DECLARE @ValidUser INT = -1
+	
+	IF (EXISTS(SELECT ID_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Old_Password))
+		BEGIN
+			UPDATE Usuario
+				SET Contrasena = @New_Password
+				WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Old_Password;
+			SET @ValidUser = 1;
+		END
+
+	RETURN @ValidUser;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'ObtenerInfoUsuario')
+	DROP PROCEDURE ObtenerInfoUsuario;
+GO
+
+CREATE PROCEDURE ObtenerInfoUsuario
+	@ID_Usuario		INT,
+	@Password		VARCHAR(20)
+AS
+	DECLARE @ValidUser	INT = -1;
+
+	IF(EXISTS(SELECT ID_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Password))
+		BEGIN
+			SELECT ID_Usuario, Nivel_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Password;
+			SET @ValidUser = 1;
+		END
+
+	RETURN @ValidUser;
+GO
+
 -- PROCEDIMIENTOS DE EMPLEADO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'RegistrarEmpleado')
@@ -1107,6 +1150,37 @@ AS
 			WHERE Est_Autoriza != 1;
 		END
 GO
+
+-- Procedimientos de banco
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerBancos')
+	DROP PROCEDURE VerBancos;
+GO
+
+CREATE PROCEDURE VerBancos
+	@ID_Banco	INT = NULL
+AS
+	IF (@ID_Banco = NULL)
+		BEGIN
+			SELECT
+				ID_Banco,
+				Nom_Banco
+			FROM
+				Banco;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Banco,
+				Nom_Banco
+			FROM
+				Banco
+			WHERE
+				ID_Banco = @ID_Banco;
+		END
+GO
+
+-- Procedimientos de reportes
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReporteNomina')
 	DROP PROCEDURE GenReporteNomina;
