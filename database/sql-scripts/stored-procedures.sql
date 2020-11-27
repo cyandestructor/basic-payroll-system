@@ -56,6 +56,43 @@ AS
 		WHERE ID_Domicilio = @ID_Domicilio;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerDomicilios')
+	DROP PROCEDURE VerDomicilios;
+GO
+
+CREATE PROCEDURE VerDomicilios
+	@ID_Domicilio INT = NULL
+AS
+	IF (@ID_Domicilio = NULL)
+		BEGIN
+			SELECT
+				ID_Domicilio,
+				Calle,
+				Numero,
+				Colonia,
+				Cod_Post,
+				Ciudad,
+				Estado
+			FROM
+				Domicilio;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Domicilio,
+				Calle,
+				Numero,
+				Colonia,
+				Cod_Post,
+				Ciudad,
+				Estado
+			FROM
+				Domicilio
+			WHERE
+				ID_Domicilio = @ID_Domicilio;
+		END
+GO
+
 -- PROCEDIMIENTOS DE EMPLEADO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'RegistrarEmpleado')
@@ -159,6 +196,71 @@ AS
 			Banco_Empleado = @Banco_Empleado,
 			Num_Cuenta = @Num_Cuenta
 		WHERE ID_Empleado = @ID_Empleado;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpleados')
+	DROP PROCEDURE VerEmpleados;
+GO
+
+CREATE PROCEDURE VerEmpleados
+	@ID_Empleado INT = NULL
+AS
+	IF (@ID_Empleado = NULL)
+		BEGIN
+			SELECT
+				ID_Empleado,
+				Nom_Empleado,
+				Apellido_Pat,
+				Apellido_Mat,
+				Fecha_Nac,
+				CURP_Empleado,
+				RFC_Empleado,
+				NSS_Empleado,
+				Dom_Empleado,
+				Tel_Empleado,
+				Correo_Empleado,
+				Banco_Empleado,
+				Num_Cuenta,
+				ID_Empresa,
+				Fecha_Contrato,
+				ID_Dpto,
+				Fecha_Incorp,
+				ID_Puesto,
+				Fecha_Obt,
+				ID_Usuario,
+				Activo
+			FROM
+				Empleado
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Empleado,
+				Nom_Empleado,
+				Apellido_Pat,
+				Apellido_Mat,
+				Fecha_Nac,
+				CURP_Empleado,
+				RFC_Empleado,
+				NSS_Empleado,
+				Dom_Empleado,
+				Tel_Empleado,
+				Correo_Empleado,
+				Banco_Empleado,
+				Num_Cuenta,
+				ID_Empresa,
+				Fecha_Contrato,
+				ID_Dpto,
+				Fecha_Incorp,
+				ID_Puesto,
+				Fecha_Obt,
+				ID_Usuario,
+				Activo
+			FROM
+				Empleado
+			WHERE
+				ID_Empleado = @ID_Empleado;
+		END
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AgregarEmpresaEmpleado')
@@ -296,6 +398,53 @@ AS
 			Frec_Pago = @Frec_Pago,
 			Inicio_Ops = @Inicio_Ops
 		WHERE RFC_Empresa = @RFC_Empresa;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpresas')
+	DROP PROCEDURE VerEmpresas;
+GO
+
+CREATE PROCEDURE VerEmpresas
+	@ID_Empresa		VARCHAR(12)
+AS
+	IF (@ID_Empresa = NULL)
+		BEGIN
+			SELECT
+				RFC_Empresa,
+				Nom_Empresa,
+				Reg_Patronal,
+				Razon_Social,
+				Dom_Fiscal,
+				Tel_Empresa,
+				Correo_Empresa,
+				Frec_Pago,
+				Inicio_Ops,
+				Gerente_Empresa,
+				Inicio_Gestion,
+				Activo
+			FROM
+				Empresa;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				RFC_Empresa,
+				Nom_Empresa,
+				Reg_Patronal,
+				Razon_Social,
+				Dom_Fiscal,
+				Tel_Empresa,
+				Correo_Empresa,
+				Frec_Pago,
+				Inicio_Ops,
+				Gerente_Empresa,
+				Inicio_Gestion,
+				Activo
+			FROM
+				Empresa
+			WHERE
+				RFC_Empresa = @ID_Empresa;
+		END
 GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AsignarGerenteEmpresa')
@@ -440,6 +589,35 @@ AS
 		WHERE ID_Dpto = @ID_Dpto;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerDepartamentos')
+	DROP PROCEDURE VerDepartamentos;
+GO
+
+CREATE PROCEDURE VerDepartamentos
+	@ID_Dpto INT = NULL
+AS
+	IF (@ID_Dpto = NULL)
+		BEGIN
+			SELECT
+				ID_Dpto,
+				Nom_Dpto,
+				Activo
+			FROM
+				Departamento;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Dpto,
+				Nom_Dpto,
+				Activo
+			FROM
+				Departamento
+			WHERE
+				ID_Dpto = @ID_Dpto;
+		END
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AsignarGerenteDpto')
 	DROP PROCEDURE AsignarGerenteDpto;
 GO
@@ -539,6 +717,35 @@ AS
 	UPDATE Puesto
 		SET Nom_Puesto = @Nom_Puesto
 		WHERE ID_Puesto = @ID_Puesto;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerPuestos')
+	DROP PROCEDURE VerPuestos;
+GO
+
+CREATE PROCEDURE VerPuestos
+	@ID_Puesto	INT = NULL
+AS
+	IF (@ID_Puesto = NULL)
+		BEGIN
+			SELECT
+				ID_Puesto,
+				Nom_Puesto,
+				Activo
+			FROM
+				Puesto;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Puesto,
+				Nom_Puesto,
+				Activo
+			FROM
+				Puesto
+			WHERE
+				ID_Puesto = @ID_Puesto;
+		END
 GO
 
 -- PROCEDIMIENTOS DE PERCEPCIONES
@@ -709,7 +916,19 @@ AS
 				@ID_Empleado = @ID_Empleado; -- The second @ID_Empleado is a local parameter
 		END
 
-	-- TODO: GENERAR DEDUCCIONES BASE
+	-- GENERAR DEDUCCIONES BASE
+
+	EXEC GenerarDeduccion
+		@Desc_deducc = 'ISR',
+		@Cant_Fija = 200,
+		@Cant_Porcent = 0,
+		@ID_Empleado = @ID_Empleado;
+
+	EXEC GenerarDeduccion
+		@Desc_deducc = 'IMSS',
+		@Cant_Fija = 200,
+		@Cant_Porcent = 0,
+		@ID_Empleado = @ID_Empleado;
 
 	DECLARE @TotalPercepFija	FLOAT;
 	SET @TotalPercepFija =	(SELECT SUM(Cant_Fija)
@@ -857,7 +1076,7 @@ AS
 	IF (@UnauthorizedOnly = 0)
 		BEGIN
 			SELECT
-				-- TODO: ID
+				ID_Inciden,
 				Desc_Inciden,
 				Inicio_Inciden,
 				Fin_Inciden,
@@ -873,7 +1092,7 @@ AS
 	ELSE
 		BEGIN
 			SELECT
-				-- TODO: ID
+				ID_Inciden,
 				Desc_Inciden,
 				Inicio_Inciden,
 				Fin_Inciden,
@@ -889,15 +1108,87 @@ AS
 		END
 GO
 
---IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReporteNomina')
---	DROP PROCEDURE GenReporteNomina;
---GO
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReporteNomina')
+	DROP PROCEDURE GenReporteNomina;
+GO
 
---CREATE PROCEDURE GenReporteNomina
+CREATE PROCEDURE GenReporteNomina
+	@ID_Empresa		VARCHAR(12),
+	@ID_Dpto		INT,
+	@Year			INT,
+	@Mes			INT
+AS
+	SELECT
+		Emp.Nom_Empresa AS Empresa,
+		D.Nom_Dpto AS Departamento,
+		CONCAT(E.Nom_Empleado, ' ', E.Apellido_Pat, ' ', E.Apellido_Mat) AS Gerente,
+		RN.Año AS Año,
+		RN.Mes AS Mes,
+		RN.Sueldo_Bruto AS Sueldo_Bruto,
+		RN.Sueldo_Neto AS Sueldo_Neto,
+		RN.ISR AS ISR,
+		RN.IMSS AS IMSS
+	FROM
+		[Reporte Nomina] AS RN
+		INNER JOIN Empleado AS E ON E.ID_Empleado = RN.Gerente
+		INNER JOIN Empresa AS Emp ON Emp.RFC_Empresa = RN.Empresa
+		INNER JOIN Departamento AS D ON D.ID_Dpto = RN.Departamento
+	WHERE
+		RN.Empresa = @ID_Empresa AND RN.Departamento = @ID_Dpto AND RN.Año = @Year AND RN.Mes = @Mes;
+GO
 
---AS
---	-- TODO
---GO
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerResumenPagos')
+	DROP PROCEDURE VerResumenPagos;
+GO
+
+CREATE PROCEDURE VerResumenPagos
+	@ID_Empleado	INT,
+	@Year			INT
+AS
+	SELECT ID, RFC, NSS, AÑO, MES, ISR, IMSS, SUELDO, SUELDO_NETO
+	FROM [Resumen Pagos] AS RP
+	WHERE RP.ID = @ID_Empleado AND RP.AÑO = @Year;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerReporteNominaGeneral')
+	DROP PROCEDURE VerReporteNominaGeneral;
+GO
+
+CREATE PROCEDURE VerReporteNominaGeneral
+	@ID_Empresa		VARCHAR(12),
+	@Year			INT = NULL,
+	@Mes			INT = NULL
+AS
+	IF (@Year != NULL AND @Mes != NULL)
+		BEGIN
+			SELECT
+				Departamento,
+				Puesto,
+				[Nombre Empleado],
+				[Fecha de ingreso],
+				[Fecha de nacimiento],
+				[Sueldo diario]
+			FROM
+				[Company Employees]
+			WHERE
+				[ID Empresa] = @ID_Empresa AND
+				[Fecha de ingreso] BETWEEN DATEFROMPARTS(@Year, @Mes, 1) AND DATEADD(MONTH, 1, DATEFROMPARTS(@Year, @Mes, 1));
+		END
+	ELSE
+		BEGIN
+			SELECT
+				Departamento,
+				Puesto,
+				[Nombre Empleado],
+				[Fecha de ingreso],
+				[Fecha de nacimiento],
+				[Sueldo diario]
+			FROM
+				[Company Employees]
+			WHERE
+				[ID Empresa] = @ID_Empresa;
+		END
+GO
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenReciboNomina')
 	DROP PROCEDURE GenReciboNomina;
@@ -928,4 +1219,92 @@ AS
 	FROM [Payroll Receipt]
 	WHERE
 		[Numero de Empleado] = @ID_Empleado AND [Fecha de pago] = @Fecha_Pago;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerHeadcounter1')
+	DROP PROCEDURE VerHeadcounter1;
+GO
+
+CREATE PROCEDURE VerHeadcounter1
+	@ID_Empresa		VARCHAR(12),
+	@ID_Dpto		INT,
+	@Year			INT,
+	@Mes			INT
+AS
+	DECLARE @SelDate DATE = DATEFROMPARTS(@Year, @Mes, 1);
+	
+	SELECT
+		ED.ID_Empresa,
+		ED.ID_Dpto,
+		ED.Gerente_Dpto,
+		DP.ID_Puesto,
+		COALESCE((SELECT Count(0)
+		FROM Empleado
+		WHERE Empleado.Fecha_Contrato <= @SelDate AND dbo.LASTPAYDATE(Empleado.ID_Empleado) >= @SelDate
+		GROUP BY ID_Puesto, ID_Empresa, ID_Dpto
+		HAVING ID_Puesto = DP.ID_Puesto
+			AND ID_Empresa = ED.ID_Empresa
+			AND ID_Dpto = DP.ID_Dpto), 0) AS Num_Empleados
+	FROM
+		Empresa_Dpto AS ED
+		INNER JOIN Dpto_Puesto AS DP ON DP.ID_Dpto = ED.ID_Dpto
+	WHERE
+		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
+		
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerHeadcounter2')
+	DROP PROCEDURE VerHeadcounter2;
+GO
+
+CREATE PROCEDURE VerHeadcounter2
+	@ID_Empresa		VARCHAR(12),
+	@ID_Dpto		INT,
+	@Year			INT,
+	@Mes			INT
+AS
+	DECLARE @SelDate DATE = DATEFROMPARTS(@Year, @Mes, 1);
+	
+	SELECT
+		ED.ID_Empresa,
+		ED.ID_Dpto,
+		ED.Gerente_Dpto,
+		COALESCE((SELECT Count(0)
+		FROM Empleado
+		WHERE Empleado.Fecha_Contrato <= @SelDate AND dbo.LASTPAYDATE(Empleado.ID_Empleado) >= @SelDate
+		GROUP BY ID_Empresa, ID_Dpto
+		HAVING ID_Empresa = ED.ID_Empresa
+			AND ID_Dpto = ED.ID_Dpto), 0) AS Num_Empleados,
+		PYD.Fecha AS Ultima_Nomina
+	FROM
+		Empresa_Dpto AS ED
+		LEFT JOIN (
+			SELECT DISTINCT dbo.LASTPAYDATE(E.ID_Empleado) AS Fecha, E.ID_Empresa, E.ID_Dpto
+			FROM Empleado AS E
+		) AS PYD ON PYD.ID_Empresa = ED.ID_Empresa AND PYD.ID_Dpto = ED.ID_Dpto
+	WHERE
+		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
+		
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerReporteCalculoNomina')
+	DROP PROCEDURE VerReporteCalculoNomina;
+GO
+
+CREATE PROCEDURE VerReporteCalculoNomina
+	@ID_Empresa		VARCHAR(12),
+	@Fecha			DATE
+AS
+	SELECT
+		[ID Nomina],
+		[ID del Empleado],
+		[Nombre del Empleado],
+		Fecha,
+		[Cantidad a depositar],
+		Banco,
+		[Num. Cuenta]
+	FROM
+		[Reporte Calculo Nomina] AS RCN
+	WHERE
+		RCN.Empresa = @ID_Empresa AND Fecha = @Fecha;
 GO

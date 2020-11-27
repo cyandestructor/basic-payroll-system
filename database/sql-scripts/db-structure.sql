@@ -82,6 +82,7 @@ CREATE TABLE Percepcion(
 	Cant_Porcent	FLOAT,
 	ID_Empleado		INT NOT NULL,
 	Fecha_Percep	DATE,
+	ID_Nomina		INT
 
 	CONSTRAINT PK_Percepcion
 		PRIMARY KEY (ID_Percep)
@@ -94,6 +95,7 @@ CREATE TABLE Deduccion(
 	Cant_Porcent	FLOAT,
 	ID_Empleado		INT NOT NULL,
 	Fecha_Deducc	DATE,
+	ID_Nomina		INT
 
 	CONSTRAINT PK_Deduccion
 		PRIMARY KEY (ID_Deducc)
@@ -243,7 +245,10 @@ ALTER TABLE Empleado
 ALTER TABLE Percepcion
 	ADD CONSTRAINT FK_Empleado_Percepcion
 			FOREIGN KEY (ID_Empleado)
-			REFERENCES Empleado(ID_Empleado);
+			REFERENCES Empleado(ID_Empleado),
+		CONSTRAINT FK_Nomina_Percepcion
+			FOREIGN KEY (ID_Nomina)
+			REFERENCES Nomina(ID_Nomina);
 
 ALTER TABLE Incidencia
 	ADD CONSTRAINT FK_Solicitante_Incidencia
@@ -256,7 +261,10 @@ ALTER TABLE Incidencia
 ALTER TABLE Deduccion
 	ADD CONSTRAINT FK_Empleado_Deduccion
 			FOREIGN KEY (ID_Empleado)
-			REFERENCES Empleado(ID_Empleado);
+			REFERENCES Empleado(ID_Empleado),
+		CONSTRAINT FK_Nomina_Percepcion
+			FOREIGN KEY (ID_Nomina)
+			REFERENCES Nomina(ID_Nomina);
 
 ALTER TABLE Nomina
 	ADD CONSTRAINT FK_Empleado_Nomina

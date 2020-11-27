@@ -289,6 +289,12 @@ EXEC AgregarPuestoEmpresa
 -- Agregar puestos a departamentos
 
 EXEC AgregarPuestoDpto
+	@ID_Dpto = 5,
+	@ID_Puesto = 1,
+	@Porcent_Sueldo = 1.4,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
 	@ID_Dpto = 1,
 	@ID_Puesto = 1,
 	@Porcent_Sueldo = 1.0,
@@ -314,6 +320,12 @@ EXEC AgregarPuestoDpto
 
 EXEC AgregarPuestoDpto
 	@ID_Dpto = 5,
+	@ID_Puesto = 3,
+	@Porcent_Sueldo = 1.3,
+	@Mode = 1;
+
+EXEC AgregarPuestoDpto
+	@ID_Dpto = 1,
 	@ID_Puesto = 3,
 	@Porcent_Sueldo = 1.3,
 	@Mode = 1;
@@ -349,7 +361,7 @@ EXEC AgregarEmpresaEmpleado
 
 EXEC AsignarDptoEmpleado
 	@ID_Empleado = 1000,
-	@ID_Dpto = 1;
+	@ID_Dpto = 5;
 
 EXEC AsignarDptoEmpleado
 	@ID_Empleado = 1001,
@@ -423,6 +435,195 @@ EXEC AsignarGerenteDpto
 	@ID_Gerente = 1004,
 	@Cant_Bono = 200;
 
+-- Generar percepciones/deducciones
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de puntualidad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Prima dominical',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 1,
+		@ID_Empleado = 1000;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Empleado del mes',
+		@Cant_Fija = 500,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de antiguedad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de puntualidad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1001;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Prima dominical',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 1,
+		@ID_Empleado = 1001;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de antiguedad',
+		@Cant_Fija = 200,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1001;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de puntualidad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1002;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Prima dominical',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 1,
+		@ID_Empleado = 1002;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de antiguedad',
+		@Cant_Fija = 200,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1002;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de puntualidad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1003;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Prima dominical',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 1,
+		@ID_Empleado = 1003;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de antiguedad',
+		@Cant_Fija = 150,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1003;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de puntualidad',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1004;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Prima dominical',
+		@Cant_Fija = 300,
+		@Cant_Porcent = 1,
+		@ID_Empleado = 1004;
+
+EXEC GenerarPercepcion
+		@Desc_Percep = 'Bono de antiguedad',
+		@Cant_Fija = 200,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1004;
+
+-- Deducciones
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'INFONAVIT',
+		@Cant_Fija = 1235.56,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'Donacion',
+		@Cant_Fija = 0,
+		@Cant_Porcent = 0.30,
+		@ID_Empleado = 1000;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'INFONAVIT',
+		@Cant_Fija = 1135,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1001;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'INFONAVIT',
+		@Cant_Fija = 1765.56,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1002;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'INFONAVIT',
+		@Cant_Fija = 1335.96,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1003;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'INFONAVIT',
+		@Cant_Fija = 1435.50,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1004;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'ISR',
+		@Cant_Fija = 100,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'ISR',
+		@Cant_Fija = 110,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'ISR',
+		@Cant_Fija = 110,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1001;
+
+EXEC GenerarDeduccion
+		@Desc_Deducc = 'IMSS',
+		@Cant_Fija = 150,
+		@Cant_Porcent = 0,
+		@ID_Empleado = 1000;
+
+-- Generar nomina empleados
+
+DECLARE @EndDate DATE = DATEADD(DAY, 15, '2020-11-23');
+
+EXEC GenerarNomina
+		@ID_Empleado = 1000,
+		@Inicio_Periodo = '2020-11-23',
+		@Fin_Periodo = @EndDate;
+
+EXEC GenerarNomina
+		@ID_Empleado = 1001,
+		@Inicio_Periodo = '2020-11-23',
+		@Fin_Periodo = @EndDate;
+
+EXEC GenerarNomina
+		@ID_Empleado = 1002,
+		@Inicio_Periodo = '2020-11-23',
+		@Fin_Periodo = @EndDate;
+
+EXEC GenerarNomina
+		@ID_Empleado = 1003,
+		@Inicio_Periodo = '2020-11-23',
+		@Fin_Periodo = @EndDate;
+
+EXEC GenerarNomina
+		@ID_Empleado = 1004,
+		@Inicio_Periodo = '2020-11-23',
+		@Fin_Periodo = @EndDate;
+
 -- Select tables
 SELECT * FROM Empleado;
 
@@ -452,3 +653,19 @@ SELECT * FROM Incidencia;
 SELECT * FROM Empresa_Dpto;
 SELECT * FROM Dpto_Puesto;
 SELECT * FROM Empresa_Puesto;
+
+EXEC VerHeadcounter1
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 5,
+	@Year = 2006,
+	@Mes = 10;
+
+EXEC VerHeadcounter2
+	@ID_Empresa = 'APP050523P85',
+	@ID_Dpto = 5,
+	@Year = 2006,
+	@Mes = 10;
+
+EXEC VerReporteCalculoNomina
+	@ID_Empresa = 'APP050523P85',
+	@Fecha = '2020-11-26';
