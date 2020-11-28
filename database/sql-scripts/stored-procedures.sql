@@ -1299,6 +1299,8 @@ IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerHeadcounte
 	DROP PROCEDURE VerHeadcounter1;
 GO
 
+-- TODO: Change this and headcounter 2
+
 CREATE PROCEDURE VerHeadcounter1
 	@ID_Empresa		VARCHAR(12),
 	@ID_Dpto		INT,
@@ -1364,6 +1366,8 @@ GO
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerReporteCalculoNomina')
 	DROP PROCEDURE VerReporteCalculoNomina;
 GO
+
+-- TODO: Change this
 
 CREATE PROCEDURE VerReporteCalculoNomina
 	@ID_Empresa		VARCHAR(12),
