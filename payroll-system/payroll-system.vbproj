@@ -74,17 +74,24 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="models\dao\BancoDAO.vb" />
     <Compile Include="models\dao\DBConnection.vb" />
     <Compile Include="models\dao\DeduccionDAO.vb" />
     <Compile Include="models\dao\DepartamentoDAO.vb" />
     <Compile Include="models\dao\DomicilioDAO.vb" />
     <Compile Include="models\dao\EmpleadoDAO.vb" />
     <Compile Include="models\dao\EmpresaDAO.vb" />
+    <Compile Include="models\dao\HeadcounterDAO.vb" />
     <Compile Include="models\dao\IncidenciaDAO.vb" />
     <Compile Include="models\dao\NominaDAO.vb" />
     <Compile Include="models\dao\PercepcionDAO.vb" />
     <Compile Include="models\dao\PuestoDAO.vb" />
     <Compile Include="models\dao\ReciboNominaDAO.vb" />
+    <Compile Include="models\dao\ReporteCalculoNominaDAO.vb" />
+    <Compile Include="models\dao\ReporteNominaDAO.vb" />
+    <Compile Include="models\dao\ReporteNominaGeneralDAO.vb" />
+    <Compile Include="models\dao\ResumenPagosDAO.vb" />
+    <Compile Include="models\dao\UsuarioDAO.vb" />
     <Compile Include="models\dto\Banco.vb" />
     <Compile Include="models\dto\Deduccion.vb" />
     <Compile Include="models\dto\Departamento.vb" />
@@ -94,11 +101,17 @@
     <Compile Include="models\dto\Empresa.vb" />
     <Compile Include="models\dto\EmpresaDpto.vb" />
     <Compile Include="models\dto\EmpresaPuesto.vb" />
+    <Compile Include="models\dto\Headcounter1Row.vb" />
+    <Compile Include="models\dto\Headcounter2Row.vb" />
     <Compile Include="models\dto\Incidencia.vb" />
     <Compile Include="models\dto\Nomina.vb" />
     <Compile Include="models\dto\Percepcion.vb" />
     <Compile Include="models\dto\Puesto.vb" />
     <Compile Include="models\dto\ReciboNomina.vb" />
+    <Compile Include="models\dto\ReporteCalculoNomina.vb" />
+    <Compile Include="models\dto\ReporteNominaGeneral.vb" />
+    <Compile Include="models\dto\ReporteNominaRow.vb" />
+    <Compile Include="models\dto\ResumenPagosRow.vb" />
     <Compile Include="models\dto\Usuario.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">

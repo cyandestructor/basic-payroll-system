@@ -1299,8 +1299,6 @@ IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerHeadcounte
 	DROP PROCEDURE VerHeadcounter1;
 GO
 
--- TODO: Change this and headcounter 2
-
 CREATE PROCEDURE VerHeadcounter1
 	@ID_Empresa		VARCHAR(12),
 	@ID_Dpto		INT,
@@ -1310,10 +1308,10 @@ AS
 	DECLARE @SelDate DATE = DATEFROMPARTS(@Year, @Mes, 1);
 	
 	SELECT
-		ED.ID_Empresa,
-		ED.ID_Dpto,
-		ED.Gerente_Dpto,
-		DP.ID_Puesto,
+		E.Nom_Empresa,
+		D.Nom_Dpto,
+		CONCAT(Emp.Nom_Empleado, ' ', Emp.Apellido_Pat, ' ', Emp.Apellido_Mat) AS Gerente,
+		P.ID_Puesto,
 		COALESCE((SELECT Count(0)
 		FROM Empleado
 		WHERE Empleado.Fecha_Contrato <= @SelDate AND dbo.LASTPAYDATE(Empleado.ID_Empleado) >= @SelDate
@@ -1324,6 +1322,10 @@ AS
 	FROM
 		Empresa_Dpto AS ED
 		INNER JOIN Dpto_Puesto AS DP ON DP.ID_Dpto = ED.ID_Dpto
+		INNER JOIN Empresa AS E ON E.RFC_Empresa = ED.ID_Empresa
+		INNER JOIN Departamento AS D ON D.ID_Dpto = ED.ID_Dpto
+		INNER JOIN Puesto AS P ON P.ID_Puesto = DP.ID_Puesto
+		INNER JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
 	WHERE
 		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
 		
@@ -1342,9 +1344,9 @@ AS
 	DECLARE @SelDate DATE = DATEFROMPARTS(@Year, @Mes, 1);
 	
 	SELECT
-		ED.ID_Empresa,
-		ED.ID_Dpto,
-		ED.Gerente_Dpto,
+		E.Nom_Empresa,
+		D.Nom_Dpto,
+		CONCAT(Emp.Nom_Empleado, ' ', Emp.Apellido_Pat, ' ', Emp.Apellido_Mat) AS Gerente,
 		COALESCE((SELECT Count(0)
 		FROM Empleado
 		WHERE Empleado.Fecha_Contrato <= @SelDate AND dbo.LASTPAYDATE(Empleado.ID_Empleado) >= @SelDate
@@ -1358,6 +1360,9 @@ AS
 			SELECT DISTINCT dbo.LASTPAYDATE(E.ID_Empleado) AS Fecha, E.ID_Empresa, E.ID_Dpto
 			FROM Empleado AS E
 		) AS PYD ON PYD.ID_Empresa = ED.ID_Empresa AND PYD.ID_Dpto = ED.ID_Dpto
+		INNER JOIN Empresa AS E ON E.RFC_Empresa = ED.ID_Empresa
+		INNER JOIN Departamento AS D ON D.ID_Dpto = ED.ID_Dpto
+		INNER JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
 	WHERE
 		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
 		
@@ -1366,8 +1371,6 @@ GO
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerReporteCalculoNomina')
 	DROP PROCEDURE VerReporteCalculoNomina;
 GO
-
--- TODO: Change this
 
 CREATE PROCEDURE VerReporteCalculoNomina
 	@ID_Empresa		VARCHAR(12),
