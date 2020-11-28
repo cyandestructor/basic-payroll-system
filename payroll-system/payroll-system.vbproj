@@ -129,10 +129,76 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="views\Alta_empleado.Designer.vb">
+      <DependentUpon>Alta_empleado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Alta_empleado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Alta_empresa.Designer.vb">
+      <DependentUpon>Alta_empresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Alta_empresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Component1.Designer.vb">
+      <DependentUpon>Component1.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Component1.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="views\EmpleadoForm.Designer.vb">
+      <DependentUpon>EmpleadoForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\EmpleadoForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Gerente.Designer.vb">
+      <DependentUpon>Gerente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Gerente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="views\main.Designer.vb">
       <DependentUpon>main.vb</DependentUpon>
     </Compile>
     <Compile Include="views\main.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Opciones_Depa.Designer.vb">
+      <DependentUpon>Opciones_Depa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Opciones_Depa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Opciones_puesto.Designer.vb">
+      <DependentUpon>Opciones_puesto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Opciones_puesto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Permisos.Designer.vb">
+      <DependentUpon>Permisos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Permisos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Per_Ded.Designer.vb">
+      <DependentUpon>Per_Ded.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Per_Ded.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\Vacaciones.Designer.vb">
+      <DependentUpon>Vacaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Vacaciones.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -143,8 +209,41 @@
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\Alta_empleado.resx">
+      <DependentUpon>Alta_empleado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Alta_empresa.resx">
+      <DependentUpon>Alta_empresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Component1.resx">
+      <DependentUpon>Component1.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\EmpleadoForm.resx">
+      <DependentUpon>EmpleadoForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Gerente.resx">
+      <DependentUpon>Gerente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\main.resx">
       <DependentUpon>main.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Opciones_Depa.resx">
+      <DependentUpon>Opciones_Depa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Opciones_puesto.resx">
+      <DependentUpon>Opciones_puesto.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Permisos.resx">
+      <DependentUpon>Permisos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Per_Ded.resx">
+      <DependentUpon>Per_Ded.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Vacaciones.resx">
+      <DependentUpon>Vacaciones.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
