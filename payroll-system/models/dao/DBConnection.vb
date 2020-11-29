@@ -20,4 +20,10 @@ Public Class DBConnection
         End If
         Return ""
     End Function
+    Protected Function GetBooleanSafe(ByVal reader As SqlDataReader, ByVal index As Integer) As Boolean
+        If Not reader.IsDBNull(index) Then
+            Return reader.GetBoolean(index)
+        End If
+        Return False
+    End Function
 End Class

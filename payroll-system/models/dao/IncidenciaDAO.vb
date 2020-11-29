@@ -56,10 +56,10 @@ Public Class IncidenciaDAO
                 .IDSolicitante = reader.GetInt32(4),
                 .FechaSolicitud = reader.GetDateTime(5),
                 .MotivoSolicitud = reader.GetString(6),
-                .IDGerente = reader.GetInt32(7),
-                .FechaRevision = reader.GetDateTime(8),
+                .IDGerente = GetIntSafe(reader, 7),
+                .FechaRevision = GetDateSafe(reader, 8),
                 .Estado = reader.GetByte(9),
-                .GoceSueldo = reader.GetBoolean(10)
+                .GoceSueldo = GetBooleanSafe(reader, 10)
             }
             incidencias.Add(incidencia)
         End While

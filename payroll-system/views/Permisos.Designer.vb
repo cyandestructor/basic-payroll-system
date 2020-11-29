@@ -30,6 +30,8 @@ Partial Class Permisos
         Me.Txt_Permiso = New System.Windows.Forms.TextBox()
         Me.Btn_Ok = New System.Windows.Forms.Button()
         Me.Btn_Cancelar = New System.Windows.Forms.Button()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.TxtMotivo = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'Label1
@@ -76,14 +78,13 @@ Partial Class Permisos
         'Txt_Permiso
         '
         Me.Txt_Permiso.Location = New System.Drawing.Point(12, 89)
-        Me.Txt_Permiso.Multiline = True
         Me.Txt_Permiso.Name = "Txt_Permiso"
-        Me.Txt_Permiso.Size = New System.Drawing.Size(290, 145)
+        Me.Txt_Permiso.Size = New System.Drawing.Size(290, 20)
         Me.Txt_Permiso.TabIndex = 5
         '
         'Btn_Ok
         '
-        Me.Btn_Ok.Location = New System.Drawing.Point(227, 240)
+        Me.Btn_Ok.Location = New System.Drawing.Point(227, 283)
         Me.Btn_Ok.Name = "Btn_Ok"
         Me.Btn_Ok.Size = New System.Drawing.Size(75, 23)
         Me.Btn_Ok.TabIndex = 6
@@ -92,21 +93,40 @@ Partial Class Permisos
         '
         'Btn_Cancelar
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(146, 240)
+        Me.Btn_Cancelar.Location = New System.Drawing.Point(146, 283)
         Me.Btn_Cancelar.Name = "Btn_Cancelar"
         Me.Btn_Cancelar.Size = New System.Drawing.Size(75, 23)
         Me.Btn_Cancelar.TabIndex = 7
         Me.Btn_Cancelar.Text = "Cancelar"
         Me.Btn_Cancelar.UseVisualStyleBackColor = True
         '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(12, 129)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(42, 13)
+        Me.Label4.TabIndex = 4
+        Me.Label4.Text = "Motivo:"
+        '
+        'TxtMotivo
+        '
+        Me.TxtMotivo.Location = New System.Drawing.Point(12, 145)
+        Me.TxtMotivo.Multiline = True
+        Me.TxtMotivo.Name = "TxtMotivo"
+        Me.TxtMotivo.Size = New System.Drawing.Size(290, 121)
+        Me.TxtMotivo.TabIndex = 5
+        '
         'Permisos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(322, 277)
+        Me.ClientSize = New System.Drawing.Size(322, 318)
         Me.Controls.Add(Me.Btn_Cancelar)
         Me.Controls.Add(Me.Btn_Ok)
+        Me.Controls.Add(Me.TxtMotivo)
         Me.Controls.Add(Me.Txt_Permiso)
+        Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.DTP_FinPer)
         Me.Controls.Add(Me.DTP_InicioPer)
@@ -127,4 +147,6 @@ Partial Class Permisos
     Friend WithEvents Txt_Permiso As TextBox
     Friend WithEvents Btn_Ok As Button
     Friend WithEvents Btn_Cancelar As Button
+    Friend WithEvents Label4 As Label
+    Friend WithEvents TxtMotivo As TextBox
 End Class

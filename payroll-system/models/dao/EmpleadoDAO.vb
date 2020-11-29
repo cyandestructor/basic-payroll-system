@@ -118,6 +118,60 @@ Public Class EmpleadoDAO
 
         Return empleados
     End Function
+    Public Function VerEmpleadosEmpresa(ByVal idEmpresa As String, Optional ByVal idDpto As Integer = Nothing) As List(Of Empleado)
+        Dim command As New SqlCommand("VerEmpleadosEmpresaDpto", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        Dim empleados As New List(Of Empleado)
+
+        command.Parameters.AddWithValue("@ID_Empresa", idEmpresa)
+
+        If (idDpto <> Nothing) Then
+            command.Parameters.AddWithValue("@ID_Dpto", idDpto)
+        End If
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim empleado As New Empleado With {
+                .ID = reader.GetInt32(0),
+                .Nombre = reader.GetString(1),
+                .ApellidoPaterno = reader.GetString(2),
+                .ApellidoMaterno = reader.GetString(3),
+                .FechaNacimiento = reader.GetDateTime(4),
+                .CURP = reader.GetString(5),
+                .RFC = reader.GetString(6),
+                .NSS = reader.GetInt64(7),
+                .Domicilio = New Domicilio,
+                .Telefono = reader.GetInt64(9),
+                .Correo = reader.GetString(10),
+                .Banco = New Banco,
+                .CuentaBancaria = reader.GetInt64(12),
+                .EmpresaContratante = New Empresa,
+                .FechaContrato = GetDateSafe(reader, 14),
+                .DepartamentoActual = New Departamento,
+                .FechaIncorporacion = GetDateSafe(reader, 16),
+                .PuestoActual = New Puesto,
+                .FechaObtencion = GetDateSafe(reader, 18),
+                .Activo = reader.GetBoolean(20)
+            }
+            empleado.Domicilio.ID = reader.GetInt32(8)
+            empleado.Banco.ID = reader.GetInt32(11)
+            empleado.EmpresaContratante.RFC = GetStringSafe(reader, 13)
+            empleado.DepartamentoActual.ID = GetIntSafe(reader, 15)
+            empleado.PuestoActual.ID = GetIntSafe(reader, 17)
+
+            empleados.Add(empleado)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return empleados
+    End Function
     Public Function ObtenerEmpleado(ByVal idEmpleado As Integer) As Empleado
         Dim empleado As New Empleado
 

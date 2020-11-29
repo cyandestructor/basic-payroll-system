@@ -24,4 +24,21 @@
         Dim formPermisos As New Permisos
         formPermisos.Show()
     End Sub
+
+    Private Sub menuRevisarPermisos_Click(sender As Object, e As EventArgs) Handles menuRevisarPermisos.Click
+        Dim formIncidencias As New RevisarIncidencias
+        formIncidencias.Show()
+    End Sub
+    Private Sub EmpleadosToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles EmpleadosToolStripMenuItem.Click
+        Dim formEmpleados As New VerEmpleados
+        formEmpleados.Show()
+    End Sub
+    Private Sub Menu_Password_Click(sender As Object, e As EventArgs) Handles Menu_Password.Click
+        Dim formSesion As New Login(True)
+        formSesion.Show()
+    End Sub
+    Private Sub MenuAsignarGerentes_Click(sender As Object, e As EventArgs) Handles MenuAsignarGerentes.Click
+        Dim formAsignacion As New AsignarGerentes
+        formAsignacion.Show()
+    End Sub
 End Class

@@ -34,7 +34,7 @@
 
         Dim porcentSueld = Double.Parse(Txt_PorSueldo.Text) / 100
 
-        If (departamentoDAO.EditarPorcentSueldoPuesto(dptoSel, puestoSel, porcentSueld) And empresaDAO.AgregarPuesto(empresaSel, 3)) Then
+        If (departamentoDAO.AgregarPuesto(dptoSel, puestoSel, porcentSueld) And empresaDAO.AgregarPuesto(empresaSel, puestoSel)) Then
             MsgBox("Cambio exitoso")
             ClearAll()
         End If
@@ -65,15 +65,19 @@
         LB_Puesto.ClearSelected()
         Txt_PorSueldo.Text = ""
     End Sub
-
     Private Sub BtnEditarPuesto_Click(sender As Object, e As EventArgs) Handles BtnEditarPuesto.Click
+        Dim puestoSel = Integer.Parse(Txt_CodPuesto.Text)
         Dim puesto As New Puesto With {
-            .ID = Integer.Parse(Txt_CodPuesto.Text),
+            .ID = puestoSel,
             .Nombre = Txt_NomPuesto.Text
         }
 
+        Dim dptoSel = Integer.Parse(Cb_Depa.SelectedValue)
+        Dim porcentSueld = Double.Parse(Txt_PorSueldo.Text) / 100
+
         Dim puestoDAO As New PuestoDAO
-        If (puestoDAO.Editar(puesto)) Then
+        Dim departamentoDAO As New DepartamentoDAO
+        If (puestoDAO.Editar(puesto) And departamentoDAO.EditarPorcentSueldoPuesto(dptoSel, puestoSel, porcentSueld)) Then
             MsgBox("Edición exitosa")
             ClearAll()
             UpdatePuestos()

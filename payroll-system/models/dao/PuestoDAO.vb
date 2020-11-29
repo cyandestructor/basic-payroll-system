@@ -51,6 +51,33 @@ Public Class PuestoDAO
 
         Return puestos
     End Function
+    Public Function VerPuestosDepartamento(ByVal idDpto As Integer) As List(Of Puesto)
+        Dim command As New SqlCommand("VerPuestos", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Dpto", idDpto)
+
+        Dim puestos As New List(Of Puesto)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim puesto As New Puesto With {
+                .ID = reader.GetInt32(0),
+                .Nombre = reader.GetString(1),
+                .Activo = reader.GetBoolean(2)
+            }
+            puestos.Add(puesto)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return puestos
+    End Function
     Public Function ObtenerPuesto(ByVal idPuesto As Integer) As Puesto
         Dim puesto As New Puesto
 

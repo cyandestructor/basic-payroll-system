@@ -27,6 +27,8 @@ Partial Class Gerente
         Me.Menu_Nomina = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_PD = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Permisos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuSolicitarPermiso = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Vacaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_InfoUsu = New System.Windows.Forms.ToolStripMenuItem()
@@ -37,14 +39,15 @@ Partial Class Gerente
         Me.Menu_Departamento = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Empresa = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Empleado = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuAsignarGerentes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.EmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LB_Pagos = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.menuSolicitarPermiso = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -52,7 +55,7 @@ Partial Class Gerente
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PermisosToolStripMenuItem, Me.Menu_Permisos, Me.Menu_Vacaciones, Me.UsuarioToolStripMenuItem, Me.Menu_Pagos, Me.AgregarToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PermisosToolStripMenuItem, Me.Menu_Permisos, Me.Menu_Vacaciones, Me.UsuarioToolStripMenuItem, Me.Menu_Pagos, Me.AgregarToolStripMenuItem, Me.VerToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(758, 24)
@@ -85,6 +88,18 @@ Partial Class Gerente
         Me.Menu_Permisos.Size = New System.Drawing.Size(67, 20)
         Me.Menu_Permisos.Text = "Permisos"
         '
+        'menuSolicitarPermiso
+        '
+        Me.menuSolicitarPermiso.Name = "menuSolicitarPermiso"
+        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(116, 22)
+        Me.menuSolicitarPermiso.Text = "Solicitar"
+        '
+        'menuRevisarPermisos
+        '
+        Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
+        Me.menuRevisarPermisos.Size = New System.Drawing.Size(116, 22)
+        Me.menuRevisarPermisos.Text = "Revisar"
+        '
         'Menu_Vacaciones
         '
         Me.Menu_Vacaciones.Name = "Menu_Vacaciones"
@@ -101,13 +116,13 @@ Partial Class Gerente
         'Menu_InfoUsu
         '
         Me.Menu_InfoUsu.Name = "Menu_InfoUsu"
-        Me.Menu_InfoUsu.Size = New System.Drawing.Size(180, 22)
+        Me.Menu_InfoUsu.Size = New System.Drawing.Size(165, 22)
         Me.Menu_InfoUsu.Text = "Información"
         '
         'Menu_Password
         '
         Me.Menu_Password.Name = "Menu_Password"
-        Me.Menu_Password.Size = New System.Drawing.Size(180, 22)
+        Me.Menu_Password.Size = New System.Drawing.Size(165, 22)
         Me.Menu_Password.Text = "Editar contraseña"
         '
         'Menu_Pagos
@@ -118,7 +133,7 @@ Partial Class Gerente
         '
         'AgregarToolStripMenuItem
         '
-        Me.AgregarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Puesto, Me.Menu_Departamento, Me.Menu_Empresa, Me.Menu_Empleado})
+        Me.AgregarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Puesto, Me.Menu_Departamento, Me.Menu_Empresa, Me.Menu_Empleado, Me.MenuAsignarGerentes})
         Me.AgregarToolStripMenuItem.Name = "AgregarToolStripMenuItem"
         Me.AgregarToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.AgregarToolStripMenuItem.Text = "Agregar"
@@ -146,6 +161,25 @@ Partial Class Gerente
         Me.Menu_Empleado.Name = "Menu_Empleado"
         Me.Menu_Empleado.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Empleado.Text = "Empleado"
+        '
+        'MenuAsignarGerentes
+        '
+        Me.MenuAsignarGerentes.Name = "MenuAsignarGerentes"
+        Me.MenuAsignarGerentes.Size = New System.Drawing.Size(180, 22)
+        Me.MenuAsignarGerentes.Text = "Gerentes"
+        '
+        'VerToolStripMenuItem
+        '
+        Me.VerToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.EmpleadosToolStripMenuItem})
+        Me.VerToolStripMenuItem.Name = "VerToolStripMenuItem"
+        Me.VerToolStripMenuItem.Size = New System.Drawing.Size(35, 20)
+        Me.VerToolStripMenuItem.Text = "Ver"
+        '
+        'EmpleadosToolStripMenuItem
+        '
+        Me.EmpleadosToolStripMenuItem.Name = "EmpleadosToolStripMenuItem"
+        Me.EmpleadosToolStripMenuItem.Size = New System.Drawing.Size(132, 22)
+        Me.EmpleadosToolStripMenuItem.Text = "Empleados"
         '
         'LB_Pagos
         '
@@ -198,18 +232,6 @@ Partial Class Gerente
         Me.DataGridView1.Size = New System.Drawing.Size(452, 194)
         Me.DataGridView1.TabIndex = 33
         '
-        'menuSolicitarPermiso
-        '
-        Me.menuSolicitarPermiso.Name = "menuSolicitarPermiso"
-        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(180, 22)
-        Me.menuSolicitarPermiso.Text = "Solicitar"
-        '
-        'menuRevisarPermisos
-        '
-        Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
-        Me.menuRevisarPermisos.Size = New System.Drawing.Size(180, 22)
-        Me.menuRevisarPermisos.Text = "Revisar"
-        '
         'Gerente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -257,4 +279,7 @@ Partial Class Gerente
     Friend WithEvents Menu_Empleado As ToolStripMenuItem
     Friend WithEvents menuSolicitarPermiso As ToolStripMenuItem
     Friend WithEvents menuRevisarPermisos As ToolStripMenuItem
+    Friend WithEvents VerToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents EmpleadosToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents MenuAsignarGerentes As ToolStripMenuItem
 End Class

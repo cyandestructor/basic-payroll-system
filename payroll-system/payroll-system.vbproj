@@ -157,6 +157,12 @@
     <Compile Include="views\Alta_empresa.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="views\AsignarGerentes.Designer.vb">
+      <DependentUpon>AsignarGerentes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\AsignarGerentes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="views\Component1.Designer.vb">
       <DependentUpon>Component1.vb</DependentUpon>
     </Compile>
@@ -211,10 +217,22 @@
     <Compile Include="views\Per_Ded.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="views\RevisarIncidencias.Designer.vb">
+      <DependentUpon>RevisarIncidencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\RevisarIncidencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="views\Vacaciones.Designer.vb">
       <DependentUpon>Vacaciones.vb</DependentUpon>
     </Compile>
     <Compile Include="views\Vacaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="views\VerEmpleados.Designer.vb">
+      <DependentUpon>VerEmpleados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\VerEmpleados.vb">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>
@@ -230,6 +248,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Alta_empresa.resx">
       <DependentUpon>Alta_empresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\AsignarGerentes.resx">
+      <DependentUpon>AsignarGerentes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Component1.resx">
       <DependentUpon>Component1.vb</DependentUpon>
@@ -258,8 +279,14 @@
     <EmbeddedResource Include="views\Per_Ded.resx">
       <DependentUpon>Per_Ded.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="views\RevisarIncidencias.resx">
+      <DependentUpon>RevisarIncidencias.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="views\Vacaciones.resx">
       <DependentUpon>Vacaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\VerEmpleados.resx">
+      <DependentUpon>VerEmpleados.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

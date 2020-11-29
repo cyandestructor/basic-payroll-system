@@ -1,11 +1,24 @@
 ﻿Public Class Alta_empleado
+    Private _selectedEmployee As Empleado
+    Public Sub New()
+        InitializeComponent()
+        _selectedEmployee = Nothing
+    End Sub
+    Public Sub New(ByVal idEmpleado As Integer)
+        InitializeComponent()
+        Dim empleadoDAO As New EmpleadoDAO
+        _selectedEmployee = empleadoDAO.ObtenerEmpleado(idEmpleado)
+    End Sub
     Private Sub Alta_empleado_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Dim bancoDAO As New BancoDAO
         Cb_Banco.ValueMember = "ID"
         Cb_Banco.DisplayMember = "Nombre"
         Cb_Banco.DataSource = bancoDAO.VerBancos()
-    End Sub
 
+        If _selectedEmployee IsNot Nothing Then
+            FillInfo(_selectedEmployee)
+        End If
+    End Sub
     Private Sub Btn_Agregar_Click(sender As Object, e As EventArgs) Handles Btn_Agregar.Click
         Dim empleado As New Empleado With {
             .RFC = Txt_RFC.Text,
@@ -56,6 +69,31 @@
         TxtMunicipio.Text = ""
         TxtEstado.Text = ""
         Txt_CP.Text = ""
+    End Sub
+    Public Sub FillInfo(ByVal empleado As Empleado)
+        Txt_CodUsu.Text = empleado.ID
+        Txt_NomUsu.Text = empleado.Nombre
+        Txt_AP.Text = empleado.ApellidoPaterno
+        Txt_AM.Text = empleado.ApellidoMaterno
+        DateTime_NacimientoUsu.Value = empleado.FechaNacimiento
+        Txt_CURP.Text = empleado.CURP
+        Txt_NSS.Text = empleado.NSS
+        Txt_RFC.Text = empleado.RFC
+        Txt_Cuenta.Text = empleado.CuentaBancaria
+        Txt_CorreoUsu.Text = empleado.Correo
+        Txt_TelUsu.Text = empleado.Telefono
+
+        Dim domicilioDAO As New DomicilioDAO
+        Dim domicilio = domicilioDAO.ObtenerDomicilio(empleado.Domicilio.ID)
+
+        Txt_Calle.Text = domicilio.Calle
+        Txt_Num.Text = domicilio.Numero
+        Txt_Col.Text = domicilio.Colonia
+        TxtMunicipio.Text = domicilio.Ciudad
+        TxtEstado.Text = domicilio.Estado
+        Txt_CP.Text = domicilio.CodigoPostal
+
+        Cb_Banco.SelectedValue = empleado.Banco.ID
     End Sub
     Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
         Close()

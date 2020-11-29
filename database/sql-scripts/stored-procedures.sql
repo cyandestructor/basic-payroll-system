@@ -313,6 +313,74 @@ AS
 		END
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpleadosEmpresaDpto')
+	DROP PROCEDURE VerEmpleadosEmpresaDpto;
+GO
+
+CREATE PROCEDURE VerEmpleadosEmpresaDpto
+	@ID_Empresa		VARCHAR(12),
+	@ID_Dpto		INT = NULL
+AS
+	IF (@ID_Dpto IS NULL)
+		BEGIN
+			SELECT
+				ID_Empleado,
+				Nom_Empleado,
+				Apellido_Pat,
+				Apellido_Mat,
+				Fecha_Nac,
+				CURP_Empleado,
+				RFC_Empleado,
+				NSS_Empleado,
+				Dom_Empleado,
+				Tel_Empleado,
+				Correo_Empleado,
+				Banco_Empleado,
+				Num_Cuenta,
+				ID_Empresa,
+				Fecha_Contrato,
+				ID_Dpto,
+				Fecha_Incorp,
+				ID_Puesto,
+				Fecha_Obt,
+				ID_Usuario,
+				Activo
+			FROM
+				Empleado
+			WHERE
+				ID_Empresa = @ID_Empresa;
+		END
+	ELSE
+		BEGIN
+			SELECT
+				ID_Empleado,
+				Nom_Empleado,
+				Apellido_Pat,
+				Apellido_Mat,
+				Fecha_Nac,
+				CURP_Empleado,
+				RFC_Empleado,
+				NSS_Empleado,
+				Dom_Empleado,
+				Tel_Empleado,
+				Correo_Empleado,
+				Banco_Empleado,
+				Num_Cuenta,
+				ID_Empresa,
+				Fecha_Contrato,
+				ID_Dpto,
+				Fecha_Incorp,
+				ID_Puesto,
+				Fecha_Obt,
+				ID_Usuario,
+				Activo
+			FROM
+				Empleado
+			WHERE
+				ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto;
+		END
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'AgregarEmpresaEmpleado')
 	DROP PROCEDURE AgregarEmpresaEmpleado;
 GO
@@ -790,16 +858,32 @@ IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerPuestos')
 GO
 
 CREATE PROCEDURE VerPuestos
-	@ID_Puesto	INT = NULL
+	@ID_Puesto	INT = NULL,
+	@ID_Dpto	INT = NULL
 AS
 	IF (@ID_Puesto IS NULL)
 		BEGIN
-			SELECT
-				ID_Puesto,
-				Nom_Puesto,
-				Activo
-			FROM
-				Puesto;
+			IF (@ID_Dpto IS NULL)
+				BEGIN
+					SELECT
+						ID_Puesto,
+						Nom_Puesto,
+						Activo
+					FROM
+						Puesto;
+				END
+			ELSE
+				BEGIN
+					SELECT
+						P.ID_Puesto,
+						P.Nom_Puesto,
+						P.Activo
+					FROM
+						Puesto AS P
+						INNER JOIN Dpto_Puesto AS DP ON DP.ID_Puesto = P.ID_Puesto
+					WHERE
+						DP.ID_Dpto = @ID_Dpto;
+				END
 		END
 	ELSE
 		BEGIN
@@ -1101,7 +1185,8 @@ AS
 		Fin_Inciden,
 		ID_Solicitante,
 		Fecha_Solicitud,
-		Motiv_Solicitud
+		Motiv_Solicitud,
+		Est_Autoriza
 	)
 	VALUES (
 		@Desc_Inciden,
@@ -1109,7 +1194,8 @@ AS
 		@Fin_Inciden,
 		@ID_Solicitante,
 		@Fecha_Solicitud,
-		@Motiv_Solicitud
+		@Motiv_Solicitud,
+		0
 	);
 GO
 
