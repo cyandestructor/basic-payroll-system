@@ -21,9 +21,9 @@ Public Class ReporteNominaDAO
             Dim row As New ReporteNominaRow With {
                 .Empresa = reader.GetString(0),
                 .Departamento = reader.GetString(1),
-                .Gerente = reader.GetString(2),
+                .Gerente = GetStringSafe(reader, 2),
                 .Year = reader.GetInt32(3),
-                .Mes = reader.GetString(4),
+                .Mes = reader.GetInt32(4),
                 .SueldoBruto = reader.GetDouble(5),
                 .SueldoNeto = reader.GetDouble(6),
                 .ISR = reader.GetDouble(7),

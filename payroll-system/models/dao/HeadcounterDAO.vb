@@ -21,7 +21,7 @@ Public Class HeadcounterDAO
             Dim row As New Headcounter1Row With {
                 .Empresa = reader.GetString(0),
                 .Departamento = reader.GetString(1),
-                .Gerente = reader.GetString(2),
+                .Gerente = GetStringSafe(reader, 2),
                 .Puesto = reader.GetString(3),
                 .CantidadEmpleados = reader.GetInt32(4)
             }
@@ -53,7 +53,7 @@ Public Class HeadcounterDAO
             Dim row As New Headcounter2Row With {
                 .Empresa = reader.GetString(0),
                 .Departamento = reader.GetString(1),
-                .Gerente = reader.GetString(2),
+                .Gerente = GetStringSafe(reader, 2),
                 .CantidadEmpleados = reader.GetInt32(3),
                 .UltimaNomina = reader.GetDateTime(4)
             }

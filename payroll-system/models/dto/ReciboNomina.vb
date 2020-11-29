@@ -1,5 +1,5 @@
 ﻿Public Class ReciboNomina
-    Private _datosEmpresa As Empresa
+    Private _datosEmpresa As New Empresa
     Public Property DatosEmpresa() As Empresa
         Get
             Return _datosEmpresa
@@ -8,7 +8,7 @@
             _datosEmpresa = value
         End Set
     End Property
-    Private _datosEmpleado As Empleado
+    Private _datosEmpleado As New Empleado
     Public Property DatosEmpleado() As Empleado
         Get
             Return _datosEmpleado
@@ -17,7 +17,7 @@
             _datosEmpleado = value
         End Set
     End Property
-    Private _datosNomina As Nomina
+    Private _datosNomina As New Nomina
     Public Property DatosNomina() As Nomina
         Get
             Return _datosNomina

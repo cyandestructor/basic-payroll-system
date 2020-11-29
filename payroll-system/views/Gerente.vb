@@ -1,9 +1,9 @@
 ﻿Public Class Gerente
+    Private _currentUser As Usuario
     Private Sub Menu_Puesto_Click(sender As Object, e As EventArgs) Handles Menu_Puesto.Click
         Dim formPuesto As New Opciones_puesto
         formPuesto.Show()
     End Sub
-
     Private Sub Menu_Departamento_Click(sender As Object, e As EventArgs) Handles Menu_Departamento.Click
         Dim formDeptos As New Opciones_Depa
         formDeptos.Show()
@@ -40,5 +40,31 @@
     Private Sub MenuAsignarGerentes_Click(sender As Object, e As EventArgs) Handles MenuAsignarGerentes.Click
         Dim formAsignacion As New AsignarGerentes
         formAsignacion.Show()
+    End Sub
+    Private Sub MenuCalcularNomina_Click(sender As Object, e As EventArgs) Handles MenuCalcularNomina.Click
+        Dim formCalculoNomina As New EjecucionNomina
+        formCalculoNomina.Show()
+    End Sub
+    Private Sub ReportesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ReportesToolStripMenuItem.Click
+        Dim formReportes As New VerReportes
+        formReportes.Show()
+    End Sub
+    Private Sub Gerente_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        DtpYear.CustomFormat = "yyyy"
+        _currentUser = AppController.GetInstance().CurrentUser
+        UpdatePagos(Date.Now.Year)
+    End Sub
+    Private Sub UpdatePagos(ByVal year As Integer)
+        Dim idEmpleado = _currentUser.ID
+        Dim resumenDAO As New ResumenPagosDAO
+        DgvResumen.DataSource = resumenDAO.Generar(idEmpleado, year)
+    End Sub
+    Private Sub BtnConsultarPagos_Click(sender As Object, e As EventArgs) Handles BtnConsultarPagos.Click
+        Dim year = DtpYear.Value.Year
+        UpdatePagos(year)
+    End Sub
+    Private Sub Menu_Nomina_Click(sender As Object, e As EventArgs) Handles Menu_Nomina.Click
+        Dim formRecibo As New GenerarRecibosNomina
+        formRecibo.Show()
     End Sub
 End Class

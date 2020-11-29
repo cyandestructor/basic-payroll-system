@@ -381,7 +381,7 @@ CREATE VIEW [Payroll Receipt] AS
 		E.ID_Dpto AS 'Departamento',
 		P.Nom_Puesto AS 'Puesto',
 		N.ID_Nomina AS 'ID Nomina',
-		N.Fecha_Gen AS 'Fecha de pago',
+		CONVERT(DATE, N.Fecha_Gen) AS 'Fecha de pago',
 		N.Inicio_Periodo AS 'Inicio de periodo',
 		N.Fin_Periodo AS 'Fin de periodo',
 		(DATEDIFF(DAY, N.Inicio_Periodo, N.Fin_Periodo)) AS 'Dias de periodo',

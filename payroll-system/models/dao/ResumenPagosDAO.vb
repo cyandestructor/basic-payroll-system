@@ -20,7 +20,7 @@ Public Class ResumenPagosDAO
                 .RFCEmpleado = reader.GetString(1),
                 .NSSEmpleado = reader.GetInt64(2),
                 .Year = reader.GetInt32(3),
-                .Mes = reader.GetInt32(4),
+                .Mes = reader.GetString(4),
                 .ISR = reader.GetDouble(5),
                 .IMSS = reader.GetDouble(6),
                 .SueldoBruto = reader.GetDouble(7),

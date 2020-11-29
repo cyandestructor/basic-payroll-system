@@ -34,7 +34,8 @@ AS
 			INNER JOIN inserted ON Percepcion.ID_Empleado = inserted.ID_Empleado
 		WHERE
 			Percepcion.ID_Empleado = inserted.ID_Empleado
-			AND (Percepcion.Fecha_Percep BETWEEN inserted.Inicio_Periodo AND inserted.Fin_Periodo);
+			AND (Percepcion.Fecha_Percep BETWEEN inserted.Inicio_Periodo AND inserted.Fin_Periodo)
+			AND Percepcion.ID_Nomina IS NULL;
 
 	UPDATE Deduccion
 		SET
@@ -44,5 +45,6 @@ AS
 			INNER JOIN inserted ON Deduccion.ID_Empleado = inserted.ID_Empleado
 		WHERE
 			Deduccion.ID_Empleado = inserted.ID_Empleado
-			AND (Deduccion.Fecha_Deducc BETWEEN inserted.Inicio_Periodo AND inserted.Fin_Periodo);
+			AND (Deduccion.Fecha_Deducc BETWEEN inserted.Inicio_Periodo AND inserted.Fin_Periodo)
+			AND Deduccion.ID_Nomina IS NULL;
 GO

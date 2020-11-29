@@ -76,4 +76,33 @@ Public Class DeduccionDAO
 
         Return deducciones
     End Function
+    Public Function VerDeNomina(ByVal idNomina As Integer) As List(Of Deduccion)
+        Dim command As New SqlCommand("VerDeduccionesNomina", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Nomina", idNomina)
+
+        Dim deducciones As New List(Of Deduccion)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim deduccion As New Deduccion With {
+                .ID = reader.GetInt32(0),
+                .Descripcion = reader.GetString(1),
+                .CantidadFija = reader.GetDouble(2),
+                .CantidadPorcentual = reader.GetDouble(3),
+                .Fecha = reader.GetDateTime(4)
+            }
+            deducciones.Add(deduccion)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return deducciones
+    End Function
 End Class

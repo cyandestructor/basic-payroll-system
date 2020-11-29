@@ -35,12 +35,12 @@
             _year = value
         End Set
     End Property
-    Private _mes As String
-    Public Property Mes() As String
+    Private _mes As Integer
+    Public Property Mes() As Integer
         Get
             Return _mes
         End Get
-        Set(ByVal value As String)
+        Set(ByVal value As Integer)
             _mes = value
         End Set
     End Property

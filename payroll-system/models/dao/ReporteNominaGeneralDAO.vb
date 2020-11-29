@@ -20,12 +20,12 @@ Public Class ReporteNominaGeneralDAO
 
         While (reader.Read())
             Dim row As New ReporteNominaGeneral With {
-                .Departamento = reader.GetString(0),
-                .Puesto = reader.GetString(1),
+                .Departamento = GetStringSafe(reader, 0),
+                .Puesto = GetStringSafe(reader, 1),
                 .Empleado = reader.GetString(2),
-                .FechaIngreso = reader.GetDateTime(3),
+                .FechaIngreso = GetDateSafe(reader, 3),
                 .FechaNacimiento = reader.GetDateTime(4),
-                .SueldoDiario = reader.GetDouble(5)
+                .SueldoDiario = GetDoubleSafe(reader, 5)
             }
             reporte.Add(row)
         End While

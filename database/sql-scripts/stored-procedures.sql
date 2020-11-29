@@ -961,6 +961,23 @@ AS
 	WHERE ID_Empleado = @ID_Empleado AND (Fecha_Percep BETWEEN @From AND @To);
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerPercepcionesNomina')
+	DROP PROCEDURE VerPercepcionesNomina;
+GO
+
+CREATE PROCEDURE VerPercepcionesNomina
+	@ID_Nomina	INT
+AS
+	SELECT
+		ID_Percep,
+		Desc_Percep,
+		Cant_Fija,
+		Cant_Porcent,
+		Fecha_Percep
+	FROM Percepcion
+	WHERE ID_Nomina = @ID_Nomina;
+GO
+
 -- PROCEDIMIENTOS DE DEDUCCIONES
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenerarDeduccion')
@@ -1024,6 +1041,23 @@ AS
 	WHERE ID_Empleado = @ID_Empleado AND (Fecha_Deducc BETWEEN @From AND @To);
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerDeduccionesNomina')
+	DROP PROCEDURE VerDeduccionesNomina;
+GO
+
+CREATE PROCEDURE VerDeduccionesNomina
+	@ID_Nomina	INT
+AS
+	SELECT
+		ID_Deducc,
+		Desc_Deducc,
+		Cant_Fija,
+		Cant_Porcent,
+		Fecha_Deducc
+	FROM Deduccion
+	WHERE ID_Nomina = @ID_Nomina;
+GO
+
 -- PROCEDIMIENTOS DE NOMINA
 
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'GenerarNomina')
@@ -1083,12 +1117,12 @@ AS
 	DECLARE @TotalPercepFija	FLOAT;
 	SET @TotalPercepFija =	(SELECT SUM(Cant_Fija)
 							FROM Percepcion
-							WHERE ID_Empleado = @ID_Empleado AND (Fecha_Percep BETWEEN @Inicio_Periodo AND @Fin_Periodo));
+							WHERE ID_Empleado = @ID_Empleado AND (Fecha_Percep BETWEEN @Inicio_Periodo AND @Fin_Periodo) AND ID_Nomina IS NULL);
 
 	DECLARE @TotalDeduccFija	FLOAT;
 	SET @TotalDeduccFija =	(SELECT SUM(Cant_Fija)
 							FROM Deduccion
-							WHERE ID_Empleado = @ID_Empleado AND (Fecha_Deducc BETWEEN @Inicio_Periodo AND @Fin_Periodo));
+							WHERE ID_Empleado = @ID_Empleado AND (Fecha_Deducc BETWEEN @Inicio_Periodo AND @Fin_Periodo) AND ID_Nomina IS NULL);
 
 	DECLARE @TotalPercepPorcent FLOAT;
 	SET @TotalPercepPorcent = (SELECT SUM(T.TotalFijo)
@@ -1098,7 +1132,7 @@ AS
 									FROM
 										Percepcion
 									WHERE
-										ID_Empleado = @ID_Empleado AND (Fecha_Percep BETWEEN @Inicio_Periodo AND @Fin_Periodo)) AS T);
+										ID_Empleado = @ID_Empleado AND (Fecha_Percep BETWEEN @Inicio_Periodo AND @Fin_Periodo) AND ID_Nomina IS NULL) AS T);
 
 	DECLARE @TotalDeduccPorcent FLOAT;
 	SET @TotalDeduccPorcent = (SELECT SUM(T.TotalFijo)
@@ -1108,7 +1142,7 @@ AS
 									FROM
 										Deduccion
 									WHERE
-										ID_Empleado = @ID_Empleado AND (Fecha_Deducc BETWEEN @Inicio_Periodo AND @Fin_Periodo)) AS T);
+										ID_Empleado = @ID_Empleado AND (Fecha_Deducc BETWEEN @Inicio_Periodo AND @Fin_Periodo) AND ID_Nomina IS NULL) AS T);
 
 	INSERT INTO Nomina (
 		ID_Empleado,
@@ -1342,7 +1376,7 @@ CREATE PROCEDURE VerReporteNominaGeneral
 	@Year			INT = NULL,
 	@Mes			INT = NULL
 AS
-	IF (@Year != NULL AND @Mes != NULL)
+	IF (@Year IS NOT NULL AND @Mes IS NOT NULL)
 		BEGIN
 			SELECT
 				Departamento,
@@ -1420,7 +1454,7 @@ AS
 		E.Nom_Empresa,
 		D.Nom_Dpto,
 		CONCAT(Emp.Nom_Empleado, ' ', Emp.Apellido_Pat, ' ', Emp.Apellido_Mat) AS Gerente,
-		P.ID_Puesto,
+		P.Nom_Puesto,
 		COALESCE((SELECT Count(0)
 		FROM Empleado
 		WHERE Empleado.Fecha_Contrato <= @SelDate AND dbo.LASTPAYDATE(Empleado.ID_Empleado) >= @SelDate
