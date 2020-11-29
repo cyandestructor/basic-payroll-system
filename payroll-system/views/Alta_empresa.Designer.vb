@@ -36,7 +36,7 @@ Partial Class Alta_empresa
         Me.Txt_RP_Emp = New System.Windows.Forms.TextBox()
         Me.Txt_Correo_Emp = New System.Windows.Forms.TextBox()
         Me.Txt_Tel_Emp = New System.Windows.Forms.TextBox()
-        Me.Txt_DF_Emp = New System.Windows.Forms.TextBox()
+        Me.TxtCalle = New System.Windows.Forms.TextBox()
         Me.Txt_RS_Emp = New System.Windows.Forms.TextBox()
         Me.Txt_NomEmp = New System.Windows.Forms.TextBox()
         Me.Btn_AgregarEmp = New System.Windows.Forms.Button()
@@ -44,7 +44,20 @@ Partial Class Alta_empresa
         Me.Btn_Cancelar = New System.Windows.Forms.Button()
         Me.LB_Empresa = New System.Windows.Forms.ListBox()
         Me.Grid_Empresa = New System.Windows.Forms.DataGridView()
+        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.Label10 = New System.Windows.Forms.Label()
+        Me.TxtNumero = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.TxtColonia = New System.Windows.Forms.TextBox()
+        Me.TxtEstado = New System.Windows.Forms.TextBox()
+        Me.Label12 = New System.Windows.Forms.Label()
+        Me.TxtMunicipio = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.TxtCP = New System.Windows.Forms.TextBox()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.BtnEditarEmpresa = New System.Windows.Forms.Button()
         CType(Me.Grid_Empresa, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -68,16 +81,16 @@ Partial Class Alta_empresa
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(25, 81)
+        Me.Label3.Location = New System.Drawing.Point(6, 36)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(82, 13)
+        Me.Label3.Size = New System.Drawing.Size(30, 13)
         Me.Label3.TabIndex = 2
-        Me.Label3.Text = "Domicilio fiscal: "
+        Me.Label3.Text = "Calle"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(25, 113)
+        Me.Label4.Location = New System.Drawing.Point(25, 77)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(55, 13)
         Me.Label4.TabIndex = 3
@@ -86,7 +99,7 @@ Partial Class Alta_empresa
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(25, 145)
+        Me.Label5.Location = New System.Drawing.Point(25, 109)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(96, 13)
         Me.Label5.TabIndex = 4
@@ -95,7 +108,7 @@ Partial Class Alta_empresa
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(25, 178)
+        Me.Label6.Location = New System.Drawing.Point(25, 142)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(93, 13)
         Me.Label6.TabIndex = 5
@@ -104,7 +117,7 @@ Partial Class Alta_empresa
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(25, 210)
+        Me.Label7.Location = New System.Drawing.Point(25, 174)
         Me.Label7.Name = "Label7"
         Me.Label7.Size = New System.Drawing.Size(31, 13)
         Me.Label7.TabIndex = 6
@@ -113,7 +126,7 @@ Partial Class Alta_empresa
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(25, 241)
+        Me.Label8.Location = New System.Drawing.Point(25, 205)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(161, 13)
         Me.Label8.TabIndex = 7
@@ -122,7 +135,7 @@ Partial Class Alta_empresa
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(25, 272)
+        Me.Label9.Location = New System.Drawing.Point(25, 236)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(105, 13)
         Me.Label9.TabIndex = 8
@@ -130,45 +143,45 @@ Partial Class Alta_empresa
         '
         'Txt_RFC_Emp
         '
-        Me.Txt_RFC_Emp.Location = New System.Drawing.Point(124, 203)
+        Me.Txt_RFC_Emp.Location = New System.Drawing.Point(124, 167)
         Me.Txt_RFC_Emp.Name = "Txt_RFC_Emp"
         Me.Txt_RFC_Emp.Size = New System.Drawing.Size(350, 20)
         Me.Txt_RFC_Emp.TabIndex = 9
         '
         'Txt_Pago_Emp
         '
-        Me.Txt_Pago_Emp.Location = New System.Drawing.Point(136, 269)
+        Me.Txt_Pago_Emp.Location = New System.Drawing.Point(136, 233)
         Me.Txt_Pago_Emp.Name = "Txt_Pago_Emp"
         Me.Txt_Pago_Emp.Size = New System.Drawing.Size(338, 20)
         Me.Txt_Pago_Emp.TabIndex = 11
         '
         'Txt_RP_Emp
         '
-        Me.Txt_RP_Emp.Location = New System.Drawing.Point(124, 175)
+        Me.Txt_RP_Emp.Location = New System.Drawing.Point(124, 139)
         Me.Txt_RP_Emp.Name = "Txt_RP_Emp"
         Me.Txt_RP_Emp.Size = New System.Drawing.Size(350, 20)
         Me.Txt_RP_Emp.TabIndex = 12
         '
         'Txt_Correo_Emp
         '
-        Me.Txt_Correo_Emp.Location = New System.Drawing.Point(124, 142)
+        Me.Txt_Correo_Emp.Location = New System.Drawing.Point(124, 106)
         Me.Txt_Correo_Emp.Name = "Txt_Correo_Emp"
         Me.Txt_Correo_Emp.Size = New System.Drawing.Size(350, 20)
         Me.Txt_Correo_Emp.TabIndex = 13
         '
         'Txt_Tel_Emp
         '
-        Me.Txt_Tel_Emp.Location = New System.Drawing.Point(124, 110)
+        Me.Txt_Tel_Emp.Location = New System.Drawing.Point(124, 74)
         Me.Txt_Tel_Emp.Name = "Txt_Tel_Emp"
         Me.Txt_Tel_Emp.Size = New System.Drawing.Size(350, 20)
         Me.Txt_Tel_Emp.TabIndex = 14
         '
-        'Txt_DF_Emp
+        'TxtCalle
         '
-        Me.Txt_DF_Emp.Location = New System.Drawing.Point(124, 78)
-        Me.Txt_DF_Emp.Name = "Txt_DF_Emp"
-        Me.Txt_DF_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_DF_Emp.TabIndex = 15
+        Me.TxtCalle.Location = New System.Drawing.Point(44, 33)
+        Me.TxtCalle.Name = "TxtCalle"
+        Me.TxtCalle.Size = New System.Drawing.Size(221, 20)
+        Me.TxtCalle.TabIndex = 15
         '
         'Txt_RS_Emp
         '
@@ -190,19 +203,19 @@ Partial Class Alta_empresa
         Me.Btn_AgregarEmp.Name = "Btn_AgregarEmp"
         Me.Btn_AgregarEmp.Size = New System.Drawing.Size(87, 27)
         Me.Btn_AgregarEmp.TabIndex = 18
-        Me.Btn_AgregarEmp.Text = "Agregar"
+        Me.Btn_AgregarEmp.Text = "Registrar"
         Me.Btn_AgregarEmp.UseVisualStyleBackColor = True
         '
         'DateTime_InicioOp
         '
-        Me.DateTime_InicioOp.Location = New System.Drawing.Point(192, 235)
+        Me.DateTime_InicioOp.Location = New System.Drawing.Point(192, 199)
         Me.DateTime_InicioOp.Name = "DateTime_InicioOp"
         Me.DateTime_InicioOp.Size = New System.Drawing.Size(282, 20)
         Me.DateTime_InicioOp.TabIndex = 19
         '
         'Btn_Cancelar
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(595, 549)
+        Me.Btn_Cancelar.Location = New System.Drawing.Point(492, 549)
         Me.Btn_Cancelar.Name = "Btn_Cancelar"
         Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
         Me.Btn_Cancelar.TabIndex = 30
@@ -214,16 +227,126 @@ Partial Class Alta_empresa
         Me.LB_Empresa.FormattingEnabled = True
         Me.LB_Empresa.Location = New System.Drawing.Point(494, 19)
         Me.LB_Empresa.Name = "LB_Empresa"
-        Me.LB_Empresa.Size = New System.Drawing.Size(291, 264)
+        Me.LB_Empresa.Size = New System.Drawing.Size(291, 238)
         Me.LB_Empresa.TabIndex = 31
         '
         'Grid_Empresa
         '
         Me.Grid_Empresa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.Grid_Empresa.Location = New System.Drawing.Point(28, 307)
+        Me.Grid_Empresa.Location = New System.Drawing.Point(28, 394)
         Me.Grid_Empresa.Name = "Grid_Empresa"
-        Me.Grid_Empresa.Size = New System.Drawing.Size(757, 221)
+        Me.Grid_Empresa.Size = New System.Drawing.Size(757, 134)
         Me.Grid_Empresa.TabIndex = 32
+        '
+        'GroupBox1
+        '
+        Me.GroupBox1.Controls.Add(Me.Label12)
+        Me.GroupBox1.Controls.Add(Me.Label11)
+        Me.GroupBox1.Controls.Add(Me.Label14)
+        Me.GroupBox1.Controls.Add(Me.Label10)
+        Me.GroupBox1.Controls.Add(Me.Label13)
+        Me.GroupBox1.Controls.Add(Me.Label3)
+        Me.GroupBox1.Controls.Add(Me.TxtCP)
+        Me.GroupBox1.Controls.Add(Me.TxtNumero)
+        Me.GroupBox1.Controls.Add(Me.TxtEstado)
+        Me.GroupBox1.Controls.Add(Me.TxtColonia)
+        Me.GroupBox1.Controls.Add(Me.TxtMunicipio)
+        Me.GroupBox1.Controls.Add(Me.TxtCalle)
+        Me.GroupBox1.Location = New System.Drawing.Point(28, 272)
+        Me.GroupBox1.Name = "GroupBox1"
+        Me.GroupBox1.Size = New System.Drawing.Size(757, 100)
+        Me.GroupBox1.TabIndex = 33
+        Me.GroupBox1.TabStop = False
+        Me.GroupBox1.Text = "Domicilio Fiscal"
+        '
+        'Label10
+        '
+        Me.Label10.AutoSize = True
+        Me.Label10.Location = New System.Drawing.Point(279, 36)
+        Me.Label10.Name = "Label10"
+        Me.Label10.Size = New System.Drawing.Size(44, 13)
+        Me.Label10.TabIndex = 2
+        Me.Label10.Text = "Numero"
+        '
+        'TxtNumero
+        '
+        Me.TxtNumero.Location = New System.Drawing.Point(329, 33)
+        Me.TxtNumero.Name = "TxtNumero"
+        Me.TxtNumero.Size = New System.Drawing.Size(90, 20)
+        Me.TxtNumero.TabIndex = 15
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(435, 36)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(42, 13)
+        Me.Label11.TabIndex = 2
+        Me.Label11.Text = "Colonia"
+        '
+        'TxtColonia
+        '
+        Me.TxtColonia.Location = New System.Drawing.Point(483, 33)
+        Me.TxtColonia.Name = "TxtColonia"
+        Me.TxtColonia.Size = New System.Drawing.Size(251, 20)
+        Me.TxtColonia.TabIndex = 15
+        '
+        'TxtEstado
+        '
+        Me.TxtEstado.Location = New System.Drawing.Point(329, 59)
+        Me.TxtEstado.Name = "TxtEstado"
+        Me.TxtEstado.Size = New System.Drawing.Size(249, 20)
+        Me.TxtEstado.TabIndex = 15
+        '
+        'Label12
+        '
+        Me.Label12.AutoSize = True
+        Me.Label12.Location = New System.Drawing.Point(281, 62)
+        Me.Label12.Name = "Label12"
+        Me.Label12.Size = New System.Drawing.Size(40, 13)
+        Me.Label12.TabIndex = 2
+        Me.Label12.Text = "Estado"
+        '
+        'TxtMunicipio
+        '
+        Me.TxtMunicipio.Location = New System.Drawing.Point(64, 59)
+        Me.TxtMunicipio.Name = "TxtMunicipio"
+        Me.TxtMunicipio.Size = New System.Drawing.Size(201, 20)
+        Me.TxtMunicipio.TabIndex = 15
+        '
+        'Label13
+        '
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(6, 62)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(52, 13)
+        Me.Label13.TabIndex = 2
+        Me.Label13.Text = "Municipio"
+        '
+        'TxtCP
+        '
+        Me.TxtCP.Location = New System.Drawing.Point(634, 59)
+        Me.TxtCP.Name = "TxtCP"
+        Me.TxtCP.Size = New System.Drawing.Size(100, 20)
+        Me.TxtCP.TabIndex = 15
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(601, 62)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(27, 13)
+        Me.Label14.TabIndex = 2
+        Me.Label14.Text = "C.P."
+        '
+        'BtnEditarEmpresa
+        '
+        Me.BtnEditarEmpresa.Location = New System.Drawing.Point(595, 549)
+        Me.BtnEditarEmpresa.Name = "BtnEditarEmpresa"
+        Me.BtnEditarEmpresa.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEditarEmpresa.TabIndex = 30
+        Me.BtnEditarEmpresa.Text = "Editar"
+        Me.BtnEditarEmpresa.UseVisualStyleBackColor = True
         '
         'Alta_empresa
         '
@@ -232,12 +355,12 @@ Partial Class Alta_empresa
         Me.ClientSize = New System.Drawing.Size(805, 600)
         Me.Controls.Add(Me.Grid_Empresa)
         Me.Controls.Add(Me.LB_Empresa)
+        Me.Controls.Add(Me.BtnEditarEmpresa)
         Me.Controls.Add(Me.Btn_Cancelar)
         Me.Controls.Add(Me.DateTime_InicioOp)
         Me.Controls.Add(Me.Btn_AgregarEmp)
         Me.Controls.Add(Me.Txt_NomEmp)
         Me.Controls.Add(Me.Txt_RS_Emp)
-        Me.Controls.Add(Me.Txt_DF_Emp)
         Me.Controls.Add(Me.Txt_Tel_Emp)
         Me.Controls.Add(Me.Txt_Correo_Emp)
         Me.Controls.Add(Me.Txt_RP_Emp)
@@ -249,12 +372,14 @@ Partial Class Alta_empresa
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
+        Me.Controls.Add(Me.GroupBox1)
         Me.Name = "Alta_empresa"
         Me.Text = "Alta de Empresa"
         CType(Me.Grid_Empresa, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBox1.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -274,7 +399,7 @@ Partial Class Alta_empresa
     Friend WithEvents Txt_RP_Emp As TextBox
     Friend WithEvents Txt_Correo_Emp As TextBox
     Friend WithEvents Txt_Tel_Emp As TextBox
-    Friend WithEvents Txt_DF_Emp As TextBox
+    Friend WithEvents TxtCalle As TextBox
     Friend WithEvents Txt_RS_Emp As TextBox
     Friend WithEvents Txt_NomEmp As TextBox
     Friend WithEvents Btn_AgregarEmp As Button
@@ -282,4 +407,16 @@ Partial Class Alta_empresa
     Friend WithEvents Btn_Cancelar As Button
     Friend WithEvents LB_Empresa As ListBox
     Friend WithEvents Grid_Empresa As DataGridView
+    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents Label11 As Label
+    Friend WithEvents Label10 As Label
+    Friend WithEvents TxtNumero As TextBox
+    Friend WithEvents TxtColonia As TextBox
+    Friend WithEvents Label12 As Label
+    Friend WithEvents TxtEstado As TextBox
+    Friend WithEvents Label14 As Label
+    Friend WithEvents Label13 As Label
+    Friend WithEvents TxtCP As TextBox
+    Friend WithEvents TxtMunicipio As TextBox
+    Friend WithEvents BtnEditarEmpresa As Button
 End Class

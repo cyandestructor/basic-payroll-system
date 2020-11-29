@@ -201,10 +201,17 @@ AS
 		IDENT_CURRENT('Domicilio')	--ADD THE LAST INSERTED REGISTER
 	);
 
+	DECLARE @UsuarioRegistrado INT = -1;
+
 	IF @@ERROR = 0
-		COMMIT;
+		BEGIN
+			SET @UsuarioRegistrado = IDENT_CURRENT('Empleado');
+			COMMIT;
+		END
 	ELSE
 		ROLLBACK;
+
+	RETURN @UsuarioRegistrado;
 
 GO
 

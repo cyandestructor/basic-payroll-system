@@ -33,8 +33,6 @@ Partial Class Alta_empleado
         Me.Label11 = New System.Windows.Forms.Label()
         Me.Label12 = New System.Windows.Forms.Label()
         Me.DateTime_NacimientoUsu = New System.Windows.Forms.DateTimePicker()
-        Me.DateTime_ContratacionUsu = New System.Windows.Forms.DateTimePicker()
-        Me.Label13 = New System.Windows.Forms.Label()
         Me.Txt_CodUsu = New System.Windows.Forms.TextBox()
         Me.Txt_NomUsu = New System.Windows.Forms.TextBox()
         Me.Txt_CURP = New System.Windows.Forms.TextBox()
@@ -46,6 +44,8 @@ Partial Class Alta_empleado
         Me.Btn_Agregar = New System.Windows.Forms.Button()
         Me.Cb_Banco = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.TxtEstado = New System.Windows.Forms.TextBox()
+        Me.TxtMunicipio = New System.Windows.Forms.TextBox()
         Me.Txt_CP = New System.Windows.Forms.TextBox()
         Me.Txt_Num = New System.Windows.Forms.TextBox()
         Me.Txt_Col = New System.Windows.Forms.TextBox()
@@ -61,8 +61,8 @@ Partial Class Alta_empleado
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Txt_AP = New System.Windows.Forms.TextBox()
         Me.Txt_AM = New System.Windows.Forms.TextBox()
-        Me.TxtMunicipio = New System.Windows.Forms.TextBox()
-        Me.TxtEstado = New System.Windows.Forms.TextBox()
+        Me.Label13 = New System.Windows.Forms.Label()
+        Me.DateTime_ContratacionUsu = New System.Windows.Forms.DateTimePicker()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -163,26 +163,11 @@ Partial Class Alta_empleado
         Me.DateTime_NacimientoUsu.Size = New System.Drawing.Size(271, 20)
         Me.DateTime_NacimientoUsu.TabIndex = 12
         '
-        'DateTime_ContratacionUsu
-        '
-        Me.DateTime_ContratacionUsu.Location = New System.Drawing.Point(147, 330)
-        Me.DateTime_ContratacionUsu.Name = "DateTime_ContratacionUsu"
-        Me.DateTime_ContratacionUsu.Size = New System.Drawing.Size(271, 20)
-        Me.DateTime_ContratacionUsu.TabIndex = 13
-        '
-        'Label13
-        '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(22, 334)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(120, 13)
-        Me.Label13.TabIndex = 14
-        Me.Label13.Text = "Fecha de contratación: "
-        '
         'Txt_CodUsu
         '
         Me.Txt_CodUsu.Location = New System.Drawing.Point(147, 16)
         Me.Txt_CodUsu.Name = "Txt_CodUsu"
+        Me.Txt_CodUsu.ReadOnly = True
         Me.Txt_CodUsu.Size = New System.Drawing.Size(271, 20)
         Me.Txt_CodUsu.TabIndex = 15
         '
@@ -241,7 +226,7 @@ Partial Class Alta_empleado
         Me.Btn_Agregar.Name = "Btn_Agregar"
         Me.Btn_Agregar.Size = New System.Drawing.Size(97, 27)
         Me.Btn_Agregar.TabIndex = 26
-        Me.Btn_Agregar.Text = "Agregar"
+        Me.Btn_Agregar.Text = "Registrar"
         Me.Btn_Agregar.UseVisualStyleBackColor = True
         '
         'Cb_Banco
@@ -272,6 +257,20 @@ Partial Class Alta_empleado
         Me.GroupBox1.TabIndex = 28
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Domicilio"
+        '
+        'TxtEstado
+        '
+        Me.TxtEstado.Location = New System.Drawing.Point(104, 159)
+        Me.TxtEstado.Name = "TxtEstado"
+        Me.TxtEstado.Size = New System.Drawing.Size(240, 20)
+        Me.TxtEstado.TabIndex = 12
+        '
+        'TxtMunicipio
+        '
+        Me.TxtMunicipio.Location = New System.Drawing.Point(104, 124)
+        Me.TxtMunicipio.Name = "TxtMunicipio"
+        Me.TxtMunicipio.Size = New System.Drawing.Size(240, 20)
+        Me.TxtMunicipio.TabIndex = 12
         '
         'Txt_CP
         '
@@ -396,19 +395,21 @@ Partial Class Alta_empleado
         Me.Txt_AM.Size = New System.Drawing.Size(271, 20)
         Me.Txt_AM.TabIndex = 33
         '
-        'TxtMunicipio
+        'Label13
         '
-        Me.TxtMunicipio.Location = New System.Drawing.Point(104, 124)
-        Me.TxtMunicipio.Name = "TxtMunicipio"
-        Me.TxtMunicipio.Size = New System.Drawing.Size(240, 20)
-        Me.TxtMunicipio.TabIndex = 12
+        Me.Label13.AutoSize = True
+        Me.Label13.Location = New System.Drawing.Point(22, 334)
+        Me.Label13.Name = "Label13"
+        Me.Label13.Size = New System.Drawing.Size(120, 13)
+        Me.Label13.TabIndex = 14
+        Me.Label13.Text = "Fecha de contratación: "
         '
-        'TxtEstado
+        'DateTime_ContratacionUsu
         '
-        Me.TxtEstado.Location = New System.Drawing.Point(104, 159)
-        Me.TxtEstado.Name = "TxtEstado"
-        Me.TxtEstado.Size = New System.Drawing.Size(240, 20)
-        Me.TxtEstado.TabIndex = 12
+        Me.DateTime_ContratacionUsu.Location = New System.Drawing.Point(147, 330)
+        Me.DateTime_ContratacionUsu.Name = "DateTime_ContratacionUsu"
+        Me.DateTime_ContratacionUsu.Size = New System.Drawing.Size(271, 20)
+        Me.DateTime_ContratacionUsu.TabIndex = 13
         '
         'Alta_empleado
         '
@@ -464,8 +465,6 @@ Partial Class Alta_empleado
     Friend WithEvents Label11 As Label
     Friend WithEvents Label12 As Label
     Friend WithEvents DateTime_NacimientoUsu As DateTimePicker
-    Friend WithEvents DateTime_ContratacionUsu As DateTimePicker
-    Friend WithEvents Label13 As Label
     Friend WithEvents Txt_CodUsu As TextBox
     Friend WithEvents Txt_NomUsu As TextBox
     Friend WithEvents Txt_CURP As TextBox
@@ -494,4 +493,6 @@ Partial Class Alta_empleado
     Friend WithEvents Txt_AM As TextBox
     Friend WithEvents TxtEstado As TextBox
     Friend WithEvents TxtMunicipio As TextBox
+    Friend WithEvents Label13 As Label
+    Friend WithEvents DateTime_ContratacionUsu As DateTimePicker
 End Class

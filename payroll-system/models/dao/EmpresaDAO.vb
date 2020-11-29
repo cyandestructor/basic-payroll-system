@@ -70,11 +70,11 @@ Public Class EmpresaDAO
                 .FrecuenciaPago = reader.GetByte(7),
                 .InicioOperaciones = reader.GetDateTime(8),
                 .Gerente = New Empleado,
-                .InicioGestion = reader.GetDateTime(10),
+                .InicioGestion = GetDateSafe(reader, 10),
                 .Activo = reader.GetBoolean(11)
             }
             empresa.DomicilioFiscal.ID = reader.GetInt32(4)
-            empresa.Gerente.ID = reader.GetInt32(9)
+            empresa.Gerente.ID = GetIntSafe(reader, 9)
             empresas.Add(empresa)
         End While
 
@@ -109,9 +109,9 @@ Public Class EmpresaDAO
             empresa.FrecuenciaPago = reader.GetByte(7)
             empresa.InicioOperaciones = reader.GetDateTime(8)
             empresa.Gerente = New Empleado With {
-                .ID = reader.GetInt32(9)
+                .ID = GetIntSafe(reader, 9)
             }
-            empresa.InicioGestion = reader.GetDateTime(10)
+            empresa.InicioGestion = GetDateSafe(reader, 10)
             empresa.Activo = reader.GetBoolean(11)
         End If
 

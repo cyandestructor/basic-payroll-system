@@ -2,7 +2,9 @@
 Imports System.Data.SqlClient
 Public Class EmpleadoDAO
     Inherits DBConnection
-    Public Function Registrar(ByVal empleado As Empleado) As Boolean
+    Public Function Registrar(ByVal empleado As Empleado) As Integer
+        Dim idEmpleado As Integer = 0
+
         Dim command As New SqlCommand("RegistrarEmpleado", connection)
         command.CommandType = CommandType.StoredProcedure
 
@@ -25,11 +27,21 @@ Public Class EmpleadoDAO
         command.Parameters.AddWithValue("@Ciudad", empleado.Domicilio.Ciudad)
         command.Parameters.AddWithValue("@Estado", empleado.Domicilio.Estado)
 
+        ' ADD RETURN VALUE
+        Dim parameter As New SqlParameter
+        parameter = command.Parameters.Add("@UsuarioRegistrado", SqlDbType.Int)
+        parameter.Direction = ParameterDirection.ReturnValue
+
         connection.Open()
         command.ExecuteNonQuery()
+
+        If parameter.Value <> -1 Then
+            idEmpleado = parameter.Value
+        End If
+
         connection.Close()
 
-        Return True
+        Return idEmpleado
     End Function
     Public Function Editar(ByVal empleado As Empleado) As Boolean
         Dim command As New SqlCommand("EditarEmpleado", connection)
@@ -87,16 +99,16 @@ Public Class EmpleadoDAO
                 .EmpresaContratante = New Empresa,
                 .FechaContrato = reader.GetDateTime(14),
                 .DepartamentoActual = New Departamento,
-                .FechaIncorporacion = reader.GetDateTime(16),
+                .FechaIncorporacion = GetDateSafe(reader, 16),
                 .PuestoActual = New Puesto,
-                .FechaObtencion = reader.GetDateTime(18),
+                .FechaObtencion = GetDateSafe(reader, 18),
                 .Activo = reader.GetBoolean(20)
             }
             empleado.Domicilio.ID = reader.GetInt32(8)
             empleado.Banco.ID = reader.GetInt32(11)
-            empleado.EmpresaContratante.RFC = reader.GetString(13)
-            empleado.DepartamentoActual.ID = reader.GetInt32(15)
-            empleado.PuestoActual.ID = reader.GetInt32(17)
+            empleado.EmpresaContratante.RFC = GetStringSafe(reader, 13)
+            empleado.DepartamentoActual.ID = GetIntSafe(reader, 15)
+            empleado.PuestoActual.ID = GetIntSafe(reader, 17)
 
             empleados.Add(empleado)
         End While
@@ -138,17 +150,17 @@ Public Class EmpleadoDAO
             }
             empleado.CuentaBancaria = reader.GetInt64(12)
             empleado.EmpresaContratante = New Empresa With {
-                .RFC = reader.GetString(13)
+                .RFC = GetStringSafe(reader, 13)
             }
-            empleado.FechaContrato = reader.GetDateTime(14)
+            empleado.FechaContrato = GetDateSafe(reader, 14)
             empleado.DepartamentoActual = New Departamento With {
-                .ID = reader.GetInt32(15)
+                .ID = GetIntSafe(reader, 15)
             }
-            empleado.FechaIncorporacion = reader.GetDateTime(16)
+            empleado.FechaIncorporacion = GetDateSafe(reader, 16)
             empleado.PuestoActual = New Puesto With {
-                .ID = reader.GetInt32(17)
+                .ID = GetIntSafe(reader, 17)
             }
-            empleado.FechaObtencion = reader.GetDateTime(18)
+            empleado.FechaObtencion = GetDateSafe(reader, 18)
             empleado.Activo = reader.GetBoolean(20)
         End If
 
