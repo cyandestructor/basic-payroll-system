@@ -33,6 +33,8 @@ Partial Class Opciones_Depa
         Me.Btn_Agregar = New System.Windows.Forms.Button()
         Me.Btn_Cancelar = New System.Windows.Forms.Button()
         Me.LB_Depa = New System.Windows.Forms.ListBox()
+        Me.BtnRegistrarDpto = New System.Windows.Forms.Button()
+        Me.BtnEditarDpto = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -57,6 +59,7 @@ Partial Class Opciones_Depa
         '
         Me.Txt_CodigoDepa.Location = New System.Drawing.Point(160, 208)
         Me.Txt_CodigoDepa.Name = "Txt_CodigoDepa"
+        Me.Txt_CodigoDepa.ReadOnly = True
         Me.Txt_CodigoDepa.Size = New System.Drawing.Size(301, 20)
         Me.Txt_CodigoDepa.TabIndex = 2
         '
@@ -102,7 +105,7 @@ Partial Class Opciones_Depa
         '
         'Btn_Agregar
         '
-        Me.Btn_Agregar.Location = New System.Drawing.Point(373, 353)
+        Me.Btn_Agregar.Location = New System.Drawing.Point(279, 361)
         Me.Btn_Agregar.Name = "Btn_Agregar"
         Me.Btn_Agregar.Size = New System.Drawing.Size(88, 27)
         Me.Btn_Agregar.TabIndex = 8
@@ -111,7 +114,7 @@ Partial Class Opciones_Depa
         '
         'Btn_Cancelar
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(257, 353)
+        Me.Btn_Cancelar.Location = New System.Drawing.Point(73, 361)
         Me.Btn_Cancelar.Name = "Btn_Cancelar"
         Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
         Me.Btn_Cancelar.TabIndex = 30
@@ -126,13 +129,33 @@ Partial Class Opciones_Depa
         Me.LB_Depa.Size = New System.Drawing.Size(435, 160)
         Me.LB_Depa.TabIndex = 9
         '
+        'BtnRegistrarDpto
+        '
+        Me.BtnRegistrarDpto.Location = New System.Drawing.Point(373, 361)
+        Me.BtnRegistrarDpto.Name = "BtnRegistrarDpto"
+        Me.BtnRegistrarDpto.Size = New System.Drawing.Size(88, 27)
+        Me.BtnRegistrarDpto.TabIndex = 8
+        Me.BtnRegistrarDpto.Text = "Registrar"
+        Me.BtnRegistrarDpto.UseVisualStyleBackColor = True
+        '
+        'BtnEditarDpto
+        '
+        Me.BtnEditarDpto.Location = New System.Drawing.Point(176, 361)
+        Me.BtnEditarDpto.Name = "BtnEditarDpto"
+        Me.BtnEditarDpto.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEditarDpto.TabIndex = 30
+        Me.BtnEditarDpto.Text = "Editar"
+        Me.BtnEditarDpto.UseVisualStyleBackColor = True
+        '
         'Opciones_Depa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(488, 400)
+        Me.Controls.Add(Me.BtnEditarDpto)
         Me.Controls.Add(Me.Btn_Cancelar)
         Me.Controls.Add(Me.LB_Depa)
+        Me.Controls.Add(Me.BtnRegistrarDpto)
         Me.Controls.Add(Me.Btn_Agregar)
         Me.Controls.Add(Me.Txt_Sueldo)
         Me.Controls.Add(Me.Label4)
@@ -160,4 +183,6 @@ Partial Class Opciones_Depa
     Friend WithEvents Btn_Agregar As Button
     Friend WithEvents Btn_Cancelar As Button
     Friend WithEvents LB_Depa As ListBox
+    Friend WithEvents BtnRegistrarDpto As Button
+    Friend WithEvents BtnEditarDpto As Button
 End Class

@@ -79,19 +79,25 @@ Public Class EmpleadoDAO
                 .CURP = reader.GetString(5),
                 .RFC = reader.GetString(6),
                 .NSS = reader.GetInt64(7),
-                .Domicilio = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(8)),
+                .Domicilio = New Domicilio,
                 .Telefono = reader.GetInt64(9),
                 .Correo = reader.GetString(10),
-                .Banco = New BancoDAO().ObtenerBanco(reader.GetInt32(11)),
+                .Banco = New Banco,
                 .CuentaBancaria = reader.GetInt64(12),
-                .EmpresaContratante = New EmpresaDAO().ObtenerEmpresa(reader.GetString(13)),
+                .EmpresaContratante = New Empresa,
                 .FechaContrato = reader.GetDateTime(14),
-                .DepartamentoActual = New DepartamentoDAO().ObtenerDepartamento(reader.GetInt32(15)),
+                .DepartamentoActual = New Departamento,
                 .FechaIncorporacion = reader.GetDateTime(16),
-                .PuestoActual = New PuestoDAO().ObtenerPuesto(reader.GetInt32(17)),
+                .PuestoActual = New Puesto,
                 .FechaObtencion = reader.GetDateTime(18),
                 .Activo = reader.GetBoolean(20)
             }
+            empleado.Domicilio.ID = reader.GetInt32(8)
+            empleado.Banco.ID = reader.GetInt32(11)
+            empleado.EmpresaContratante.RFC = reader.GetString(13)
+            empleado.DepartamentoActual.ID = reader.GetInt32(15)
+            empleado.PuestoActual.ID = reader.GetInt32(17)
+
             empleados.Add(empleado)
         End While
 
@@ -122,16 +128,26 @@ Public Class EmpleadoDAO
             empleado.CURP = reader.GetString(5)
             empleado.RFC = reader.GetString(6)
             empleado.NSS = reader.GetInt64(7)
-            empleado.Domicilio = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(8))
+            empleado.Domicilio = New Domicilio With {
+                .ID = reader.GetInt32(8)
+            }
             empleado.Telefono = reader.GetInt64(9)
             empleado.Correo = reader.GetString(10)
-            empleado.Banco = New BancoDAO().ObtenerBanco(reader.GetInt32(11))
+            empleado.Banco = New Banco With {
+                .ID = reader.GetInt32(11)
+            }
             empleado.CuentaBancaria = reader.GetInt64(12)
-            empleado.EmpresaContratante = New EmpresaDAO().ObtenerEmpresa(reader.GetString(13))
+            empleado.EmpresaContratante = New Empresa With {
+                .RFC = reader.GetString(13)
+            }
             empleado.FechaContrato = reader.GetDateTime(14)
-            empleado.DepartamentoActual = New DepartamentoDAO().ObtenerDepartamento(reader.GetInt32(15))
+            empleado.DepartamentoActual = New Departamento With {
+                .ID = reader.GetInt32(15)
+            }
             empleado.FechaIncorporacion = reader.GetDateTime(16)
-            empleado.PuestoActual = New PuestoDAO().ObtenerPuesto(reader.GetInt32(17))
+            empleado.PuestoActual = New Puesto With {
+                .ID = reader.GetInt32(17)
+            }
             empleado.FechaObtencion = reader.GetDateTime(18)
             empleado.Activo = reader.GetBoolean(20)
         End If

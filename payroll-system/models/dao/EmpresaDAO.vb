@@ -64,15 +64,17 @@ Public Class EmpresaDAO
                 .Nombre = reader.GetString(1),
                 .RegistroPatronal = reader.GetString(2),
                 .RazonSocial = reader.GetString(3),
-                .DomicilioFiscal = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(4)),
+                .DomicilioFiscal = New Domicilio,
                 .Telefono = reader.GetInt64(5),
                 .Correo = reader.GetString(6),
                 .FrecuenciaPago = reader.GetByte(7),
                 .InicioOperaciones = reader.GetDateTime(8),
-                .Gerente = New EmpleadoDAO().ObtenerEmpleado(reader.GetInt32(9)),
+                .Gerente = New Empleado,
                 .InicioGestion = reader.GetDateTime(10),
                 .Activo = reader.GetBoolean(11)
             }
+            empresa.DomicilioFiscal.ID = reader.GetInt32(4)
+            empresa.Gerente.ID = reader.GetInt32(9)
             empresas.Add(empresa)
         End While
 
@@ -99,12 +101,16 @@ Public Class EmpresaDAO
             empresa.Nombre = reader.GetString(1)
             empresa.RegistroPatronal = reader.GetString(2)
             empresa.RazonSocial = reader.GetString(3)
-            empresa.DomicilioFiscal = New DomicilioDAO().ObtenerDomicilio(reader.GetInt32(4))
+            empresa.DomicilioFiscal = New Domicilio With {
+                .ID = reader.GetInt32(4)
+            }
             empresa.Telefono = reader.GetInt64(5)
             empresa.Correo = reader.GetString(6)
             empresa.FrecuenciaPago = reader.GetByte(7)
             empresa.InicioOperaciones = reader.GetDateTime(8)
-            empresa.Gerente = New EmpleadoDAO().ObtenerEmpleado(reader.GetInt32(9))
+            empresa.Gerente = New Empleado With {
+                .ID = reader.GetInt32(9)
+            }
             empresa.InicioGestion = reader.GetDateTime(10)
             empresa.Activo = reader.GetBoolean(11)
         End If

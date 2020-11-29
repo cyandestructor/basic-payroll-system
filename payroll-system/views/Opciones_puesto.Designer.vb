@@ -26,19 +26,23 @@ Partial Class Opciones_puesto
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Txt_CodPuesto = New System.Windows.Forms.TextBox()
         Me.Txt_NomPuesto = New System.Windows.Forms.TextBox()
-        Me.Btn_Agregar = New System.Windows.Forms.Button()
+        Me.Btn_Registrar = New System.Windows.Forms.Button()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Txt_PorSueldo = New System.Windows.Forms.TextBox()
         Me.Cb_Depa = New System.Windows.Forms.ComboBox()
         Me.Btn_Cancelar = New System.Windows.Forms.Button()
         Me.LB_Puesto = New System.Windows.Forms.ListBox()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.Cb_Empresa = New System.Windows.Forms.ComboBox()
+        Me.BtnAsignarEmpDpto = New System.Windows.Forms.Button()
+        Me.BtnEditarPuesto = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(49, 252)
+        Me.Label1.Location = New System.Drawing.Point(49, 243)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(99, 13)
         Me.Label1.TabIndex = 0
@@ -47,7 +51,7 @@ Partial Class Opciones_puesto
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(53, 219)
+        Me.Label2.Location = New System.Drawing.Point(53, 210)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(95, 13)
         Me.Label2.TabIndex = 1
@@ -55,31 +59,33 @@ Partial Class Opciones_puesto
         '
         'Txt_CodPuesto
         '
-        Me.Txt_CodPuesto.Location = New System.Drawing.Point(160, 216)
+        Me.Txt_CodPuesto.Location = New System.Drawing.Point(160, 207)
         Me.Txt_CodPuesto.Name = "Txt_CodPuesto"
+        Me.Txt_CodPuesto.ReadOnly = True
         Me.Txt_CodPuesto.Size = New System.Drawing.Size(305, 20)
         Me.Txt_CodPuesto.TabIndex = 2
         '
         'Txt_NomPuesto
         '
-        Me.Txt_NomPuesto.Location = New System.Drawing.Point(160, 249)
+        Me.Txt_NomPuesto.Location = New System.Drawing.Point(160, 240)
+        Me.Txt_NomPuesto.MaxLength = 20
         Me.Txt_NomPuesto.Name = "Txt_NomPuesto"
         Me.Txt_NomPuesto.Size = New System.Drawing.Size(305, 20)
         Me.Txt_NomPuesto.TabIndex = 3
         '
-        'Btn_Agregar
+        'Btn_Registrar
         '
-        Me.Btn_Agregar.Location = New System.Drawing.Point(369, 359)
-        Me.Btn_Agregar.Name = "Btn_Agregar"
-        Me.Btn_Agregar.Size = New System.Drawing.Size(96, 27)
-        Me.Btn_Agregar.TabIndex = 4
-        Me.Btn_Agregar.Text = "Agregar"
-        Me.Btn_Agregar.UseVisualStyleBackColor = True
+        Me.Btn_Registrar.Location = New System.Drawing.Point(369, 383)
+        Me.Btn_Registrar.Name = "Btn_Registrar"
+        Me.Btn_Registrar.Size = New System.Drawing.Size(96, 27)
+        Me.Btn_Registrar.TabIndex = 4
+        Me.Btn_Registrar.Text = "Registrar"
+        Me.Btn_Registrar.UseVisualStyleBackColor = True
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(71, 287)
+        Me.Label3.Location = New System.Drawing.Point(71, 311)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(77, 13)
         Me.Label3.TabIndex = 5
@@ -88,7 +94,7 @@ Partial Class Opciones_puesto
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(36, 320)
+        Me.Label4.Location = New System.Drawing.Point(36, 344)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(112, 13)
         Me.Label4.TabIndex = 6
@@ -96,7 +102,7 @@ Partial Class Opciones_puesto
         '
         'Txt_PorSueldo
         '
-        Me.Txt_PorSueldo.Location = New System.Drawing.Point(160, 317)
+        Me.Txt_PorSueldo.Location = New System.Drawing.Point(160, 341)
         Me.Txt_PorSueldo.Name = "Txt_PorSueldo"
         Me.Txt_PorSueldo.Size = New System.Drawing.Size(305, 20)
         Me.Txt_PorSueldo.TabIndex = 7
@@ -104,14 +110,14 @@ Partial Class Opciones_puesto
         'Cb_Depa
         '
         Me.Cb_Depa.FormattingEnabled = True
-        Me.Cb_Depa.Location = New System.Drawing.Point(160, 284)
+        Me.Cb_Depa.Location = New System.Drawing.Point(160, 308)
         Me.Cb_Depa.Name = "Cb_Depa"
         Me.Cb_Depa.Size = New System.Drawing.Size(305, 21)
         Me.Cb_Depa.TabIndex = 8
         '
         'Btn_Cancelar
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(266, 359)
+        Me.Btn_Cancelar.Location = New System.Drawing.Point(61, 383)
         Me.Btn_Cancelar.Name = "Btn_Cancelar"
         Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
         Me.Btn_Cancelar.TabIndex = 30
@@ -126,18 +132,57 @@ Partial Class Opciones_puesto
         Me.LB_Puesto.Size = New System.Drawing.Size(420, 160)
         Me.LB_Puesto.TabIndex = 31
         '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(103, 278)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(51, 13)
+        Me.Label5.TabIndex = 33
+        Me.Label5.Text = "Empresa:"
+        '
+        'Cb_Empresa
+        '
+        Me.Cb_Empresa.FormattingEnabled = True
+        Me.Cb_Empresa.Location = New System.Drawing.Point(160, 275)
+        Me.Cb_Empresa.Name = "Cb_Empresa"
+        Me.Cb_Empresa.Size = New System.Drawing.Size(305, 21)
+        Me.Cb_Empresa.TabIndex = 32
+        '
+        'BtnAsignarEmpDpto
+        '
+        Me.BtnAsignarEmpDpto.Location = New System.Drawing.Point(267, 383)
+        Me.BtnAsignarEmpDpto.Name = "BtnAsignarEmpDpto"
+        Me.BtnAsignarEmpDpto.Size = New System.Drawing.Size(96, 27)
+        Me.BtnAsignarEmpDpto.TabIndex = 4
+        Me.BtnAsignarEmpDpto.Text = "Agregar"
+        Me.BtnAsignarEmpDpto.UseVisualStyleBackColor = True
+        '
+        'BtnEditarPuesto
+        '
+        Me.BtnEditarPuesto.Location = New System.Drawing.Point(164, 383)
+        Me.BtnEditarPuesto.Name = "BtnEditarPuesto"
+        Me.BtnEditarPuesto.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEditarPuesto.TabIndex = 34
+        Me.BtnEditarPuesto.Text = "Editar"
+        Me.BtnEditarPuesto.UseVisualStyleBackColor = True
+        '
         'Opciones_puesto
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(491, 416)
+        Me.Controls.Add(Me.BtnEditarPuesto)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Cb_Empresa)
         Me.Controls.Add(Me.LB_Puesto)
         Me.Controls.Add(Me.Btn_Cancelar)
         Me.Controls.Add(Me.Cb_Depa)
         Me.Controls.Add(Me.Txt_PorSueldo)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Btn_Agregar)
+        Me.Controls.Add(Me.BtnAsignarEmpDpto)
+        Me.Controls.Add(Me.Btn_Registrar)
         Me.Controls.Add(Me.Txt_NomPuesto)
         Me.Controls.Add(Me.Txt_CodPuesto)
         Me.Controls.Add(Me.Label2)
@@ -153,11 +198,15 @@ Partial Class Opciones_puesto
     Friend WithEvents Label2 As Label
     Friend WithEvents Txt_CodPuesto As TextBox
     Friend WithEvents Txt_NomPuesto As TextBox
-    Friend WithEvents Btn_Agregar As Button
+    Friend WithEvents Btn_Registrar As Button
     Friend WithEvents Label3 As Label
     Friend WithEvents Label4 As Label
     Friend WithEvents Txt_PorSueldo As TextBox
     Friend WithEvents Cb_Depa As ComboBox
     Friend WithEvents Btn_Cancelar As Button
     Friend WithEvents LB_Puesto As ListBox
+    Friend WithEvents Label5 As Label
+    Friend WithEvents Cb_Empresa As ComboBox
+    Friend WithEvents BtnAsignarEmpDpto As Button
+    Friend WithEvents BtnEditarPuesto As Button
 End Class

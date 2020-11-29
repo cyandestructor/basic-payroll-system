@@ -75,6 +75,33 @@ Public Class DepartamentoDAO
 
         Return departamento
     End Function
+    Public Function VerDepartamentosEmpresa(ByVal idEmpresa As String) As List(Of Departamento)
+        Dim command As New SqlCommand("VerDepartamentos", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empresa", idEmpresa)
+
+        Dim departamentos As New List(Of Departamento)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            Dim departamento As New Departamento With {
+                .ID = reader.GetInt32(0),
+                .Nombre = reader.GetString(1),
+                .Activo = reader.GetBoolean(2)
+            }
+            departamentos.Add(departamento)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return departamentos
+    End Function
     Public Function AsignarGerente(ByVal idEmpresa As String, ByVal idDpto As Integer, ByVal idGerente As Integer, ByVal bono As Double) As Boolean
         Dim command As New SqlCommand("AsignarGerenteDpto", connection)
         command.CommandType = CommandType.StoredProcedure

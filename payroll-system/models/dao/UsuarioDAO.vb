@@ -36,6 +36,7 @@ Public Class UsuarioDAO
 
         Dim parameter As New SqlParameter
         parameter = command.Parameters.Add("@ValidUser", SqlDbType.Int)
+        parameter.Direction = ParameterDirection.ReturnValue
 
         connection.Open()
 

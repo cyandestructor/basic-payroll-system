@@ -448,9 +448,9 @@ IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpresas')
 GO
 
 CREATE PROCEDURE VerEmpresas
-	@ID_Empresa		VARCHAR(12)
+	@ID_Empresa		VARCHAR(12) = NULL
 AS
-	IF (@ID_Empresa = NULL)
+	IF (@ID_Empresa IS NULL)
 		BEGIN
 			SELECT
 				RFC_Empresa,
@@ -637,16 +637,32 @@ IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerDepartamen
 GO
 
 CREATE PROCEDURE VerDepartamentos
-	@ID_Dpto INT = NULL
+	@ID_Dpto INT = NULL,
+	@ID_Empresa	VARCHAR(12) = NULL
 AS
-	IF (@ID_Dpto = NULL)
+	IF (@ID_Dpto IS NULL)
 		BEGIN
-			SELECT
-				ID_Dpto,
-				Nom_Dpto,
-				Activo
-			FROM
-				Departamento;
+			IF (@ID_Empresa IS NULL)
+				BEGIN
+					SELECT
+						ID_Dpto,
+						Nom_Dpto,
+						Activo
+					FROM
+						Departamento;
+				END
+			ELSE
+				BEGIN
+					SELECT
+						D.ID_Dpto,
+						D.Nom_Dpto,
+						D.Activo
+					FROM
+						Departamento AS D
+						INNER JOIN Empresa_Dpto AS ED ON ED.ID_Dpto = D.ID_Dpto
+					WHERE
+						ID_Empresa = @ID_Empresa;
+				END
 		END
 	ELSE
 		BEGIN
@@ -769,7 +785,7 @@ GO
 CREATE PROCEDURE VerPuestos
 	@ID_Puesto	INT = NULL
 AS
-	IF (@ID_Puesto = NULL)
+	IF (@ID_Puesto IS NULL)
 		BEGIN
 			SELECT
 				ID_Puesto,
@@ -1160,7 +1176,7 @@ GO
 CREATE PROCEDURE VerBancos
 	@ID_Banco	INT = NULL
 AS
-	IF (@ID_Banco = NULL)
+	IF (@ID_Banco IS NULL)
 		BEGIN
 			SELECT
 				ID_Banco,

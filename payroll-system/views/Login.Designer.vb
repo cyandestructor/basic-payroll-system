@@ -33,6 +33,7 @@ Partial Class Login
         'Txt_User
         '
         Me.Txt_User.Location = New System.Drawing.Point(104, 30)
+        Me.Txt_User.MaxLength = 8
         Me.Txt_User.Name = "Txt_User"
         Me.Txt_User.Size = New System.Drawing.Size(295, 20)
         Me.Txt_User.TabIndex = 0
@@ -58,7 +59,9 @@ Partial Class Login
         'Txt_Password
         '
         Me.Txt_Password.Location = New System.Drawing.Point(104, 71)
+        Me.Txt_Password.MaxLength = 20
         Me.Txt_Password.Name = "Txt_Password"
+        Me.Txt_Password.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
         Me.Txt_Password.Size = New System.Drawing.Size(295, 20)
         Me.Txt_Password.TabIndex = 3
         '
@@ -91,7 +94,10 @@ Partial Class Login
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.Txt_User)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle
+        Me.MaximizeBox = False
         Me.Name = "Login"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Login"
         Me.ResumeLayout(False)
         Me.PerformLayout()

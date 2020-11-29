@@ -25,24 +25,26 @@ Partial Class Gerente
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.PermisosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Nomina = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Menu_PD = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Vacaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_InfoUsu = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Password = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Pagos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_PD = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Puesto = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Departamento = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Empresa = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Menu_Empleado = New System.Windows.Forms.ToolStripMenuItem()
         Me.LB_Pagos = New System.Windows.Forms.ListBox()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Menu_Empleado = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuSolicitarPermiso = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,8 +72,15 @@ Partial Class Gerente
         Me.Menu_Nomina.Size = New System.Drawing.Size(224, 22)
         Me.Menu_Nomina.Text = "Recibos de nomina"
         '
+        'Menu_PD
+        '
+        Me.Menu_PD.Name = "Menu_PD"
+        Me.Menu_PD.Size = New System.Drawing.Size(224, 22)
+        Me.Menu_PD.Text = "Percepciones y Deducciones"
+        '
         'Menu_Permisos
         '
+        Me.Menu_Permisos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSolicitarPermiso, Me.menuRevisarPermisos})
         Me.Menu_Permisos.Name = "Menu_Permisos"
         Me.Menu_Permisos.Size = New System.Drawing.Size(67, 20)
         Me.Menu_Permisos.Text = "Permisos"
@@ -107,12 +116,6 @@ Partial Class Gerente
         Me.Menu_Pagos.Size = New System.Drawing.Size(51, 20)
         Me.Menu_Pagos.Text = "Pagos"
         '
-        'Menu_PD
-        '
-        Me.Menu_PD.Name = "Menu_PD"
-        Me.Menu_PD.Size = New System.Drawing.Size(224, 22)
-        Me.Menu_PD.Text = "Percepciones y Deducciones"
-        '
         'AgregarToolStripMenuItem
         '
         Me.AgregarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Puesto, Me.Menu_Departamento, Me.Menu_Empresa, Me.Menu_Empleado})
@@ -137,6 +140,12 @@ Partial Class Gerente
         Me.Menu_Empresa.Name = "Menu_Empresa"
         Me.Menu_Empresa.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Empresa.Text = "Empresa"
+        '
+        'Menu_Empleado
+        '
+        Me.Menu_Empleado.Name = "Menu_Empleado"
+        Me.Menu_Empleado.Size = New System.Drawing.Size(180, 22)
+        Me.Menu_Empleado.Text = "Empleado"
         '
         'LB_Pagos
         '
@@ -189,11 +198,17 @@ Partial Class Gerente
         Me.DataGridView1.Size = New System.Drawing.Size(452, 194)
         Me.DataGridView1.TabIndex = 33
         '
-        'Menu_Empleado
+        'menuSolicitarPermiso
         '
-        Me.Menu_Empleado.Name = "Menu_Empleado"
-        Me.Menu_Empleado.Size = New System.Drawing.Size(180, 22)
-        Me.Menu_Empleado.Text = "Empleado"
+        Me.menuSolicitarPermiso.Name = "menuSolicitarPermiso"
+        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(180, 22)
+        Me.menuSolicitarPermiso.Text = "Solicitar"
+        '
+        'menuRevisarPermisos
+        '
+        Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
+        Me.menuRevisarPermisos.Size = New System.Drawing.Size(180, 22)
+        Me.menuRevisarPermisos.Text = "Revisar"
         '
         'Gerente
         '
@@ -207,6 +222,7 @@ Partial Class Gerente
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.MenuStrip1)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "Gerente"
         Me.Text = "Gerente"
         Me.MenuStrip1.ResumeLayout(False)
@@ -239,4 +255,6 @@ Partial Class Gerente
     Friend WithEvents Label1 As Label
     Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents Menu_Empleado As ToolStripMenuItem
+    Friend WithEvents menuSolicitarPermiso As ToolStripMenuItem
+    Friend WithEvents menuRevisarPermisos As ToolStripMenuItem
 End Class

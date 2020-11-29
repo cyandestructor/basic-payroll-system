@@ -17,12 +17,12 @@
             _nombre = value
         End Set
     End Property
-    Private _registroPatronal As Long
-    Public Property RegistroPatronal() As Long
+    Private _registroPatronal As String
+    Public Property RegistroPatronal() As String
         Get
             Return _registroPatronal
         End Get
-        Set(ByVal value As Long)
+        Set(ByVal value As String)
             _registroPatronal = value
         End Set
     End Property

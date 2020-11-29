@@ -46,23 +46,23 @@ Partial Class Alta_empleado
         Me.Btn_Agregar = New System.Windows.Forms.Button()
         Me.Cb_Banco = New System.Windows.Forms.ComboBox()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
-        Me.Btn_Cancelar = New System.Windows.Forms.Button()
-        Me.Cb_Estado = New System.Windows.Forms.ComboBox()
-        Me.Cb_Municipio = New System.Windows.Forms.ComboBox()
-        Me.Txt_Calle = New System.Windows.Forms.TextBox()
-        Me.Txt_Col = New System.Windows.Forms.TextBox()
-        Me.Txt_Num = New System.Windows.Forms.TextBox()
         Me.Txt_CP = New System.Windows.Forms.TextBox()
+        Me.Txt_Num = New System.Windows.Forms.TextBox()
+        Me.Txt_Col = New System.Windows.Forms.TextBox()
+        Me.Txt_Calle = New System.Windows.Forms.TextBox()
+        Me.Label18 = New System.Windows.Forms.Label()
+        Me.Label17 = New System.Windows.Forms.Label()
+        Me.Label16 = New System.Windows.Forms.Label()
+        Me.Label15 = New System.Windows.Forms.Label()
+        Me.Label14 = New System.Windows.Forms.Label()
+        Me.Label7 = New System.Windows.Forms.Label()
+        Me.Btn_Cancelar = New System.Windows.Forms.Button()
         Me.Label8 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
         Me.Txt_AP = New System.Windows.Forms.TextBox()
         Me.Txt_AM = New System.Windows.Forms.TextBox()
+        Me.TxtMunicipio = New System.Windows.Forms.TextBox()
+        Me.TxtEstado = New System.Windows.Forms.TextBox()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -254,12 +254,12 @@ Partial Class Alta_empleado
         '
         'GroupBox1
         '
+        Me.GroupBox1.Controls.Add(Me.TxtEstado)
+        Me.GroupBox1.Controls.Add(Me.TxtMunicipio)
         Me.GroupBox1.Controls.Add(Me.Txt_CP)
         Me.GroupBox1.Controls.Add(Me.Txt_Num)
         Me.GroupBox1.Controls.Add(Me.Txt_Col)
         Me.GroupBox1.Controls.Add(Me.Txt_Calle)
-        Me.GroupBox1.Controls.Add(Me.Cb_Municipio)
-        Me.GroupBox1.Controls.Add(Me.Cb_Estado)
         Me.GroupBox1.Controls.Add(Me.Label18)
         Me.GroupBox1.Controls.Add(Me.Label17)
         Me.GroupBox1.Controls.Add(Me.Label16)
@@ -273,50 +273,33 @@ Partial Class Alta_empleado
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Domicilio"
         '
-        'Label7
+        'Txt_CP
         '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(52, 27)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(36, 13)
-        Me.Label7.TabIndex = 0
-        Me.Label7.Text = "Calle: "
+        Me.Txt_CP.Location = New System.Drawing.Point(104, 193)
+        Me.Txt_CP.Name = "Txt_CP"
+        Me.Txt_CP.Size = New System.Drawing.Size(240, 20)
+        Me.Txt_CP.TabIndex = 11
         '
-        'Label14
+        'Txt_Num
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(38, 58)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(50, 13)
-        Me.Label14.TabIndex = 1
-        Me.Label14.Text = "Número: "
+        Me.Txt_Num.Location = New System.Drawing.Point(104, 54)
+        Me.Txt_Num.Name = "Txt_Num"
+        Me.Txt_Num.Size = New System.Drawing.Size(240, 20)
+        Me.Txt_Num.TabIndex = 10
         '
-        'Label15
+        'Txt_Col
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(43, 92)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(45, 13)
-        Me.Label15.TabIndex = 2
-        Me.Label15.Text = "Colonia:"
+        Me.Txt_Col.Location = New System.Drawing.Point(104, 89)
+        Me.Txt_Col.Name = "Txt_Col"
+        Me.Txt_Col.Size = New System.Drawing.Size(240, 20)
+        Me.Txt_Col.TabIndex = 9
         '
-        'Label16
+        'Txt_Calle
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(33, 127)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(55, 13)
-        Me.Label16.TabIndex = 3
-        Me.Label16.Text = "Municipio:"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(45, 162)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(43, 13)
-        Me.Label17.TabIndex = 4
-        Me.Label17.Text = "Estado:"
+        Me.Txt_Calle.Location = New System.Drawing.Point(104, 25)
+        Me.Txt_Calle.Name = "Txt_Calle"
+        Me.Txt_Calle.Size = New System.Drawing.Size(240, 20)
+        Me.Txt_Calle.TabIndex = 8
         '
         'Label18
         '
@@ -327,6 +310,51 @@ Partial Class Alta_empleado
         Me.Label18.TabIndex = 5
         Me.Label18.Text = "Código postal:"
         '
+        'Label17
+        '
+        Me.Label17.AutoSize = True
+        Me.Label17.Location = New System.Drawing.Point(45, 162)
+        Me.Label17.Name = "Label17"
+        Me.Label17.Size = New System.Drawing.Size(43, 13)
+        Me.Label17.TabIndex = 4
+        Me.Label17.Text = "Estado:"
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(33, 127)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(55, 13)
+        Me.Label16.TabIndex = 3
+        Me.Label16.Text = "Municipio:"
+        '
+        'Label15
+        '
+        Me.Label15.AutoSize = True
+        Me.Label15.Location = New System.Drawing.Point(43, 92)
+        Me.Label15.Name = "Label15"
+        Me.Label15.Size = New System.Drawing.Size(45, 13)
+        Me.Label15.TabIndex = 2
+        Me.Label15.Text = "Colonia:"
+        '
+        'Label14
+        '
+        Me.Label14.AutoSize = True
+        Me.Label14.Location = New System.Drawing.Point(38, 58)
+        Me.Label14.Name = "Label14"
+        Me.Label14.Size = New System.Drawing.Size(50, 13)
+        Me.Label14.TabIndex = 1
+        Me.Label14.Text = "Número: "
+        '
+        'Label7
+        '
+        Me.Label7.AutoSize = True
+        Me.Label7.Location = New System.Drawing.Point(52, 27)
+        Me.Label7.Name = "Label7"
+        Me.Label7.Size = New System.Drawing.Size(36, 13)
+        Me.Label7.TabIndex = 0
+        Me.Label7.Text = "Calle: "
+        '
         'Btn_Cancelar
         '
         Me.Btn_Cancelar.Location = New System.Drawing.Point(613, 334)
@@ -335,50 +363,6 @@ Partial Class Alta_empleado
         Me.Btn_Cancelar.TabIndex = 29
         Me.Btn_Cancelar.Text = "Cancelar"
         Me.Btn_Cancelar.UseVisualStyleBackColor = True
-        '
-        'Cb_Estado
-        '
-        Me.Cb_Estado.FormattingEnabled = True
-        Me.Cb_Estado.Location = New System.Drawing.Point(104, 159)
-        Me.Cb_Estado.Name = "Cb_Estado"
-        Me.Cb_Estado.Size = New System.Drawing.Size(240, 21)
-        Me.Cb_Estado.TabIndex = 6
-        '
-        'Cb_Municipio
-        '
-        Me.Cb_Municipio.FormattingEnabled = True
-        Me.Cb_Municipio.Location = New System.Drawing.Point(104, 124)
-        Me.Cb_Municipio.Name = "Cb_Municipio"
-        Me.Cb_Municipio.Size = New System.Drawing.Size(240, 21)
-        Me.Cb_Municipio.TabIndex = 7
-        '
-        'Txt_Calle
-        '
-        Me.Txt_Calle.Location = New System.Drawing.Point(104, 25)
-        Me.Txt_Calle.Name = "Txt_Calle"
-        Me.Txt_Calle.Size = New System.Drawing.Size(240, 20)
-        Me.Txt_Calle.TabIndex = 8
-        '
-        'Txt_Col
-        '
-        Me.Txt_Col.Location = New System.Drawing.Point(104, 89)
-        Me.Txt_Col.Name = "Txt_Col"
-        Me.Txt_Col.Size = New System.Drawing.Size(240, 20)
-        Me.Txt_Col.TabIndex = 9
-        '
-        'Txt_Num
-        '
-        Me.Txt_Num.Location = New System.Drawing.Point(104, 54)
-        Me.Txt_Num.Name = "Txt_Num"
-        Me.Txt_Num.Size = New System.Drawing.Size(240, 20)
-        Me.Txt_Num.TabIndex = 10
-        '
-        'Txt_CP
-        '
-        Me.Txt_CP.Location = New System.Drawing.Point(104, 193)
-        Me.Txt_CP.Name = "Txt_CP"
-        Me.Txt_CP.Size = New System.Drawing.Size(240, 20)
-        Me.Txt_CP.TabIndex = 11
         '
         'Label8
         '
@@ -411,6 +395,20 @@ Partial Class Alta_empleado
         Me.Txt_AM.Name = "Txt_AM"
         Me.Txt_AM.Size = New System.Drawing.Size(271, 20)
         Me.Txt_AM.TabIndex = 33
+        '
+        'TxtMunicipio
+        '
+        Me.TxtMunicipio.Location = New System.Drawing.Point(104, 124)
+        Me.TxtMunicipio.Name = "TxtMunicipio"
+        Me.TxtMunicipio.Size = New System.Drawing.Size(240, 20)
+        Me.TxtMunicipio.TabIndex = 12
+        '
+        'TxtEstado
+        '
+        Me.TxtEstado.Location = New System.Drawing.Point(104, 159)
+        Me.TxtEstado.Name = "TxtEstado"
+        Me.TxtEstado.Size = New System.Drawing.Size(240, 20)
+        Me.TxtEstado.TabIndex = 12
         '
         'Alta_empleado
         '
@@ -486,8 +484,6 @@ Partial Class Alta_empleado
     Friend WithEvents Txt_Num As TextBox
     Friend WithEvents Txt_Col As TextBox
     Friend WithEvents Txt_Calle As TextBox
-    Friend WithEvents Cb_Municipio As ComboBox
-    Friend WithEvents Cb_Estado As ComboBox
     Friend WithEvents Label18 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label16 As Label
@@ -496,4 +492,6 @@ Partial Class Alta_empleado
     Friend WithEvents Label19 As Label
     Friend WithEvents Txt_AP As TextBox
     Friend WithEvents Txt_AM As TextBox
+    Friend WithEvents TxtEstado As TextBox
+    Friend WithEvents TxtMunicipio As TextBox
 End Class
