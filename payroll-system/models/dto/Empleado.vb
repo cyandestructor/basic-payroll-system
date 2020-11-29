@@ -35,6 +35,11 @@
             _apellidoMaterno = value
         End Set
     End Property
+    Public ReadOnly Property NombreCompleto() As String
+        Get
+            Return _nombre + " " + _apellidoPaterno + " " + _apellidoMaterno
+        End Get
+    End Property
     Private _fechaNacimiento As Date
     Public Property FechaNacimiento() As Date
         Get

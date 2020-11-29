@@ -255,7 +255,7 @@ GO
 CREATE PROCEDURE VerEmpleados
 	@ID_Empleado INT = NULL
 AS
-	IF (@ID_Empleado = NULL)
+	IF (@ID_Empleado IS NULL)
 		BEGIN
 			SELECT
 				ID_Empleado,

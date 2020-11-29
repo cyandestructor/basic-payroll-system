@@ -67,7 +67,7 @@ Public Class EmpleadoDAO
         Return True
     End Function
     Public Function VerEmpleados(Optional ByVal idEmpleado As Integer = Nothing) As List(Of Empleado)
-        Dim command As New SqlCommand("VerDomicilios", connection)
+        Dim command As New SqlCommand("VerEmpleados", connection)
         command.CommandType = CommandType.StoredProcedure
 
         Dim empleados As New List(Of Empleado)
@@ -97,7 +97,7 @@ Public Class EmpleadoDAO
                 .Banco = New Banco,
                 .CuentaBancaria = reader.GetInt64(12),
                 .EmpresaContratante = New Empresa,
-                .FechaContrato = reader.GetDateTime(14),
+                .FechaContrato = GetDateSafe(reader, 14),
                 .DepartamentoActual = New Departamento,
                 .FechaIncorporacion = GetDateSafe(reader, 16),
                 .PuestoActual = New Puesto,
