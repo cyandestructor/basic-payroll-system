@@ -81,7 +81,7 @@ Partial Class Gerente
         '
         'Menu_Permisos
         '
-        Me.Menu_Permisos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSolicitarPermiso, Me.menuRevisarPermisos, Me.MenuVacaciones})
+        Me.Menu_Permisos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.menuSolicitarPermiso, Me.MenuVacaciones, Me.menuRevisarPermisos})
         Me.Menu_Permisos.Name = "Menu_Permisos"
         Me.Menu_Permisos.Size = New System.Drawing.Size(67, 20)
         Me.Menu_Permisos.Text = "Permisos"

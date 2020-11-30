@@ -24,7 +24,6 @@
         Dim formPermisos As New Permisos
         formPermisos.Show()
     End Sub
-
     Private Sub menuRevisarPermisos_Click(sender As Object, e As EventArgs) Handles menuRevisarPermisos.Click
         Dim formIncidencias As New RevisarIncidencias
         formIncidencias.Show()

@@ -26,23 +26,22 @@ Partial Class EmpleadoForm
         Me.PermisosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Nomina = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Permisos = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_Vacaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_InfoUsu = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Password = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_Pagos = New System.Windows.Forms.ToolStripMenuItem()
         Me.BtnConsultarPagos = New System.Windows.Forms.Button()
         Me.DtpYear = New System.Windows.Forms.DateTimePicker()
         Me.DgvResumen = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.MenuSolicitarPermiso = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuVacaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DgvResumen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PermisosToolStripMenuItem, Me.Menu_Permisos, Me.Menu_Vacaciones, Me.UsuarioToolStripMenuItem, Me.Menu_Pagos})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PermisosToolStripMenuItem, Me.Menu_Permisos, Me.UsuarioToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(759, 24)
@@ -59,45 +58,28 @@ Partial Class EmpleadoForm
         'Menu_Nomina
         '
         Me.Menu_Nomina.Name = "Menu_Nomina"
-        Me.Menu_Nomina.Size = New System.Drawing.Size(175, 22)
+        Me.Menu_Nomina.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Nomina.Text = "Recibos de nomina"
         '
         'Menu_Permisos
         '
+        Me.Menu_Permisos.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.MenuSolicitarPermiso, Me.MenuVacaciones})
         Me.Menu_Permisos.Name = "Menu_Permisos"
         Me.Menu_Permisos.Size = New System.Drawing.Size(67, 20)
         Me.Menu_Permisos.Text = "Permisos"
         '
-        'Menu_Vacaciones
-        '
-        Me.Menu_Vacaciones.Name = "Menu_Vacaciones"
-        Me.Menu_Vacaciones.Size = New System.Drawing.Size(77, 20)
-        Me.Menu_Vacaciones.Text = "Vacaciones"
-        '
         'UsuarioToolStripMenuItem
         '
-        Me.UsuarioToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_InfoUsu, Me.Menu_Password})
+        Me.UsuarioToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Password})
         Me.UsuarioToolStripMenuItem.Name = "UsuarioToolStripMenuItem"
         Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.UsuarioToolStripMenuItem.Text = "Usuario"
         '
-        'Menu_InfoUsu
-        '
-        Me.Menu_InfoUsu.Name = "Menu_InfoUsu"
-        Me.Menu_InfoUsu.Size = New System.Drawing.Size(165, 22)
-        Me.Menu_InfoUsu.Text = "Información"
-        '
         'Menu_Password
         '
         Me.Menu_Password.Name = "Menu_Password"
-        Me.Menu_Password.Size = New System.Drawing.Size(165, 22)
+        Me.Menu_Password.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Password.Text = "Editar contraseña"
-        '
-        'Menu_Pagos
-        '
-        Me.Menu_Pagos.Name = "Menu_Pagos"
-        Me.Menu_Pagos.Size = New System.Drawing.Size(51, 20)
-        Me.Menu_Pagos.Text = "Pagos"
         '
         'BtnConsultarPagos
         '
@@ -143,6 +125,18 @@ Partial Class EmpleadoForm
         Me.Label2.TabIndex = 41
         Me.Label2.Text = "Resumen de pagos"
         '
+        'MenuSolicitarPermiso
+        '
+        Me.MenuSolicitarPermiso.Name = "MenuSolicitarPermiso"
+        Me.MenuSolicitarPermiso.Size = New System.Drawing.Size(180, 22)
+        Me.MenuSolicitarPermiso.Text = "Solicitar"
+        '
+        'MenuVacaciones
+        '
+        Me.MenuVacaciones.Name = "MenuVacaciones"
+        Me.MenuVacaciones.Size = New System.Drawing.Size(180, 22)
+        Me.MenuVacaciones.Text = "Vacaciones"
+        '
         'EmpleadoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -169,14 +163,13 @@ Partial Class EmpleadoForm
     Friend WithEvents PermisosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Menu_Nomina As ToolStripMenuItem
     Friend WithEvents Menu_Permisos As ToolStripMenuItem
-    Friend WithEvents Menu_Vacaciones As ToolStripMenuItem
     Friend WithEvents UsuarioToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Menu_InfoUsu As ToolStripMenuItem
     Friend WithEvents Menu_Password As ToolStripMenuItem
-    Friend WithEvents Menu_Pagos As ToolStripMenuItem
     Friend WithEvents BtnConsultarPagos As Button
     Friend WithEvents DtpYear As DateTimePicker
     Friend WithEvents DgvResumen As DataGridView
     Friend WithEvents Label1 As Label
     Friend WithEvents Label2 As Label
+    Friend WithEvents MenuSolicitarPermiso As ToolStripMenuItem
+    Friend WithEvents MenuVacaciones As ToolStripMenuItem
 End Class
