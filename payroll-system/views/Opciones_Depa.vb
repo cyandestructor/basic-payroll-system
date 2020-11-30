@@ -91,7 +91,17 @@
             UpdateDepartamentos()
         End If
     End Sub
-    Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
-        Close()
+    Private Sub BtnEliminar_Click(sender As Object, e As EventArgs) Handles BtnEliminar.Click
+        If LB_Depa.SelectedIndex <> -1 Then
+            Dim idDpto = LB_Depa.SelectedValue
+            Dim departamentoDAO As New DepartamentoDAO
+            Dim result = MessageBox.Show("¿Quiere eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                departamentoDAO.Desactivar(idDpto)
+                UpdateDepartamentos()
+            End If
+        Else
+            MsgBox("Seleccione un departamento para continuar")
+        End If
     End Sub
 End Class

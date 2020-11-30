@@ -160,4 +160,17 @@
     Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
         Close()
     End Sub
+    Private Sub BtnEliminarEmpresa_Click(sender As Object, e As EventArgs) Handles BtnEliminarEmpresa.Click
+        If LB_Empresa.SelectedIndex <> -1 Then
+            Dim idEmpresa = LB_Empresa.SelectedValue
+            Dim empresaDAO As New EmpresaDAO
+            Dim result = MessageBox.Show("¿Quiere eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                empresaDAO.Desactivar(idEmpresa)
+                UpdateEmpresas()
+            End If
+        Else
+            MsgBox("Seleccione una empresa para continuar")
+        End If
+    End Sub
 End Class

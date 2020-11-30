@@ -55,6 +55,7 @@ Partial Class Alta_empresa
         Me.TxtColonia = New System.Windows.Forms.TextBox()
         Me.TxtMunicipio = New System.Windows.Forms.TextBox()
         Me.BtnEditarEmpresa = New System.Windows.Forms.Button()
+        Me.BtnEliminarEmpresa = New System.Windows.Forms.Button()
         Me.GpbDomicilio.SuspendLayout()
         Me.SuspendLayout()
         '
@@ -351,6 +352,15 @@ Partial Class Alta_empresa
         Me.BtnEditarEmpresa.Text = "Editar"
         Me.BtnEditarEmpresa.UseVisualStyleBackColor = True
         '
+        'BtnEliminarEmpresa
+        '
+        Me.BtnEliminarEmpresa.Location = New System.Drawing.Point(391, 391)
+        Me.BtnEliminarEmpresa.Name = "BtnEliminarEmpresa"
+        Me.BtnEliminarEmpresa.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEliminarEmpresa.TabIndex = 30
+        Me.BtnEliminarEmpresa.Text = "Eliminar"
+        Me.BtnEliminarEmpresa.UseVisualStyleBackColor = True
+        '
         'Alta_empresa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -358,6 +368,7 @@ Partial Class Alta_empresa
         Me.ClientSize = New System.Drawing.Size(805, 427)
         Me.Controls.Add(Me.LB_Empresa)
         Me.Controls.Add(Me.BtnEditarEmpresa)
+        Me.Controls.Add(Me.BtnEliminarEmpresa)
         Me.Controls.Add(Me.Btn_Cancelar)
         Me.Controls.Add(Me.DateTime_InicioOp)
         Me.Controls.Add(Me.Btn_AgregarEmp)
@@ -419,4 +430,5 @@ Partial Class Alta_empresa
     Friend WithEvents TxtCP As TextBox
     Friend WithEvents TxtMunicipio As TextBox
     Friend WithEvents BtnEditarEmpresa As Button
+    Friend WithEvents BtnEliminarEmpresa As Button
 End Class

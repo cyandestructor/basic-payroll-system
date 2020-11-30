@@ -31,7 +31,7 @@ Partial Class Opciones_puesto
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Txt_PorSueldo = New System.Windows.Forms.TextBox()
         Me.Cb_Depa = New System.Windows.Forms.ComboBox()
-        Me.Btn_Cancelar = New System.Windows.Forms.Button()
+        Me.BtnEliminarPuesto = New System.Windows.Forms.Button()
         Me.LB_Puesto = New System.Windows.Forms.ListBox()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Cb_Empresa = New System.Windows.Forms.ComboBox()
@@ -115,14 +115,14 @@ Partial Class Opciones_puesto
         Me.Cb_Depa.Size = New System.Drawing.Size(305, 21)
         Me.Cb_Depa.TabIndex = 8
         '
-        'Btn_Cancelar
+        'BtnEliminarPuesto
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(61, 383)
-        Me.Btn_Cancelar.Name = "Btn_Cancelar"
-        Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
-        Me.Btn_Cancelar.TabIndex = 30
-        Me.Btn_Cancelar.Text = "Cancelar"
-        Me.Btn_Cancelar.UseVisualStyleBackColor = True
+        Me.BtnEliminarPuesto.Location = New System.Drawing.Point(61, 383)
+        Me.BtnEliminarPuesto.Name = "BtnEliminarPuesto"
+        Me.BtnEliminarPuesto.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEliminarPuesto.TabIndex = 30
+        Me.BtnEliminarPuesto.Text = "Eliminar"
+        Me.BtnEliminarPuesto.UseVisualStyleBackColor = True
         '
         'LB_Puesto
         '
@@ -176,7 +176,7 @@ Partial Class Opciones_puesto
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Cb_Empresa)
         Me.Controls.Add(Me.LB_Puesto)
-        Me.Controls.Add(Me.Btn_Cancelar)
+        Me.Controls.Add(Me.BtnEliminarPuesto)
         Me.Controls.Add(Me.Cb_Depa)
         Me.Controls.Add(Me.Txt_PorSueldo)
         Me.Controls.Add(Me.Label4)
@@ -203,7 +203,7 @@ Partial Class Opciones_puesto
     Friend WithEvents Label4 As Label
     Friend WithEvents Txt_PorSueldo As TextBox
     Friend WithEvents Cb_Depa As ComboBox
-    Friend WithEvents Btn_Cancelar As Button
+    Friend WithEvents BtnEliminarPuesto As Button
     Friend WithEvents LB_Puesto As ListBox
     Friend WithEvents Label5 As Label
     Friend WithEvents Cb_Empresa As ComboBox

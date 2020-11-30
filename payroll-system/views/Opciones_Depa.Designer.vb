@@ -31,7 +31,7 @@ Partial Class Opciones_Depa
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Txt_Sueldo = New System.Windows.Forms.TextBox()
         Me.Btn_Agregar = New System.Windows.Forms.Button()
-        Me.Btn_Cancelar = New System.Windows.Forms.Button()
+        Me.BtnEliminar = New System.Windows.Forms.Button()
         Me.LB_Depa = New System.Windows.Forms.ListBox()
         Me.BtnRegistrarDpto = New System.Windows.Forms.Button()
         Me.BtnEditarDpto = New System.Windows.Forms.Button()
@@ -112,14 +112,14 @@ Partial Class Opciones_Depa
         Me.Btn_Agregar.Text = "Agregar"
         Me.Btn_Agregar.UseVisualStyleBackColor = True
         '
-        'Btn_Cancelar
+        'BtnEliminar
         '
-        Me.Btn_Cancelar.Location = New System.Drawing.Point(73, 361)
-        Me.Btn_Cancelar.Name = "Btn_Cancelar"
-        Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
-        Me.Btn_Cancelar.TabIndex = 30
-        Me.Btn_Cancelar.Text = "Cancelar"
-        Me.Btn_Cancelar.UseVisualStyleBackColor = True
+        Me.BtnEliminar.Location = New System.Drawing.Point(73, 361)
+        Me.BtnEliminar.Name = "BtnEliminar"
+        Me.BtnEliminar.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEliminar.TabIndex = 30
+        Me.BtnEliminar.Text = "Eliminar"
+        Me.BtnEliminar.UseVisualStyleBackColor = True
         '
         'LB_Depa
         '
@@ -153,7 +153,7 @@ Partial Class Opciones_Depa
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(488, 400)
         Me.Controls.Add(Me.BtnEditarDpto)
-        Me.Controls.Add(Me.Btn_Cancelar)
+        Me.Controls.Add(Me.BtnEliminar)
         Me.Controls.Add(Me.LB_Depa)
         Me.Controls.Add(Me.BtnRegistrarDpto)
         Me.Controls.Add(Me.Btn_Agregar)
@@ -181,7 +181,7 @@ Partial Class Opciones_Depa
     Friend WithEvents Label4 As Label
     Friend WithEvents Txt_Sueldo As TextBox
     Friend WithEvents Btn_Agregar As Button
-    Friend WithEvents Btn_Cancelar As Button
+    Friend WithEvents BtnEliminar As Button
     Friend WithEvents LB_Depa As ListBox
     Friend WithEvents BtnRegistrarDpto As Button
     Friend WithEvents BtnEditarDpto As Button

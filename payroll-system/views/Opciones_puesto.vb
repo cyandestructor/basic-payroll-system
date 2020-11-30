@@ -111,7 +111,17 @@
             UpdatePuestos()
         End If
     End Sub
-    Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
-        Close()
+    Private Sub BtnEliminarPuesto_Click(sender As Object, e As EventArgs) Handles BtnEliminarPuesto.Click
+        If LB_Puesto.SelectedIndex <> -1 Then
+            Dim idPuesto = LB_Puesto.SelectedValue
+            Dim puestoDAO As New PuestoDAO
+            Dim result = MessageBox.Show("¿Quiere eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                puestoDAO.Desactivar(idPuesto)
+                UpdatePuestos()
+            End If
+        Else
+            MsgBox("Seleccione un puesto para continuar")
+        End If
     End Sub
 End Class
