@@ -43,7 +43,7 @@ Partial Class Alta_empleado
         Me.Txt_CorreoUsu = New System.Windows.Forms.TextBox()
         Me.Btn_Agregar = New System.Windows.Forms.Button()
         Me.Cb_Banco = New System.Windows.Forms.ComboBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GpbDomicilio = New System.Windows.Forms.GroupBox()
         Me.TxtEstado = New System.Windows.Forms.TextBox()
         Me.TxtMunicipio = New System.Windows.Forms.TextBox()
         Me.Txt_CP = New System.Windows.Forms.TextBox()
@@ -63,7 +63,8 @@ Partial Class Alta_empleado
         Me.Txt_AM = New System.Windows.Forms.TextBox()
         Me.Label13 = New System.Windows.Forms.Label()
         Me.DateTime_ContratacionUsu = New System.Windows.Forms.DateTimePicker()
-        Me.GroupBox1.SuspendLayout()
+        Me.BtnEditarEmpleado = New System.Windows.Forms.Button()
+        Me.GpbDomicilio.SuspendLayout()
         Me.SuspendLayout()
         '
         'Label1
@@ -170,10 +171,12 @@ Partial Class Alta_empleado
         Me.Txt_CodUsu.ReadOnly = True
         Me.Txt_CodUsu.Size = New System.Drawing.Size(271, 20)
         Me.Txt_CodUsu.TabIndex = 15
+        Me.Txt_CodUsu.Text = "0"
         '
         'Txt_NomUsu
         '
         Me.Txt_NomUsu.Location = New System.Drawing.Point(147, 42)
+        Me.Txt_NomUsu.MaxLength = 40
         Me.Txt_NomUsu.Name = "Txt_NomUsu"
         Me.Txt_NomUsu.Size = New System.Drawing.Size(271, 20)
         Me.Txt_NomUsu.TabIndex = 16
@@ -181,6 +184,7 @@ Partial Class Alta_empleado
         'Txt_CURP
         '
         Me.Txt_CURP.Location = New System.Drawing.Point(147, 146)
+        Me.Txt_CURP.MaxLength = 18
         Me.Txt_CURP.Name = "Txt_CURP"
         Me.Txt_CURP.Size = New System.Drawing.Size(271, 20)
         Me.Txt_CURP.TabIndex = 17
@@ -188,6 +192,7 @@ Partial Class Alta_empleado
         'Txt_NSS
         '
         Me.Txt_NSS.Location = New System.Drawing.Point(147, 172)
+        Me.Txt_NSS.MaxLength = 20
         Me.Txt_NSS.Name = "Txt_NSS"
         Me.Txt_NSS.Size = New System.Drawing.Size(271, 20)
         Me.Txt_NSS.TabIndex = 18
@@ -195,6 +200,7 @@ Partial Class Alta_empleado
         'Txt_RFC
         '
         Me.Txt_RFC.Location = New System.Drawing.Point(147, 198)
+        Me.Txt_RFC.MaxLength = 13
         Me.Txt_RFC.Name = "Txt_RFC"
         Me.Txt_RFC.Size = New System.Drawing.Size(271, 20)
         Me.Txt_RFC.TabIndex = 19
@@ -202,6 +208,7 @@ Partial Class Alta_empleado
         'Txt_Cuenta
         '
         Me.Txt_Cuenta.Location = New System.Drawing.Point(147, 252)
+        Me.Txt_Cuenta.MaxLength = 20
         Me.Txt_Cuenta.Name = "Txt_Cuenta"
         Me.Txt_Cuenta.Size = New System.Drawing.Size(271, 20)
         Me.Txt_Cuenta.TabIndex = 23
@@ -209,6 +216,7 @@ Partial Class Alta_empleado
         'Txt_TelUsu
         '
         Me.Txt_TelUsu.Location = New System.Drawing.Point(147, 304)
+        Me.Txt_TelUsu.MaxLength = 10
         Me.Txt_TelUsu.Name = "Txt_TelUsu"
         Me.Txt_TelUsu.Size = New System.Drawing.Size(271, 20)
         Me.Txt_TelUsu.TabIndex = 24
@@ -216,6 +224,7 @@ Partial Class Alta_empleado
         'Txt_CorreoUsu
         '
         Me.Txt_CorreoUsu.Location = New System.Drawing.Point(147, 278)
+        Me.Txt_CorreoUsu.MaxLength = 50
         Me.Txt_CorreoUsu.Name = "Txt_CorreoUsu"
         Me.Txt_CorreoUsu.Size = New System.Drawing.Size(271, 20)
         Me.Txt_CorreoUsu.TabIndex = 25
@@ -237,30 +246,31 @@ Partial Class Alta_empleado
         Me.Cb_Banco.Size = New System.Drawing.Size(271, 21)
         Me.Cb_Banco.TabIndex = 27
         '
-        'GroupBox1
+        'GpbDomicilio
         '
-        Me.GroupBox1.Controls.Add(Me.TxtEstado)
-        Me.GroupBox1.Controls.Add(Me.TxtMunicipio)
-        Me.GroupBox1.Controls.Add(Me.Txt_CP)
-        Me.GroupBox1.Controls.Add(Me.Txt_Num)
-        Me.GroupBox1.Controls.Add(Me.Txt_Col)
-        Me.GroupBox1.Controls.Add(Me.Txt_Calle)
-        Me.GroupBox1.Controls.Add(Me.Label18)
-        Me.GroupBox1.Controls.Add(Me.Label17)
-        Me.GroupBox1.Controls.Add(Me.Label16)
-        Me.GroupBox1.Controls.Add(Me.Label15)
-        Me.GroupBox1.Controls.Add(Me.Label14)
-        Me.GroupBox1.Controls.Add(Me.Label7)
-        Me.GroupBox1.Location = New System.Drawing.Point(448, 17)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(365, 227)
-        Me.GroupBox1.TabIndex = 28
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "Domicilio"
+        Me.GpbDomicilio.Controls.Add(Me.TxtEstado)
+        Me.GpbDomicilio.Controls.Add(Me.TxtMunicipio)
+        Me.GpbDomicilio.Controls.Add(Me.Txt_CP)
+        Me.GpbDomicilio.Controls.Add(Me.Txt_Num)
+        Me.GpbDomicilio.Controls.Add(Me.Txt_Col)
+        Me.GpbDomicilio.Controls.Add(Me.Txt_Calle)
+        Me.GpbDomicilio.Controls.Add(Me.Label18)
+        Me.GpbDomicilio.Controls.Add(Me.Label17)
+        Me.GpbDomicilio.Controls.Add(Me.Label16)
+        Me.GpbDomicilio.Controls.Add(Me.Label15)
+        Me.GpbDomicilio.Controls.Add(Me.Label14)
+        Me.GpbDomicilio.Controls.Add(Me.Label7)
+        Me.GpbDomicilio.Location = New System.Drawing.Point(448, 17)
+        Me.GpbDomicilio.Name = "GpbDomicilio"
+        Me.GpbDomicilio.Size = New System.Drawing.Size(365, 227)
+        Me.GpbDomicilio.TabIndex = 28
+        Me.GpbDomicilio.TabStop = False
+        Me.GpbDomicilio.Text = "Domicilio"
         '
         'TxtEstado
         '
         Me.TxtEstado.Location = New System.Drawing.Point(104, 159)
+        Me.TxtEstado.MaxLength = 30
         Me.TxtEstado.Name = "TxtEstado"
         Me.TxtEstado.Size = New System.Drawing.Size(240, 20)
         Me.TxtEstado.TabIndex = 12
@@ -268,6 +278,7 @@ Partial Class Alta_empleado
         'TxtMunicipio
         '
         Me.TxtMunicipio.Location = New System.Drawing.Point(104, 124)
+        Me.TxtMunicipio.MaxLength = 30
         Me.TxtMunicipio.Name = "TxtMunicipio"
         Me.TxtMunicipio.Size = New System.Drawing.Size(240, 20)
         Me.TxtMunicipio.TabIndex = 12
@@ -275,6 +286,7 @@ Partial Class Alta_empleado
         'Txt_CP
         '
         Me.Txt_CP.Location = New System.Drawing.Point(104, 193)
+        Me.Txt_CP.MaxLength = 8
         Me.Txt_CP.Name = "Txt_CP"
         Me.Txt_CP.Size = New System.Drawing.Size(240, 20)
         Me.Txt_CP.TabIndex = 11
@@ -282,6 +294,7 @@ Partial Class Alta_empleado
         'Txt_Num
         '
         Me.Txt_Num.Location = New System.Drawing.Point(104, 54)
+        Me.Txt_Num.MaxLength = 8
         Me.Txt_Num.Name = "Txt_Num"
         Me.Txt_Num.Size = New System.Drawing.Size(240, 20)
         Me.Txt_Num.TabIndex = 10
@@ -289,6 +302,7 @@ Partial Class Alta_empleado
         'Txt_Col
         '
         Me.Txt_Col.Location = New System.Drawing.Point(104, 89)
+        Me.Txt_Col.MaxLength = 30
         Me.Txt_Col.Name = "Txt_Col"
         Me.Txt_Col.Size = New System.Drawing.Size(240, 20)
         Me.Txt_Col.TabIndex = 9
@@ -296,6 +310,7 @@ Partial Class Alta_empleado
         'Txt_Calle
         '
         Me.Txt_Calle.Location = New System.Drawing.Point(104, 25)
+        Me.Txt_Calle.MaxLength = 30
         Me.Txt_Calle.Name = "Txt_Calle"
         Me.Txt_Calle.Size = New System.Drawing.Size(240, 20)
         Me.Txt_Calle.TabIndex = 8
@@ -384,6 +399,7 @@ Partial Class Alta_empleado
         'Txt_AP
         '
         Me.Txt_AP.Location = New System.Drawing.Point(147, 67)
+        Me.Txt_AP.MaxLength = 20
         Me.Txt_AP.Name = "Txt_AP"
         Me.Txt_AP.Size = New System.Drawing.Size(271, 20)
         Me.Txt_AP.TabIndex = 32
@@ -391,6 +407,7 @@ Partial Class Alta_empleado
         'Txt_AM
         '
         Me.Txt_AM.Location = New System.Drawing.Point(147, 94)
+        Me.Txt_AM.MaxLength = 20
         Me.Txt_AM.Name = "Txt_AM"
         Me.Txt_AM.Size = New System.Drawing.Size(271, 20)
         Me.Txt_AM.TabIndex = 33
@@ -411,6 +428,16 @@ Partial Class Alta_empleado
         Me.DateTime_ContratacionUsu.Size = New System.Drawing.Size(271, 20)
         Me.DateTime_ContratacionUsu.TabIndex = 13
         '
+        'BtnEditarEmpleado
+        '
+        Me.BtnEditarEmpleado.Location = New System.Drawing.Point(510, 334)
+        Me.BtnEditarEmpleado.Name = "BtnEditarEmpleado"
+        Me.BtnEditarEmpleado.Size = New System.Drawing.Size(97, 27)
+        Me.BtnEditarEmpleado.TabIndex = 29
+        Me.BtnEditarEmpleado.Text = "Editar"
+        Me.BtnEditarEmpleado.UseVisualStyleBackColor = True
+        Me.BtnEditarEmpleado.Visible = False
+        '
         'Alta_empleado
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -420,8 +447,9 @@ Partial Class Alta_empleado
         Me.Controls.Add(Me.Txt_AP)
         Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.Label8)
+        Me.Controls.Add(Me.BtnEditarEmpleado)
         Me.Controls.Add(Me.Btn_Cancelar)
-        Me.Controls.Add(Me.GroupBox1)
+        Me.Controls.Add(Me.GpbDomicilio)
         Me.Controls.Add(Me.Cb_Banco)
         Me.Controls.Add(Me.Btn_Agregar)
         Me.Controls.Add(Me.Txt_CorreoUsu)
@@ -447,8 +475,8 @@ Partial Class Alta_empleado
         Me.Controls.Add(Me.Label1)
         Me.Name = "Alta_empleado"
         Me.Text = "Usuario"
-        Me.GroupBox1.ResumeLayout(False)
-        Me.GroupBox1.PerformLayout()
+        Me.GpbDomicilio.ResumeLayout(False)
+        Me.GpbDomicilio.PerformLayout()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -475,7 +503,7 @@ Partial Class Alta_empleado
     Friend WithEvents Txt_CorreoUsu As TextBox
     Friend WithEvents Btn_Agregar As Button
     Friend WithEvents Cb_Banco As ComboBox
-    Friend WithEvents GroupBox1 As GroupBox
+    Friend WithEvents GpbDomicilio As GroupBox
     Friend WithEvents Label15 As Label
     Friend WithEvents Label14 As Label
     Friend WithEvents Label7 As Label
@@ -495,4 +523,5 @@ Partial Class Alta_empleado
     Friend WithEvents TxtMunicipio As TextBox
     Friend WithEvents Label13 As Label
     Friend WithEvents DateTime_ContratacionUsu As DateTimePicker
+    Friend WithEvents BtnEditarEmpleado As Button
 End Class

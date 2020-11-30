@@ -18,7 +18,7 @@ Public Class DBConnection
         If Not reader.IsDBNull(index) Then
             Return reader.GetDateTime(index)
         End If
-        Return Nothing
+        Return New Date
     End Function
     Protected Function GetStringSafe(ByVal reader As SqlDataReader, ByVal index As Integer) As String
         If Not reader.IsDBNull(index) Then

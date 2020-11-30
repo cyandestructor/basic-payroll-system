@@ -32,6 +32,7 @@ Partial Class VerEmpleados
         Me.CbPuestos = New System.Windows.Forms.ComboBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.BtnAsignar = New System.Windows.Forms.Button()
+        Me.BtnEliminarEmpleado = New System.Windows.Forms.Button()
         Me.SuspendLayout()
         '
         'Label1
@@ -120,11 +121,21 @@ Partial Class VerEmpleados
         Me.BtnAsignar.Text = "Asignar Posición"
         Me.BtnAsignar.UseVisualStyleBackColor = True
         '
+        'BtnEliminarEmpleado
+        '
+        Me.BtnEliminarEmpleado.Location = New System.Drawing.Point(233, 304)
+        Me.BtnEliminarEmpleado.Name = "BtnEliminarEmpleado"
+        Me.BtnEliminarEmpleado.Size = New System.Drawing.Size(95, 23)
+        Me.BtnEliminarEmpleado.TabIndex = 5
+        Me.BtnEliminarEmpleado.Text = "Eliminar"
+        Me.BtnEliminarEmpleado.UseVisualStyleBackColor = True
+        '
         'VerEmpleados
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(456, 339)
+        Me.Controls.Add(Me.BtnEliminarEmpleado)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label2)
@@ -152,4 +163,5 @@ Partial Class VerEmpleados
     Friend WithEvents CbPuestos As ComboBox
     Friend WithEvents Label4 As Label
     Friend WithEvents BtnAsignar As Button
+    Friend WithEvents BtnEliminarEmpleado As Button
 End Class

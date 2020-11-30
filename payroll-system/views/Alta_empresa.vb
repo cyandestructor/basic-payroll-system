@@ -1,6 +1,22 @@
 ﻿Public Class Alta_empresa
     Private Sub Alta_empresa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateEmpresas()
+        InitEventHandlers()
+    End Sub
+    Private Sub InitEventHandlers()
+        AddHandler Txt_NomEmp.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_RS_Emp.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_Tel_Emp.KeyPress, AddressOf UtilityController.DigitOnly
+        AddHandler Txt_RP_Emp.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_RFC_Emp.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_Pago_Emp.KeyPress, AddressOf UtilityController.DigitOnly
+
+        AddHandler TxtCalle.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler TxtNumero.KeyPress, AddressOf UtilityController.DigitOnly
+        AddHandler TxtColonia.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler TxtMunicipio.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler TxtEstado.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler TxtCP.KeyPress, AddressOf UtilityController.DigitOnly
     End Sub
     Private Sub UpdateEmpresas()
         Dim empresaDAO As New EmpresaDAO
@@ -11,6 +27,13 @@
         LB_Empresa.ClearSelected()
     End Sub
     Private Sub Btn_AgregarEmp_Click(sender As Object, e As EventArgs) Handles Btn_AgregarEmp.Click
+        If ValidarInfo() Then
+            RegistrarEmpresa()
+        Else
+            MsgBox("La información es incorrecta o está incompleta")
+        End If
+    End Sub
+    Private Sub RegistrarEmpresa()
         Dim empresa As New Empresa With {
             .RFC = Txt_RFC_Emp.Text,
             .Nombre = Txt_NomEmp.Text,
@@ -80,6 +103,16 @@
         End If
     End Sub
     Private Sub BtnEditarEmpresa_Click(sender As Object, e As EventArgs) Handles BtnEditarEmpresa.Click
+        If ValidarInfo() And LB_Empresa.SelectedIndex <> -1 Then
+            Dim result = MessageBox.Show("¿Desea editar la información?", "Edición", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                EditarEmpresa()
+            End If
+        Else
+            MsgBox("La información es incorrecta o está incompleta")
+        End If
+    End Sub
+    Private Sub EditarEmpresa()
         Dim idEmpresa = LB_Empresa.SelectedValue
 
         Dim empresa As New Empresa With {
@@ -99,6 +132,31 @@
             UpdateEmpresas()
         End If
     End Sub
+    Private Function ValidarInfo() As Boolean
+        Dim valid = True
+
+        For Each c As Control In Me.Controls
+            If c.GetType() = GetType(TextBox) Then
+                If c.Text = "" Then
+                    valid = False
+                End If
+            End If
+        Next
+
+        For Each c As Control In GpbDomicilio.Controls
+            If c.GetType() = GetType(TextBox) Then
+                If c.Text = "" Then
+                    valid = False
+                End If
+            End If
+        Next
+
+        If DateTime_InicioOp.Value > Date.Now Then
+            valid = False
+        End If
+
+        Return valid
+    End Function
     Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
         Close()
     End Sub

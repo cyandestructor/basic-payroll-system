@@ -47,6 +47,17 @@ Public Class EmpresaDAO
 
         Return True
     End Function
+    Public Function Desactivar(ByVal idEmpresa As String) As Boolean
+        Dim command As New SqlCommand("DesactivarEmpresa", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empresa", idEmpresa)
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+        Return True
+    End Function
     Public Function VerEmpresas() As List(Of Empresa)
         Dim command As New SqlCommand("VerEmpresas", connection)
         command.CommandType = CommandType.StoredProcedure

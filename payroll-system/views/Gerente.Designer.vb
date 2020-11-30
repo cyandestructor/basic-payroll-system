@@ -31,7 +31,6 @@ Partial Class Gerente
         Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuVacaciones = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.Menu_InfoUsu = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Password = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Puesto = New System.Windows.Forms.ToolStripMenuItem()
@@ -90,33 +89,27 @@ Partial Class Gerente
         'menuSolicitarPermiso
         '
         Me.menuSolicitarPermiso.Name = "menuSolicitarPermiso"
-        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(132, 22)
+        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(180, 22)
         Me.menuSolicitarPermiso.Text = "Solicitar"
         '
         'menuRevisarPermisos
         '
         Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
-        Me.menuRevisarPermisos.Size = New System.Drawing.Size(132, 22)
+        Me.menuRevisarPermisos.Size = New System.Drawing.Size(180, 22)
         Me.menuRevisarPermisos.Text = "Revisar"
         '
         'MenuVacaciones
         '
         Me.MenuVacaciones.Name = "MenuVacaciones"
-        Me.MenuVacaciones.Size = New System.Drawing.Size(132, 22)
+        Me.MenuVacaciones.Size = New System.Drawing.Size(180, 22)
         Me.MenuVacaciones.Text = "Vacaciones"
         '
         'UsuarioToolStripMenuItem
         '
-        Me.UsuarioToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_InfoUsu, Me.Menu_Password})
+        Me.UsuarioToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Password})
         Me.UsuarioToolStripMenuItem.Name = "UsuarioToolStripMenuItem"
         Me.UsuarioToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
         Me.UsuarioToolStripMenuItem.Text = "Usuario"
-        '
-        'Menu_InfoUsu
-        '
-        Me.Menu_InfoUsu.Name = "Menu_InfoUsu"
-        Me.Menu_InfoUsu.Size = New System.Drawing.Size(165, 22)
-        Me.Menu_InfoUsu.Text = "Información"
         '
         'Menu_Password
         '
@@ -257,7 +250,6 @@ Partial Class Gerente
     Friend WithEvents Menu_Nomina As ToolStripMenuItem
     Friend WithEvents Menu_Permisos As ToolStripMenuItem
     Friend WithEvents UsuarioToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents Menu_InfoUsu As ToolStripMenuItem
     Friend WithEvents Menu_Password As ToolStripMenuItem
     Friend WithEvents Menu_PD As ToolStripMenuItem
     Friend WithEvents AgregarToolStripMenuItem As ToolStripMenuItem

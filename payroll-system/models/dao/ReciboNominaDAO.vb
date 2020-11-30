@@ -35,6 +35,7 @@ Public Class ReciboNominaDAO
             recibo.SueldoDiario = reader.GetDouble(16)
             recibo.DatosNomina.SueldoBruto = GetDoubleSafe(reader, 17)
             recibo.DatosNomina.SueldoNeto = GetDoubleSafe(reader, 18)
+            recibo.SueldoEscrito = GetStringSafe(reader, 19)
         Else
             Return Nothing
         End If

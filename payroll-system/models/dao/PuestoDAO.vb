@@ -26,6 +26,17 @@ Public Class PuestoDAO
 
         Return True
     End Function
+    Public Function Desactivar(ByVal idPuesto As Integer) As Boolean
+        Dim command As New SqlCommand("DesactivarPuesto", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Puesto", idPuesto)
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+        Return True
+    End Function
     Public Function VerPuestos() As List(Of Puesto)
         Dim command As New SqlCommand("VerPuestos", connection)
         command.CommandType = CommandType.StoredProcedure

@@ -26,6 +26,17 @@ Public Class DepartamentoDAO
 
         Return True
     End Function
+    Public Function Desactivar(ByVal idDpto As Integer) As Boolean
+        Dim command As New SqlCommand("DesactivarDepartamento", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Dpto", idDpto)
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+        Return True
+    End Function
     Public Function VerDepartamentos() As List(Of Departamento)
         Dim command As New SqlCommand("VerDepartamentos", connection)
         command.CommandType = CommandType.StoredProcedure

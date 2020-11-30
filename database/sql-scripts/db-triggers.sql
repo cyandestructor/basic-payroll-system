@@ -18,6 +18,25 @@ AS
 			Empleado.ID_Empleado = inserted.ID_Empleado;
 GO
 
+IF (EXISTS(SELECT name FROM sysobjects WHERE type = 'TR' AND name = 'TR_Empleado_After_Update'))
+	DROP TRIGGER TR_Empleado_After_Update;
+GO
+
+CREATE TRIGGER TR_Empleado_After_Update
+ON Empleado
+AFTER UPDATE
+AS
+	-- Desactivar los usuarios de los empleados desactivados
+	UPDATE Usuario
+		SET
+			Usuario.Nivel_Usuario = 0
+		FROM
+			Usuario
+			INNER JOIN inserted ON Usuario.ID_Usuario = inserted.ID_Empleado
+		WHERE
+			inserted.Activo = 0;
+GO
+
 IF (EXISTS(SELECT name FROM sysobjects WHERE type = 'TR' AND name = 'TR_Nomina_After_Insert'))
 	DROP TRIGGER TR_Nomina_After_Insert;
 GO

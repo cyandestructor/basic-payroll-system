@@ -67,4 +67,8 @@
         Dim formRecibo As New GenerarRecibosNomina
         formRecibo.Show()
     End Sub
+    Private Sub MenuVacaciones_Click(sender As Object, e As EventArgs) Handles MenuVacaciones.Click
+        Dim formVacaciones As New Vacaciones
+        formVacaciones.Show()
+    End Sub
 End Class

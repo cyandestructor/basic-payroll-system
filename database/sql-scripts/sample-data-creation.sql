@@ -625,47 +625,47 @@ EXEC GenerarNomina
 		@Fin_Periodo = @EndDate;
 
 -- Select tables
-SELECT * FROM Empleado;
+--SELECT * FROM Empleado;
 
-SELECT * FROM Usuario;
-SELECT * FROM Banco;
+--SELECT * FROM Usuario;
+--SELECT * FROM Banco;
 
-SELECT * FROM Domicilio;
+--SELECT * FROM Domicilio;
 
-SELECT * FROM Empresa;
-SELECT * FROM Departamento;
-SELECT * FROM Puesto;
+--SELECT * FROM Empresa;
+--SELECT * FROM Departamento;
+--SELECT * FROM Puesto;
 
 
-SELECT * FROM [Company Employees];
-SELECT * FROM [Company Departments];
-SELECT * FROM [Departments Positions];
-SELECT * FROM Headcounter2;
-SELECT * FROM [Payroll Receipt];
+--SELECT * FROM [Company Employees];
+--SELECT * FROM [Company Departments];
+--SELECT * FROM [Departments Positions];
+--SELECT * FROM Headcounter2;
+--SELECT * FROM [Payroll Receipt];
 
-SELECT * FROM [Employees Daily Salary];
+--SELECT * FROM [Employees Daily Salary];
 
-SELECT * FROM Percepcion;
-SELECT * FROM Deduccion;
-SELECT * FROM Nomina;
-SELECT * FROM Incidencia;
+--SELECT * FROM Percepcion;
+--SELECT * FROM Deduccion;
+--SELECT * FROM Nomina;
+--SELECT * FROM Incidencia;
 
-SELECT * FROM Empresa_Dpto;
-SELECT * FROM Dpto_Puesto;
-SELECT * FROM Empresa_Puesto;
+--SELECT * FROM Empresa_Dpto;
+--SELECT * FROM Dpto_Puesto;
+--SELECT * FROM Empresa_Puesto;
 
-EXEC VerHeadcounter1
-	@ID_Empresa = 'APP050523P85',
-	@ID_Dpto = 5,
-	@Year = 2006,
-	@Mes = 10;
+--EXEC VerHeadcounter1
+--	@ID_Empresa = 'APP050523P85',
+--	@ID_Dpto = 5,
+--	@Year = 2006,
+--	@Mes = 10;
 
-EXEC VerHeadcounter2
-	@ID_Empresa = 'APP050523P85',
-	@ID_Dpto = 5,
-	@Year = 2006,
-	@Mes = 10;
+--EXEC VerHeadcounter2
+--	@ID_Empresa = 'APP050523P85',
+--	@ID_Dpto = 5,
+--	@Year = 2006,
+--	@Mes = 10;
 
-EXEC VerReporteCalculoNomina
-	@ID_Empresa = 'APP050523P85',
-	@Fecha = '2020-11-26';
+--EXEC VerReporteCalculoNomina
+--	@ID_Empresa = 'APP050523P85',
+--	@Fecha = '2020-11-26';

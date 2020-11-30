@@ -23,34 +23,50 @@
         End If
     End Sub
     Private Sub BtnRNG_Click(sender As Object, e As EventArgs) Handles BtnRNG.Click
-        Dim idEmpresa = CbEmpresas.SelectedValue
-        Dim yearMonth = DtpYearMonth.Value
+        If CbEmpresas.SelectedIndex <> -1 Then
+            Dim idEmpresa = CbEmpresas.SelectedValue
+            Dim yearMonth = DtpYearMonth.Value
 
-        Dim reporteDAO As New ReporteNominaGeneralDAO
-        DgvReporte.DataSource = reporteDAO.Generar(idEmpresa, yearMonth.Year, yearMonth.Month)
+            Dim reporteDAO As New ReporteNominaGeneralDAO
+            DgvReporte.DataSource = reporteDAO.Generar(idEmpresa, yearMonth.Year, yearMonth.Month)
+        Else
+            MsgBox("Seleccione una empresa para continuar")
+        End If
     End Sub
     Private Sub BtnRN_Click(sender As Object, e As EventArgs) Handles BtnRN.Click
-        Dim idEmpresa = CbEmpresas.SelectedValue
-        Dim idDpto = CbDepartamentos.SelectedValue
-        Dim yearMonth = DtpYearMonth.Value
+        If CbEmpresas.SelectedIndex <> -1 And CbDepartamentos.SelectedIndex <> -1 Then
+            Dim idEmpresa = CbEmpresas.SelectedValue
+            Dim idDpto = CbDepartamentos.SelectedValue
+            Dim yearMonth = DtpYearMonth.Value
 
-        Dim reporteDAO As New ReporteNominaDAO
-        DgvReporte.DataSource = reporteDAO.Generar(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+            Dim reporteDAO As New ReporteNominaDAO
+            DgvReporte.DataSource = reporteDAO.Generar(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+        Else
+            MsgBox("Seleccione una empresa y un departamento para continuar")
+        End If
     End Sub
     Private Sub BtnHD_Click(sender As Object, e As EventArgs) Handles BtnHD.Click
-        Dim idEmpresa = CbEmpresas.SelectedValue
-        Dim idDpto = CbDepartamentos.SelectedValue
-        Dim yearMonth = DtpYearMonth.Value
+        If CbEmpresas.SelectedIndex <> -1 And CbDepartamentos.SelectedIndex <> -1 Then
+            Dim idEmpresa = CbEmpresas.SelectedValue
+            Dim idDpto = CbDepartamentos.SelectedValue
+            Dim yearMonth = DtpYearMonth.Value
 
-        Dim reporteDAO As New HeadcounterDAO
-        DgvReporte.DataSource = reporteDAO.GenerarParaDepartamentos(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+            Dim reporteDAO As New HeadcounterDAO
+            DgvReporte.DataSource = reporteDAO.GenerarParaDepartamentos(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+        Else
+            MsgBox("Seleccione una empresa y un departamento para continuar")
+        End If
     End Sub
     Private Sub BtnHP_Click(sender As Object, e As EventArgs) Handles BtnHP.Click
-        Dim idEmpresa = CbEmpresas.SelectedValue
-        Dim idDpto = CbDepartamentos.SelectedValue
-        Dim yearMonth = DtpYearMonth.Value
+        If CbEmpresas.SelectedIndex <> -1 And CbDepartamentos.SelectedIndex <> -1 Then
+            Dim idEmpresa = CbEmpresas.SelectedValue
+            Dim idDpto = CbDepartamentos.SelectedValue
+            Dim yearMonth = DtpYearMonth.Value
 
-        Dim reporteDAO As New HeadcounterDAO
-        DgvReporte.DataSource = reporteDAO.GenerarParaPuestos(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+            Dim reporteDAO As New HeadcounterDAO
+            DgvReporte.DataSource = reporteDAO.GenerarParaPuestos(idEmpresa, idDpto, yearMonth.Year, yearMonth.Month)
+        Else
+            MsgBox("Seleccione una empresa y un departamento para continuar")
+        End If
     End Sub
 End Class

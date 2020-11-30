@@ -2,6 +2,8 @@
     Private Sub Opciones_Depa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateDepartamentos()
         UpdateEmpresas()
+        AddHandler Txt_NombreDepa.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_Sueldo.KeyPress, AddressOf UtilityController.DecimalOnly
     End Sub
     Private Sub UpdateDepartamentos()
         Dim departamentoDAO As New DepartamentoDAO
@@ -30,19 +32,33 @@
         Txt_Sueldo.Text = ""
     End Sub
     Private Sub BtnRegistrarDpto_Click(sender As Object, e As EventArgs) Handles BtnRegistrarDpto.Click
-        Dim departamento As New Departamento With {
-            .Nombre = Txt_NombreDepa.Text
-        }
+        If Txt_NombreDepa.Text <> "" Then
+            Dim departamento As New Departamento With {
+                .Nombre = Txt_NombreDepa.Text
+            }
 
-        Dim departamentoDAO As New DepartamentoDAO
-        If (departamentoDAO.Registrar(departamento)) Then
-            MsgBox("Registro exitoso")
-            ClearAll()
-            UpdateDepartamentos()
+            Dim departamentoDAO As New DepartamentoDAO
+            If (departamentoDAO.Registrar(departamento)) Then
+                MsgBox("Registro exitoso")
+                ClearAll()
+                UpdateDepartamentos()
+            End If
+        Else
+            MsgBox("El nombre de departamento está vacío")
         End If
     End Sub
-
     Private Sub Btn_Agregar_Click(sender As Object, e As EventArgs) Handles Btn_Agregar.Click
+        If Cb_Empresa.SelectedIndex <> -1 And LB_Depa.SelectedIndex <> -1 Then
+            If Txt_Sueldo.Text <> "" Then
+                AgregarDepartamentoEmpresa()
+            Else
+                MsgBox("Agregue una cantidad de sueldo base")
+            End If
+        Else
+            MsgBox("La selección está incompleta")
+        End If
+    End Sub
+    Private Sub AgregarDepartamentoEmpresa()
         Dim idEmpresa = Cb_Empresa.SelectedValue
         Dim idDpto = Integer.Parse(Txt_CodigoDepa.Text)
         Dim sueldoBase = Double.Parse(Txt_Sueldo.Text)
@@ -56,8 +72,14 @@
             ClearAll()
         End If
     End Sub
-
     Private Sub BtnEditarDpto_Click(sender As Object, e As EventArgs) Handles BtnEditarDpto.Click
+        If Txt_CodigoDepa.Text <> "" And Txt_NombreDepa.Text <> "" Then
+            EditarDepartamento()
+        Else
+            MsgBox("Complete la información para continuar")
+        End If
+    End Sub
+    Private Sub EditarDepartamento()
         Dim departamento As New Departamento With {
             .Nombre = Txt_NombreDepa.Text,
             .ID = Integer.Parse(Txt_CodigoDepa.Text)
@@ -69,7 +91,6 @@
             UpdateDepartamentos()
         End If
     End Sub
-
     Private Sub Btn_Cancelar_Click(sender As Object, e As EventArgs) Handles Btn_Cancelar.Click
         Close()
     End Sub

@@ -127,7 +127,7 @@ CREATE PROCEDURE ObtenerInfoUsuario
 AS
 	DECLARE @ValidUser	INT = -1;
 
-	IF(EXISTS(SELECT ID_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Password))
+	IF(EXISTS(SELECT ID_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Password AND Nivel_Usuario > 0))
 		BEGIN
 			SELECT ID_Usuario, Nivel_Usuario FROM Usuario WHERE ID_Usuario = @ID_Usuario AND Contrasena = @Password;
 			SET @ValidUser = 1;
@@ -248,6 +248,18 @@ AS
 		WHERE ID_Empleado = @ID_Empleado;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'DesactivarEmpleado')
+	DROP PROCEDURE DesactivarEmpleado;
+GO
+
+CREATE PROCEDURE DesactivarEmpleado
+	@ID_Empleado	INT
+AS
+	UPDATE Empleado
+		SET Activo = 0
+		WHERE ID_Empleado = @ID_Empleado;
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpleados')
 	DROP PROCEDURE VerEmpleados;
 GO
@@ -281,6 +293,8 @@ AS
 				Activo
 			FROM
 				Empleado
+			WHERE
+				Activo = 1;
 		END
 	ELSE
 		BEGIN
@@ -309,7 +323,7 @@ AS
 			FROM
 				Empleado
 			WHERE
-				ID_Empleado = @ID_Empleado;
+				ID_Empleado = @ID_Empleado AND Activo = 1;
 		END
 GO
 
@@ -348,7 +362,7 @@ AS
 			FROM
 				Empleado
 			WHERE
-				ID_Empresa = @ID_Empresa;
+				ID_Empresa = @ID_Empresa AND Activo = 1;
 		END
 	ELSE
 		BEGIN
@@ -377,7 +391,7 @@ AS
 			FROM
 				Empleado
 			WHERE
-				ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto;
+				ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto AND Activo = 1;
 		END
 GO
 
@@ -518,6 +532,18 @@ AS
 		WHERE RFC_Empresa = @RFC_Empresa;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'DesactivarEmpresa')
+	DROP PROCEDURE DesactivarEmpresa;
+GO
+
+CREATE PROCEDURE DesactivarEmpresa
+	@ID_Empresa VARCHAR(12)
+AS
+	UPDATE Empresa
+		SET Activo = 0
+		WHERE RFC_Empresa = @ID_Empresa;
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerEmpresas')
 	DROP PROCEDURE VerEmpresas;
 GO
@@ -541,7 +567,9 @@ AS
 				Inicio_Gestion,
 				Activo
 			FROM
-				Empresa;
+				Empresa
+			WHERE
+				Activo = 1;
 		END
 	ELSE
 		BEGIN
@@ -561,7 +589,7 @@ AS
 			FROM
 				Empresa
 			WHERE
-				RFC_Empresa = @ID_Empresa;
+				RFC_Empresa = @ID_Empresa AND Activo = 1;
 		END
 GO
 
@@ -707,6 +735,18 @@ AS
 		WHERE ID_Dpto = @ID_Dpto;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'DesactivarDepartamento')
+	DROP PROCEDURE DesactivarDepartamento;
+GO
+
+CREATE PROCEDURE DesactivarDepartamento
+	@ID_Dpto INT
+AS
+	UPDATE Departamento
+		SET Activo = 0
+		WHERE ID_Dpto = @ID_Dpto;
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerDepartamentos')
 	DROP PROCEDURE VerDepartamentos;
 GO
@@ -724,7 +764,9 @@ AS
 						Nom_Dpto,
 						Activo
 					FROM
-						Departamento;
+						Departamento
+					WHERE
+						Activo = 1;
 				END
 			ELSE
 				BEGIN
@@ -736,7 +778,7 @@ AS
 						Departamento AS D
 						INNER JOIN Empresa_Dpto AS ED ON ED.ID_Dpto = D.ID_Dpto
 					WHERE
-						ID_Empresa = @ID_Empresa;
+						ID_Empresa = @ID_Empresa AND D.Activo = 1;
 				END
 		END
 	ELSE
@@ -748,7 +790,7 @@ AS
 			FROM
 				Departamento
 			WHERE
-				ID_Dpto = @ID_Dpto;
+				ID_Dpto = @ID_Dpto AND Activo = 1;
 		END
 GO
 
@@ -853,6 +895,18 @@ AS
 		WHERE ID_Puesto = @ID_Puesto;
 GO
 
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'DesactivarPuesto')
+	DROP PROCEDURE DesactivarPuesto;
+GO
+
+CREATE PROCEDURE DesactivarPuesto
+	@ID_Puesto INT
+AS
+	UPDATE Puesto
+		SET Activo = 0
+		WHERE ID_Puesto = @ID_Puesto;
+GO
+
 IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerPuestos')
 	DROP PROCEDURE VerPuestos;
 GO
@@ -870,7 +924,9 @@ AS
 						Nom_Puesto,
 						Activo
 					FROM
-						Puesto;
+						Puesto
+					WHERE
+						Activo = 1;
 				END
 			ELSE
 				BEGIN
@@ -882,7 +938,7 @@ AS
 						Puesto AS P
 						INNER JOIN Dpto_Puesto AS DP ON DP.ID_Puesto = P.ID_Puesto
 					WHERE
-						DP.ID_Dpto = @ID_Dpto;
+						DP.ID_Dpto = @ID_Dpto AND P.Activo = 1;
 				END
 		END
 	ELSE
@@ -894,7 +950,7 @@ AS
 			FROM
 				Puesto
 			WHERE
-				ID_Puesto = @ID_Puesto;
+				ID_Puesto = @ID_Puesto AND Activo = 1;
 		END
 GO
 
@@ -976,6 +1032,16 @@ AS
 		Fecha_Percep
 	FROM Percepcion
 	WHERE ID_Nomina = @ID_Nomina;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'VerUltimasVacaciones')
+	DROP PROCEDURE VerUltimasVacaciones;
+GO
+
+CREATE PROCEDURE VerUltimasVacaciones
+	@ID_Empleado	INT
+AS
+	SELECT dbo.LASTVACATIONDATE(@ID_Empleado) AS Fecha;
 GO
 
 -- PROCEDIMIENTOS DE DEDUCCIONES
@@ -1434,7 +1500,8 @@ AS
 		[Dias de periodo],
 		[Sueldo Diario],
 		[Sueldo Bruto],
-		[Sueldo Neto]
+		[Sueldo Neto],
+		[Sueldo Escrito]
 	FROM [Payroll Receipt]
 	WHERE
 		[Numero de Empleado] = @ID_Empleado AND [Fecha de pago] = @Fecha_Pago;

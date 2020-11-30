@@ -66,6 +66,17 @@ Public Class EmpleadoDAO
 
         Return True
     End Function
+    Public Function Desactivar(ByVal idEmpleado As Integer) As Boolean
+        Dim command As New SqlCommand("DesactivarEmpleado", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empleado", idEmpleado)
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+        Return True
+    End Function
     Public Function VerEmpleados(Optional ByVal idEmpleado As Integer = Nothing) As List(Of Empleado)
         Dim command As New SqlCommand("VerEmpleados", connection)
         command.CommandType = CommandType.StoredProcedure

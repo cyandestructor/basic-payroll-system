@@ -10,7 +10,11 @@ Public Class EjecucionNomina
         CbEmpresas.DataSource = empresaDAO.VerEmpresas()
     End Sub
     Private Sub BtnEjecutar_Click(sender As Object, e As EventArgs) Handles BtnEjecutar.Click
-        GenerarNomina()
+        If CbEmpresas.SelectedIndex <> -1 Then
+            GenerarNomina()
+        Else
+            MsgBox("Seleccione una empresa para continuar")
+        End If
     End Sub
     Private Sub GenerarNomina()
         Dim idEmpresa = CbEmpresas.SelectedValue
@@ -36,15 +40,19 @@ Public Class EjecucionNomina
         DgvReporteCalculo.DataSource = reporteDAO.Generar(idEmpresa, Date.Now)
     End Sub
     Private Sub BtnGenerarReporte_Click(sender As Object, e As EventArgs) Handles BtnGenerarReporte.Click
-        Using sfd As New SaveFileDialog
-            sfd.Filter = "CSV|*.csv|PDF|*.pdf"
-            sfd.ValidateNames = True
+        If CbEmpresas.SelectedIndex <> -1 Then
+            Using sfd As New SaveFileDialog
+                sfd.Filter = "CSV|*.csv|PDF|*.pdf"
+                sfd.ValidateNames = True
 
-            If sfd.ShowDialog() = DialogResult.OK Then
-                GenerarReporteCalculoNomina(sfd.FileName)
-            End If
+                If sfd.ShowDialog() = DialogResult.OK Then
+                    GenerarReporteCalculoNomina(sfd.FileName)
+                End If
 
-        End Using
+            End Using
+        Else
+            MsgBox("Seleccione una empresa para continuar")
+        End If
     End Sub
     Private Sub GenerarReporteCalculoNomina(ByVal filepath As String)
         Dim idEmpresa = CbEmpresas.SelectedValue

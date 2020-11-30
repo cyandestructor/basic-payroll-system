@@ -6,12 +6,35 @@
         CB_Empleado.DataSource = empleadoDAO.VerEmpleados()
 
         RB_Percepcion.Checked = True
+
+        InitEventHandlers()
     End Sub
+    Private Sub InitEventHandlers()
+        AddHandler Txt_MontoFijo.KeyPress, AddressOf UtilityController.DecimalOnly
+        AddHandler Txt_Porcentaje.KeyPress, AddressOf UtilityController.DecimalOnly
+    End Sub
+    Private Function Validar() As Boolean
+        Dim valido = True
+
+        If CB_Empleado.SelectedIndex = -1 Then
+            valido = False
+        End If
+
+        If Txt_Desc.Text = "" Or Txt_MontoFijo.Text = "" Or Txt_Porcentaje.Text = "" Then
+            valido = False
+        End If
+
+        Return valido
+    End Function
     Private Sub Btn_Generar_Click(sender As Object, e As EventArgs) Handles Btn_Generar.Click
-        If RB_Percepcion.Checked Then
-            GenerarPercepcion()
-        ElseIf RB_Deduccion.Checked Then
-            GenerarDeduccion()
+        If Validar() Then
+            If RB_Percepcion.Checked Then
+                GenerarPercepcion()
+            ElseIf RB_Deduccion.Checked Then
+                GenerarDeduccion()
+            End If
+        Else
+            MsgBox("La información no está completa")
         End If
     End Sub
     Private Sub GenerarPercepcion()

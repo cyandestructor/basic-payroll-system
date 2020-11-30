@@ -62,4 +62,13 @@
             _diasPeriodo = value
         End Set
     End Property
+    Private _sueldoEscrito As String
+    Public Property SueldoEscrito() As String
+        Get
+            Return _sueldoEscrito
+        End Get
+        Set(ByVal value As String)
+            _sueldoEscrito = value
+        End Set
+    End Property
 End Class

@@ -107,6 +107,7 @@
     <Compile Include="controllers\AppController.vb" />
     <Compile Include="controllers\CSVReport.vb" />
     <Compile Include="controllers\PDFReceipt.vb" />
+    <Compile Include="controllers\UtilityController.vb" />
     <Compile Include="models\dao\BancoDAO.vb" />
     <Compile Include="models\dao\DBConnection.vb" />
     <Compile Include="models\dao\DeduccionDAO.vb" />

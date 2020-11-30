@@ -2,6 +2,8 @@
     Private Sub Opciones_puesto_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdatePuestos()
         UpdateEmpresas()
+        AddHandler Txt_NomPuesto.KeyPress, AddressOf UtilityController.LetterDigitOnly
+        AddHandler Txt_PorSueldo.KeyPress, AddressOf UtilityController.DecimalOnly
     End Sub
     Private Sub Cb_Empresa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Cb_Empresa.SelectedIndexChanged
         If Cb_Empresa.SelectedIndex <> -1 Then
@@ -13,18 +15,33 @@
         End If
     End Sub
     Private Sub Btn_Registrar_Click(sender As Object, e As EventArgs) Handles Btn_Registrar.Click
-        Dim puesto As New Puesto With {
-            .Nombre = Txt_NomPuesto.Text
-        }
+        If Txt_NomPuesto.Text <> "" Then
+            Dim puesto As New Puesto With {
+                .Nombre = Txt_NomPuesto.Text
+            }
 
-        Dim puestoDAO As New PuestoDAO
+            Dim puestoDAO As New PuestoDAO
 
-        If (puestoDAO.Registrar(puesto)) Then
-            MsgBox("Registro exitoso")
-            UpdatePuestos()
+            If (puestoDAO.Registrar(puesto)) Then
+                MsgBox("Registro exitoso")
+                UpdatePuestos()
+            End If
+        Else
+            MsgBox("Escriba un nombre de puesto para continuar")
         End If
     End Sub
     Private Sub BtnAsignarEmpDpto_Click(sender As Object, e As EventArgs) Handles BtnAsignarEmpDpto.Click
+        If LB_Puesto.SelectedIndex <> -1 And Cb_Empresa.SelectedIndex <> -1 And Cb_Depa.SelectedIndex <> -1 Then
+            If Txt_PorSueldo.Text <> "" Then
+                AsignarEmpresaDptoPuesto()
+            Else
+                MsgBox("Agregue un porcentaje de sueldo para continuar")
+            End If
+        Else
+            MsgBox("Seleccione un puesto, empresa y departamento para continuar")
+        End If
+    End Sub
+    Private Sub AsignarEmpresaDptoPuesto()
         Dim empresaDAO As New EmpresaDAO
         Dim departamentoDAO As New DepartamentoDAO
 
@@ -66,6 +83,17 @@
         Txt_PorSueldo.Text = ""
     End Sub
     Private Sub BtnEditarPuesto_Click(sender As Object, e As EventArgs) Handles BtnEditarPuesto.Click
+        If LB_Puesto.SelectedIndex <> -1 And Cb_Depa.SelectedIndex <> -1 Then
+            If Txt_NomPuesto.Text <> "" And Txt_PorSueldo.Text <> "" Then
+                EditarPuesto()
+            Else
+                MsgBox("Escribe un nombre y un porcentaje de sueldo para continuar")
+            End If
+        Else
+            MsgBox("Seleccione un puesto y un departamento para continuar")
+        End If
+    End Sub
+    Private Sub EditarPuesto()
         Dim puestoSel = Integer.Parse(Txt_CodPuesto.Text)
         Dim puesto As New Puesto With {
             .ID = puestoSel,

@@ -42,11 +42,6 @@
 
         Return False
     End Function
-    Private Sub Txt_User_KeyPress(sender As Object, e As KeyPressEventArgs) Handles Txt_User.KeyPress
-        If Not Char.IsDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
-            e.Handled = True
-        End If
-    End Sub
     Private Sub Btn_Edit_Click(sender As Object, e As EventArgs) Handles Btn_Edit.Click
         Dim idUsuario = Integer.Parse(Txt_User.Text)
         Dim password = Txt_Password.Text
@@ -59,5 +54,8 @@
         Else
             MsgBox("Información incorrecta, intente de nuevo")
         End If
+    End Sub
+    Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AddHandler Txt_User.KeyPress, AddressOf UtilityController.DigitOnly
     End Sub
 End Class

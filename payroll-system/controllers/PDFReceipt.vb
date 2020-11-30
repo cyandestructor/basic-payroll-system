@@ -18,6 +18,7 @@ Public Class PDFReceipt
         section1.AddParagraph()
         Dim s1p2 = section1.AddParagraph("Fecha de pago: " + nomina.FechaGeneracion.ToString("d"))
         Dim s1p3 = section1.AddParagraph("Periodo de pago: " + nomina.InicioPeriodo.ToString("d") + " - " + nomina.FinPeriodo.ToString("d"))
+        Dim s1p4 = section1.AddParagraph("Días del periodo: " + recibo.DiasPeriodo.ToString())
         section1.AddParagraph()
 
         ' Add the info table
@@ -38,6 +39,11 @@ Public Class PDFReceipt
         Dim dTable = CreateDeductionsTable(deducciones)
         _document.LastSection.Add(dTable)
 
+        section1.AddParagraph()
+        section1.AddParagraph("Sueldo Bruto: " + nomina.SueldoBruto.ToString("n"))
+        section1.AddParagraph("Sueldo Neto: " + nomina.SueldoNeto.ToString("n"))
+        section1.AddParagraph("Total: " + recibo.SueldoEscrito + " PESOS MXN")
+
     End Sub
     Private Function CreateInfoTable(ByVal recibo As ReciboNomina) As Table
         Dim empresa = recibo.DatosEmpresa
@@ -54,10 +60,10 @@ Public Class PDFReceipt
         Dim nomCol = infoTable.AddColumn(Unit.FromCentimeter(5))
         nomCol.Format.Alignment = ParagraphAlignment.Left
 
-        Dim nssCol = infoTable.AddColumn(Unit.FromCentimeter(2))
+        Dim nssCol = infoTable.AddColumn(Unit.FromCentimeter(2.5))
         nssCol.Format.Alignment = ParagraphAlignment.Left
 
-        Dim curpCol = infoTable.AddColumn(Unit.FromCentimeter(5))
+        Dim curpCol = infoTable.AddColumn(Unit.FromCentimeter(4.5))
         curpCol.Format.Alignment = ParagraphAlignment.Left
 
         Dim rfcCol = infoTable.AddColumn(Unit.FromCentimeter(4))

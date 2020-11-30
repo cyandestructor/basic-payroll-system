@@ -69,4 +69,32 @@ Public Class IncidenciaDAO
 
         Return incidencias
     End Function
+    Public Function VerificarVacaciones(ByVal idEmpleado As Integer, ByVal year As Integer) As Boolean
+        Dim result = False
+
+        Dim command As New SqlCommand("VerUltimasVacaciones", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empleado", idEmpleado)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        If reader.Read() Then
+            Dim fecha As New Date
+            fecha = GetDateSafe(reader, 0)
+
+            If fecha.Day = 0 Or fecha.Year <> year Then
+                result = True
+            End If
+
+        End If
+
+        reader.Close()
+        connection.Close()
+
+        Return result
+    End Function
 End Class

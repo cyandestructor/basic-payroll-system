@@ -22,7 +22,6 @@ Partial Class EmpleadoForm
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.PermisosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Nomina = New System.Windows.Forms.ToolStripMenuItem()
@@ -32,23 +31,14 @@ Partial Class EmpleadoForm
         Me.Menu_InfoUsu = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Password = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Pagos = New System.Windows.Forms.ToolStripMenuItem()
+        Me.BtnConsultarPagos = New System.Windows.Forms.Button()
+        Me.DtpYear = New System.Windows.Forms.DateTimePicker()
+        Me.DgvResumen = New System.Windows.Forms.DataGridView()
         Me.Label1 = New System.Windows.Forms.Label()
-        Me.DataGridView2 = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.LB_Pagos = New System.Windows.Forms.ListBox()
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DgvResumen, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
-        '
-        'DataGridView1
-        '
-        Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 287)
-        Me.DataGridView1.Name = "DataGridView1"
-        Me.DataGridView1.Size = New System.Drawing.Size(452, 194)
-        Me.DataGridView1.TabIndex = 0
         '
         'MenuStrip1
         '
@@ -109,75 +99,72 @@ Partial Class EmpleadoForm
         Me.Menu_Pagos.Size = New System.Drawing.Size(51, 20)
         Me.Menu_Pagos.Text = "Pagos"
         '
+        'BtnConsultarPagos
+        '
+        Me.BtnConsultarPagos.Location = New System.Drawing.Point(309, 31)
+        Me.BtnConsultarPagos.Name = "BtnConsultarPagos"
+        Me.BtnConsultarPagos.Size = New System.Drawing.Size(75, 23)
+        Me.BtnConsultarPagos.TabIndex = 44
+        Me.BtnConsultarPagos.Text = "Consultar"
+        Me.BtnConsultarPagos.UseVisualStyleBackColor = True
+        '
+        'DtpYear
+        '
+        Me.DtpYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DtpYear.Location = New System.Drawing.Point(195, 34)
+        Me.DtpYear.Name = "DtpYear"
+        Me.DtpYear.Size = New System.Drawing.Size(88, 20)
+        Me.DtpYear.TabIndex = 43
+        '
+        'DgvResumen
+        '
+        Me.DgvResumen.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.DgvResumen.Location = New System.Drawing.Point(12, 62)
+        Me.DgvResumen.Name = "DgvResumen"
+        Me.DgvResumen.ReadOnly = True
+        Me.DgvResumen.Size = New System.Drawing.Size(734, 264)
+        Me.DgvResumen.TabIndex = 42
+        '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 271)
+        Me.Label1.Location = New System.Drawing.Point(163, 36)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(107, 13)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Reportes de Nomina:"
-        '
-        'DataGridView2
-        '
-        Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Location = New System.Drawing.Point(14, 48)
-        Me.DataGridView2.Name = "DataGridView2"
-        Me.DataGridView2.Size = New System.Drawing.Size(450, 202)
-        Me.DataGridView2.TabIndex = 4
+        Me.Label1.Size = New System.Drawing.Size(26, 13)
+        Me.Label1.TabIndex = 40
+        Me.Label1.Text = "Año"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 32)
+        Me.Label2.Location = New System.Drawing.Point(9, 36)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(103, 13)
-        Me.Label2.TabIndex = 5
-        Me.Label2.Text = "Información general:"
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(481, 32)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 13)
-        Me.Label3.TabIndex = 6
-        Me.Label3.Text = "Pagos:"
-        '
-        'LB_Pagos
-        '
-        Me.LB_Pagos.FormattingEnabled = True
-        Me.LB_Pagos.Location = New System.Drawing.Point(484, 48)
-        Me.LB_Pagos.Name = "LB_Pagos"
-        Me.LB_Pagos.Size = New System.Drawing.Size(263, 433)
-        Me.LB_Pagos.TabIndex = 32
+        Me.Label2.Size = New System.Drawing.Size(99, 13)
+        Me.Label2.TabIndex = 41
+        Me.Label2.Text = "Resumen de pagos"
         '
         'EmpleadoForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(759, 501)
-        Me.Controls.Add(Me.LB_Pagos)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.DataGridView2)
+        Me.Controls.Add(Me.BtnConsultarPagos)
+        Me.Controls.Add(Me.DtpYear)
+        Me.Controls.Add(Me.DgvResumen)
         Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DataGridView1)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.MainMenuStrip = Me.MenuStrip1
         Me.Name = "EmpleadoForm"
         Me.Text = "Empleado"
-        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.MenuStrip1.ResumeLayout(False)
         Me.MenuStrip1.PerformLayout()
-        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DgvResumen, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-
-    Friend WithEvents DataGridView1 As DataGridView
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents PermisosToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents Menu_Nomina As ToolStripMenuItem
@@ -187,9 +174,9 @@ Partial Class EmpleadoForm
     Friend WithEvents Menu_InfoUsu As ToolStripMenuItem
     Friend WithEvents Menu_Password As ToolStripMenuItem
     Friend WithEvents Menu_Pagos As ToolStripMenuItem
+    Friend WithEvents BtnConsultarPagos As Button
+    Friend WithEvents DtpYear As DateTimePicker
+    Friend WithEvents DgvResumen As DataGridView
     Friend WithEvents Label1 As Label
-    Friend WithEvents DataGridView2 As DataGridView
     Friend WithEvents Label2 As Label
-    Friend WithEvents Label3 As Label
-    Friend WithEvents LB_Pagos As ListBox
 End Class

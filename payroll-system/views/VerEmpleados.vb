@@ -42,6 +42,18 @@
         End If
     End Sub
     Private Sub BtnAsignar_Click(sender As Object, e As EventArgs) Handles BtnAsignar.Click
+        Dim empleadoSel = LbEmpleados.SelectedIndex
+        Dim empresaSel = CbEmpresas.SelectedIndex
+        Dim dptoSel = CbDepartamentos.SelectedIndex
+        Dim puestoSel = CbPuestos.SelectedIndex
+
+        If empleadoSel <> -1 And empresaSel <> -1 And dptoSel <> -1 And puestoSel <> -1 Then
+            AsignarPosicion()
+        Else
+            MsgBox("Seleccione una empresa, un departamento y un puesto para el empleado")
+        End If
+    End Sub
+    Private Sub AsignarPosicion()
         Dim idEmpleado = LbEmpleados.SelectedValue
         Dim idEmpresa = CbEmpresas.SelectedValue
         Dim idDpto = CbDepartamentos.SelectedValue
@@ -67,8 +79,27 @@
         empleadoDAO.AsignarPuesto(idEmpleado, idPuesto)
     End Sub
     Private Sub BtnSeleccion_Click(sender As Object, e As EventArgs) Handles BtnSeleccion.Click
-        Dim idEmpleado = LbEmpleados.SelectedValue
-        Dim formVerInfo As New Alta_empleado(idEmpleado)
-        formVerInfo.Show()
+        If LbEmpleados.SelectedIndex <> -1 Then
+            Dim idEmpleado = LbEmpleados.SelectedValue
+            Dim formVerInfo As New Alta_empleado(idEmpleado)
+            formVerInfo.Show()
+        Else
+            MsgBox("Seleccione un empleado para continuar")
+        End If
+    End Sub
+    Private Sub BtnEliminarEmpleado_Click(sender As Object, e As EventArgs) Handles BtnEliminarEmpleado.Click
+        If LbEmpleados.SelectedIndex <> -1 Then
+            Dim idEmpleado = LbEmpleados.SelectedValue
+
+            Dim result = MessageBox.Show("¿Desea eliminar el registro?", "Eliminar", MessageBoxButtons.YesNo)
+            If result = DialogResult.Yes Then
+                Dim empleadoDAO As New EmpleadoDAO
+                empleadoDAO.Desactivar(idEmpleado)
+                UpdateEmpleados()
+                MsgBox("Se ha eliminado el registro")
+            End If
+        Else
+            MsgBox("Seleccione un empleado para continuar")
+        End If
     End Sub
 End Class
