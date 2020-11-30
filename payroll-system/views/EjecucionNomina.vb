@@ -1,4 +1,5 @@
-﻿Public Class EjecucionNomina
+﻿Imports System.IO
+Public Class EjecucionNomina
     Private Sub EjecucionNomina_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateEmpresas()
     End Sub
@@ -36,7 +37,7 @@
     End Sub
     Private Sub BtnGenerarReporte_Click(sender As Object, e As EventArgs) Handles BtnGenerarReporte.Click
         Using sfd As New SaveFileDialog
-            sfd.Filter = "CSV | *.csv"
+            sfd.Filter = "CSV|*.csv|PDF|*.pdf"
             sfd.ValidateNames = True
 
             If sfd.ShowDialog() = DialogResult.OK Then
@@ -50,10 +51,18 @@
         Dim reporteDAO As New ReporteCalculoNominaDAO
         Dim reporte = reporteDAO.Generar(idEmpresa, Date.Now)
 
-        If CSVReport.WriteReport(filepath, reporte) Then
-            MsgBox("Se ha guardado el reporte en " + filepath)
-        Else
-            MsgBox("No se pudo guardar el reporte")
-        End If
+        Select Case Path.GetExtension(filepath).ToLower
+            Case ".csv"
+                If CSVReport.WriteReport(filepath, reporte) Then
+                    MsgBox("Se ha guardado el reporte en " + filepath)
+                Else
+                    MsgBox("No se pudo guardar el reporte")
+                End If
+            Case ".pdf"
+                CSVReport.WriteReportPDF(filepath, reporte)
+                MsgBox("Se ha guardado el reporte en " + filepath)
+            Case Else
+                MsgBox("No se pudo guardar el reporte")
+        End Select
     End Sub
 End Class

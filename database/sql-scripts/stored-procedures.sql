@@ -1432,7 +1432,9 @@ AS
 		[Inicio de periodo],
 		[Fin de periodo],
 		[Dias de periodo],
-		[Sueldo Diario]
+		[Sueldo Diario],
+		[Sueldo Bruto],
+		[Sueldo Neto]
 	FROM [Payroll Receipt]
 	WHERE
 		[Numero de Empleado] = @ID_Empleado AND [Fecha de pago] = @Fecha_Pago;

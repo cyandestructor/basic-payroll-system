@@ -385,7 +385,9 @@ CREATE VIEW [Payroll Receipt] AS
 		N.Inicio_Periodo AS 'Inicio de periodo',
 		N.Fin_Periodo AS 'Fin de periodo',
 		(DATEDIFF(DAY, N.Inicio_Periodo, N.Fin_Periodo)) AS 'Dias de periodo',
-		EDS.[Sueldo diario] AS 'Sueldo Diario'
+		EDS.[Sueldo diario] AS 'Sueldo Diario',
+		N.Sueldo_Bruto AS 'Sueldo Bruto',
+		N.Sueldo_Neto AS 'Sueldo Neto'
 	FROM
 		Empleado AS E
 		INNER JOIN Empresa AS C ON C.RFC_Empresa = E.ID_Empresa

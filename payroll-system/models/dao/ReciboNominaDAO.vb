@@ -33,6 +33,8 @@ Public Class ReciboNominaDAO
             recibo.DatosNomina.FinPeriodo = reader.GetDateTime(14)
             recibo.DiasPeriodo = reader.GetInt32(15)
             recibo.SueldoDiario = reader.GetDouble(16)
+            recibo.DatosNomina.SueldoBruto = GetDoubleSafe(reader, 17)
+            recibo.DatosNomina.SueldoNeto = GetDoubleSafe(reader, 18)
         Else
             Return Nothing
         End If

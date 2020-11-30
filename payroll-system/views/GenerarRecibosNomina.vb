@@ -27,6 +27,10 @@
         Dim percepciones = percepcionDAO.VerDeNomina(recibo.DatosNomina.ID)
         Dim deducciones = deduccionDAO.VerDeNomina(recibo.DatosNomina.ID)
 
+        Dim reportePDF As New PDFReceipt
+        reportePDF.GenerateDocument(recibo, percepciones, deducciones)
+        reportePDF.SaveToFile(filename, True)
+
         Return False
     End Function
 End Class
