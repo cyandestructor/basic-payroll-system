@@ -113,7 +113,7 @@ Public Class DepartamentoDAO
 
         Return departamentos
     End Function
-    Public Function AsignarGerente(ByVal idEmpresa As String, ByVal idDpto As Integer, ByVal idGerente As Integer, ByVal bono As Double) As Boolean
+    Public Function AsignarGerente(ByVal idEmpresa As String, ByVal idDpto As Integer, ByVal idGerente As Integer, ByVal bono As Double, ByVal bonoPorcent As Double) As Boolean
         Dim command As New SqlCommand("AsignarGerenteDpto", connection)
         command.CommandType = CommandType.StoredProcedure
 
@@ -121,6 +121,7 @@ Public Class DepartamentoDAO
         command.Parameters.AddWithValue("@ID_Dpto", idDpto)
         command.Parameters.AddWithValue("@ID_Gerente", idGerente)
         command.Parameters.AddWithValue("@Cant_Bono", bono)
+        command.Parameters.AddWithValue("@Porcent_Bono", bonoPorcent)
 
         connection.Open()
         command.ExecuteNonQuery()

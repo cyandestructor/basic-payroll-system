@@ -802,12 +802,14 @@ CREATE PROCEDURE AsignarGerenteDpto
 	@ID_Empresa		VARCHAR(12),
 	@ID_Dpto		INT,
 	@ID_Gerente		INT,
-	@Cant_Bono		FLOAT
+	@Cant_Bono		FLOAT,
+	@Porcent_Bono	FLOAT
 AS
 	UPDATE Empresa_Dpto
 		SET Gerente_Dpto = @ID_Gerente,
 			Inicio_Gestion = GETDATE(),
-			Cant_Bono = @Cant_Bono
+			Cant_Bono = @Cant_Bono,
+			Porcent_Bono = @Porcent_Bono
 		WHERE ID_Empresa = @ID_Empresa AND ID_Dpto = @ID_Dpto;
 
 	IF ((SELECT Nivel_Usuario FROM Usuario WHERE ID_Usuario = @ID_Gerente) = 3)
@@ -964,7 +966,8 @@ CREATE PROCEDURE GenerarPercepcion
 	@Desc_Percep	VARCHAR(100),
 	@Cant_Fija		FLOAT,
 	@Cant_Porcent	FLOAT,
-	@ID_Empleado	INT
+	@ID_Empleado	INT,
+	@Fecha			DATE
 AS
 	INSERT INTO Percepcion (
 		Desc_Percep,
@@ -978,7 +981,7 @@ AS
 		@Cant_Fija,
 		@Cant_Porcent,
 		@ID_Empleado,
-		GETDATE()
+		@Fecha
 	);
 GO
 
@@ -1054,7 +1057,8 @@ CREATE PROCEDURE GenerarDeduccion
 	@Desc_Deducc	VARCHAR(100),
 	@Cant_Fija		FLOAT,
 	@Cant_Porcent	FLOAT,
-	@ID_Empleado	INT
+	@ID_Empleado	INT,
+	@Fecha			DATE
 AS
 	INSERT INTO Deduccion (
 		Desc_Deducc,
@@ -1068,7 +1072,7 @@ AS
 		@Cant_Fija,
 		@Cant_Porcent,
 		@ID_Empleado,
-		GETDATE()
+		@Fecha
 	);
 GO
 
@@ -1133,7 +1137,8 @@ GO
 CREATE PROCEDURE GenerarNomina
 	@ID_Empleado		INT,
 	@Inicio_Periodo		DATE,
-	@Fin_Periodo		DATE
+	@Fin_Periodo		DATE,
+	@Fecha_Gen			DATE
 AS
 
 	DECLARE @SueldoDiario	FLOAT;
@@ -1152,33 +1157,52 @@ AS
 		@Desc_Percep = 'Salario',
 		@Cant_Fija = @SueldoBruto,
 		@Cant_Porcent = 0,
-		@ID_Empleado = @ID_Empleado; -- The second @ID_Empleado is a local parameter
+		@ID_Empleado = @ID_Empleado,
+		@Fecha = @Fecha_Gen; -- The second @ID_Empleado is a local parameter
 
 	IF(EXISTS(SELECT Gerente_Dpto FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado))
 		BEGIN
-			DECLARE @Bono_Gerente FLOAT
-			SET @Bono_Gerente = (SELECT Cant_Bono FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado)
+			DECLARE @Bono_Gerente FLOAT;
+			SET @Bono_Gerente = (SELECT Cant_Bono FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado);
+
+			DECLARE @Bono_Gerente_Porcent FLOAT;
+			SET @Bono_Gerente_Porcent = @SueldoBruto * (SELECT Porcent_Bono FROM Empresa_Dpto WHERE Gerente_Dpto = @ID_Empleado);
+
+			DECLARE @Bono_Total FLOAT;
+			SET @Bono_Total = @Bono_Gerente + @Bono_Gerente_Porcent;
 
 			EXEC GenerarPercepcion
 				@Desc_Percep = 'Bono por gerencia',
-				@Cant_Fija = @Bono_Gerente,
+				@Cant_Fija = @Bono_Total,
 				@Cant_Porcent = 0,
-				@ID_Empleado = @ID_Empleado; -- The second @ID_Empleado is a local parameter
+				@ID_Empleado = @ID_Empleado,
+				@Fecha = @Fecha_Gen; -- The second @ID_Empleado is a local parameter
 		END
 
 	-- GENERAR DEDUCCIONES BASE
 
+	DECLARE @Cant_ISR FLOAT = (SELECT SUM(Cant_ISR) FROM Impuestos);
+	DECLARE @Porcen_ISR FLOAT = (SELECT SUM(Porcent_ISR) FROM Impuestos);
+
+	DECLARE @Cant_IMSS FLOAT = (SELECT SUM(Cant_IMSS) FROM Impuestos);
+	DECLARE @Porcen_IMSS FLOAT = (SELECT SUM(Porcent_IMSS) FROM Impuestos);
+
+	DECLARE @Total_ISR FLOAT = @Cant_ISR + (@Porcen_ISR * @SueldoBruto)
+	DECLARE @Total_IMSS FLOAT = @Cant_IMSS + (@Porcen_IMSS * @SueldoBruto)
+
 	EXEC GenerarDeduccion
 		@Desc_deducc = 'ISR',
-		@Cant_Fija = 200,
+		@Cant_Fija = @Total_ISR,
 		@Cant_Porcent = 0,
-		@ID_Empleado = @ID_Empleado;
+		@ID_Empleado = @ID_Empleado,
+		@Fecha = @Fecha_Gen;
 
 	EXEC GenerarDeduccion
 		@Desc_deducc = 'IMSS',
-		@Cant_Fija = 200,
+		@Cant_Fija = @Total_IMSS,
 		@Cant_Porcent = 0,
-		@ID_Empleado = @ID_Empleado;
+		@ID_Empleado = @ID_Empleado,
+		@Fecha = @Fecha_Gen;
 
 	DECLARE @TotalPercepFija	FLOAT;
 	SET @TotalPercepFija =	(SELECT SUM(Cant_Fija)
@@ -1194,7 +1218,7 @@ AS
 	SET @TotalPercepPorcent = (SELECT SUM(T.TotalFijo)
 								FROM
 									(SELECT
-										(@SueldoDiario * Cant_Porcent) AS TotalFijo
+										(@SueldoBruto * Cant_Porcent) AS TotalFijo
 									FROM
 										Percepcion
 									WHERE
@@ -1204,7 +1228,7 @@ AS
 	SET @TotalDeduccPorcent = (SELECT SUM(T.TotalFijo)
 								FROM
 									(SELECT
-										(@SueldoDiario * Cant_Porcent) AS TotalFijo
+										(@SueldoBruto * Cant_Porcent) AS TotalFijo
 									FROM
 										Deduccion
 									WHERE
@@ -1215,14 +1239,16 @@ AS
 		Sueldo_Bruto,
 		Sueldo_Neto,
 		Inicio_Periodo,
-		Fin_Periodo
+		Fin_Periodo,
+		Fecha_Gen
 	)
 	VALUES (
 		@ID_Empleado,
 		@SueldoBruto,
 		(@TotalPercepFija + @TotalPercepPorcent) - (@TotalDeduccFija + @TotalDeduccPorcent),
 		@Inicio_Periodo,
-		@Fin_Periodo
+		@Fin_Periodo,
+		@Fecha_Gen
 	);
 GO
 
@@ -1238,7 +1264,8 @@ AS
 		Sueldo_Neto,
 		ID_Empleado,
 		Inicio_Periodo,
-		Fin_Periodo
+		Fin_Periodo,
+		Fecha_Gen
 	FROM Nomina;
 GO
 
@@ -1257,12 +1284,31 @@ AS
 		Sueldo_Neto,
 		ID_Empleado,
 		Inicio_Periodo,
-		Fin_Periodo
+		Fin_Periodo,
+		Fecha_Gen
 	FROM Nomina
 	WHERE
 		ID_Empleado = @ID_Empleado
 		AND Inicio_Periodo >= @From
 		AND Fin_Periodo <= @To;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'UltimaFechaPagoEmpresa')
+	DROP PROCEDURE UltimaFechaPagoEmpresa;
+GO
+
+CREATE PROCEDURE UltimaFechaPagoEmpresa
+	@ID_Empresa		VARCHAR(12)
+AS
+	SELECT TOP 1
+		CONVERT(DATE, N.Fecha_Gen) AS Fecha
+	FROM
+		Nomina AS N
+		INNER JOIN Empleado AS E ON N.ID_Empleado = E.ID_Empleado
+	WHERE
+		E.ID_Empresa = @ID_Empresa
+	ORDER BY
+		N.Fecha_Gen DESC;
 GO
 
 -- PROCEDIMIENTOS DE INCIDENCIAS
@@ -1413,7 +1459,7 @@ AS
 		RN.IMSS AS IMSS
 	FROM
 		[Reporte Nomina] AS RN
-		INNER JOIN Empleado AS E ON E.ID_Empleado = RN.Gerente
+		LEFT JOIN Empleado AS E ON E.ID_Empleado = RN.Gerente
 		INNER JOIN Empresa AS Emp ON Emp.RFC_Empresa = RN.Empresa
 		INNER JOIN Departamento AS D ON D.ID_Dpto = RN.Departamento
 	WHERE
@@ -1537,7 +1583,7 @@ AS
 		INNER JOIN Empresa AS E ON E.RFC_Empresa = ED.ID_Empresa
 		INNER JOIN Departamento AS D ON D.ID_Dpto = ED.ID_Dpto
 		INNER JOIN Puesto AS P ON P.ID_Puesto = DP.ID_Puesto
-		INNER JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
+		LEFT JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
 	WHERE
 		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
 		
@@ -1574,7 +1620,7 @@ AS
 		) AS PYD ON PYD.ID_Empresa = ED.ID_Empresa AND PYD.ID_Dpto = ED.ID_Dpto
 		INNER JOIN Empresa AS E ON E.RFC_Empresa = ED.ID_Empresa
 		INNER JOIN Departamento AS D ON D.ID_Dpto = ED.ID_Dpto
-		INNER JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
+		LEFT JOIN Empleado AS Emp ON Emp.ID_Empleado = ED.Gerente_Dpto
 	WHERE
 		ED.ID_Empresa = @ID_Empresa AND ED.ID_Dpto = @ID_Dpto;
 		
@@ -1600,4 +1646,22 @@ AS
 		[Reporte Calculo Nomina] AS RCN
 	WHERE
 		RCN.Empresa = @ID_Empresa AND Fecha = @Fecha;
+GO
+
+IF EXISTS(SELECT name FROM sysobjects WHERE type = 'P' AND name = 'ModificarImpuestos')
+	DROP PROCEDURE ModificarImpuestos;
+GO
+
+CREATE PROCEDURE ModificarImpuestos
+	@ISR_CANT		FLOAT,
+	@ISR_PORCENT	FLOAT,
+	@IMSS_CANT		FLOAT,
+	@IMSS_PORCENT	FLOAT
+AS
+	UPDATE Impuestos
+		SET
+			Cant_ISR = @ISR_CANT,
+			Porcent_ISR = @ISR_PORCENT,
+			Cant_IMSS = @IMSS_CANT,
+			Porcent_IMSS = @IMSS_PORCENT
 GO

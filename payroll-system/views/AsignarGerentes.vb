@@ -2,6 +2,7 @@
     Private Sub AsignarGerentes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         UpdateEmpresas()
         AddHandler TxtBonoGerente.KeyPress, AddressOf UtilityController.DecimalOnly
+        AddHandler TxtBonoPorcent.KeyPress, AddressOf UtilityController.DecimalOnly
     End Sub
     Private Sub UpdateEmpresas()
         Dim empresaDAO As New EmpresaDAO
@@ -56,9 +57,11 @@
                 Dim idEmpleado = CbEmpleados.SelectedValue
                 Dim idEmpresa = CbEmpresas.SelectedValue
                 Dim bono = Double.Parse(TxtBonoGerente.Text)
+                Dim bonoPercent As Double
+                Double.TryParse(TxtBonoPorcent.Text, bonoPercent)
 
                 Dim departamentoDAO As New DepartamentoDAO
-                If departamentoDAO.AsignarGerente(idEmpresa, idDpto, idEmpleado, bono) Then
+                If departamentoDAO.AsignarGerente(idEmpresa, idDpto, idEmpleado, bono, bonoPercent) Then
                     MsgBox("Se ha asignado un gerente de departamento")
                 End If
             Else

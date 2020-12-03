@@ -211,6 +211,12 @@
     <Compile Include="views\Gerente.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="views\Impuestos.Designer.vb">
+      <DependentUpon>Impuestos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="views\Impuestos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="views\Login.Designer.vb">
       <DependentUpon>Login.vb</DependentUpon>
     </Compile>
@@ -302,6 +308,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="views\Gerente.resx">
       <DependentUpon>Gerente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="views\Impuestos.resx">
+      <DependentUpon>Impuestos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="views\Login.resx">
       <DependentUpon>Login.vb</DependentUpon>

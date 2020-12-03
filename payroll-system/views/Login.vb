@@ -12,14 +12,19 @@
         End If
     End Sub
     Private Sub Btn_Ingresar_Click(sender As Object, e As EventArgs) Handles Btn_Ingresar.Click
-        If ValidateUser() Then
-            Txt_User.Text = ""
-            Txt_Password.Text = ""
-            ' Show Main form
-            Dim mainForm As New main
-            mainForm.Show()
-            Me.Hide()
-        End If
+        Try
+            If ValidateUser() Then
+                Txt_User.Text = ""
+                Txt_Password.Text = ""
+                ' Show Main form
+                Dim mainForm As New main
+                mainForm.Show()
+                Me.Hide()
+            End If
+        Catch ex As Exception
+            MsgBox("No se ha podido conectar con la base de datos: " + ex.ToString)
+            Application.Exit()
+        End Try
     End Sub
     Public Function ValidateUser() As Boolean
         Dim usuario As String = Txt_User.Text

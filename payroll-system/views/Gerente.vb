@@ -70,4 +70,8 @@
         Dim formVacaciones As New Vacaciones
         formVacaciones.Show()
     End Sub
+    Private Sub MenuImpuestos_Click(sender As Object, e As EventArgs) Handles MenuImpuestos.Click
+        Dim formImpuesto As New Impuestos
+        formImpuesto.Show()
+    End Sub
 End Class

@@ -8,6 +8,7 @@ Public Class NominaDAO
         command.Parameters.AddWithValue("@ID_Empleado", nomina.IDEmpleado)
         command.Parameters.AddWithValue("@Inicio_Periodo", nomina.InicioPeriodo)
         command.Parameters.AddWithValue("@Fin_Periodo", nomina.FinPeriodo)
+        command.Parameters.AddWithValue("@Fecha_Gen", nomina.FechaGeneracion)
 
         connection.Open()
         command.ExecuteNonQuery()
@@ -33,7 +34,8 @@ Public Class NominaDAO
                 .SueldoNeto = reader.GetDouble(2),
                 .IDEmpleado = reader.GetInt32(3),
                 .InicioPeriodo = reader.GetDateTime(4),
-                .FinPeriodo = reader.GetDateTime(5)
+                .FinPeriodo = reader.GetDateTime(5),
+                .FechaGeneracion = GetDateSafe(reader, 6)
             }
             nominas.Add(nomina)
         End While
@@ -65,7 +67,8 @@ Public Class NominaDAO
                 .SueldoNeto = reader.GetDouble(2),
                 .IDEmpleado = reader.GetInt32(3),
                 .InicioPeriodo = reader.GetDateTime(4),
-                .FinPeriodo = reader.GetDateTime(5)
+                .FinPeriodo = reader.GetDateTime(5),
+                .FechaGeneracion = GetDateSafe(reader, 6)
             }
             nominas.Add(nomina)
         End While
@@ -74,5 +77,42 @@ Public Class NominaDAO
         connection.Close()
 
         Return nominas
+    End Function
+    Public Function ModificarImpuestos(ByVal isrCant As Double, ByVal isrPorcent As Double, ByVal imssCant As Double, ByVal imssPorcent As Double) As Boolean
+        Dim command As New SqlCommand("ModificarImpuestos", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ISR_CANT", isrCant)
+        command.Parameters.AddWithValue("@ISR_PORCENT", isrPorcent)
+        command.Parameters.AddWithValue("@IMSS_CANT", imssCant)
+        command.Parameters.AddWithValue("@IMSS_PORCENT", imssPorcent)
+
+        connection.Open()
+        command.ExecuteNonQuery()
+        connection.Close()
+
+        Return True
+    End Function
+    Public Function UltimoPagoEmpresa(ByVal idEmpresa As String) As Date
+        Dim fecha As Date
+
+        Dim command As New SqlCommand("UltimaFechaPagoEmpresa", connection)
+        command.CommandType = CommandType.StoredProcedure
+
+        command.Parameters.AddWithValue("@ID_Empresa", idEmpresa)
+
+        connection.Open()
+
+        Dim reader As SqlDataReader
+        reader = command.ExecuteReader()
+
+        While (reader.Read())
+            fecha = GetDateSafe(reader, 0)
+        End While
+
+        reader.Close()
+        connection.Close()
+
+        Return fecha
     End Function
 End Class

@@ -597,32 +597,32 @@ EXEC GenerarDeduccion
 
 -- Generar nomina empleados
 
-DECLARE @EndDate DATE = DATEADD(DAY, 15, '2020-11-23');
+--DECLARE @EndDate DATE = DATEADD(DAY, 15, '2020-11-23');
 
-EXEC GenerarNomina
-		@ID_Empleado = 1000,
-		@Inicio_Periodo = '2020-11-23',
-		@Fin_Periodo = @EndDate;
+--EXEC GenerarNomina
+--		@ID_Empleado = 1000,
+--		@Inicio_Periodo = '2020-11-23',
+--		@Fin_Periodo = @EndDate;
 
-EXEC GenerarNomina
-		@ID_Empleado = 1001,
-		@Inicio_Periodo = '2020-11-23',
-		@Fin_Periodo = @EndDate;
+--EXEC GenerarNomina
+--		@ID_Empleado = 1001,
+--		@Inicio_Periodo = '2020-11-23',
+--		@Fin_Periodo = @EndDate;
 
-EXEC GenerarNomina
-		@ID_Empleado = 1002,
-		@Inicio_Periodo = '2020-11-23',
-		@Fin_Periodo = @EndDate;
+--EXEC GenerarNomina
+--		@ID_Empleado = 1002,
+--		@Inicio_Periodo = '2020-11-23',
+--		@Fin_Periodo = @EndDate;
 
-EXEC GenerarNomina
-		@ID_Empleado = 1003,
-		@Inicio_Periodo = '2020-11-23',
-		@Fin_Periodo = @EndDate;
+--EXEC GenerarNomina
+--		@ID_Empleado = 1003,
+--		@Inicio_Periodo = '2020-11-23',
+--		@Fin_Periodo = @EndDate;
 
-EXEC GenerarNomina
-		@ID_Empleado = 1004,
-		@Inicio_Periodo = '2020-11-23',
-		@Fin_Periodo = @EndDate;
+--EXEC GenerarNomina
+--		@ID_Empleado = 1004,
+--		@Inicio_Periodo = '2020-11-23',
+--		@Fin_Periodo = @EndDate;
 
 -- Select tables
 --SELECT * FROM Empleado;
@@ -631,6 +631,8 @@ EXEC GenerarNomina
 --SELECT * FROM Banco;
 
 --SELECT * FROM Domicilio;
+
+--SELECT * FROM Impuestos
 
 --SELECT * FROM Empresa;
 --SELECT * FROM Departamento;
@@ -644,7 +646,6 @@ EXEC GenerarNomina
 --SELECT * FROM [Payroll Receipt];
 
 --SELECT * FROM [Employees Daily Salary];
-
 --SELECT * FROM Percepcion;
 --SELECT * FROM Deduccion;
 --SELECT * FROM Nomina;

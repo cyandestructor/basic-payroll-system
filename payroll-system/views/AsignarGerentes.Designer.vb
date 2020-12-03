@@ -32,6 +32,8 @@ Partial Class AsignarGerentes
         Me.BtnGerenteDpto = New System.Windows.Forms.Button()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.TxtBonoGerente = New System.Windows.Forms.TextBox()
+        Me.TxtBonoPorcent = New System.Windows.Forms.TextBox()
+        Me.Label5 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'CbEmpresas
@@ -116,15 +118,33 @@ Partial Class AsignarGerentes
         '
         Me.TxtBonoGerente.Location = New System.Drawing.Point(224, 130)
         Me.TxtBonoGerente.Name = "TxtBonoGerente"
-        Me.TxtBonoGerente.Size = New System.Drawing.Size(194, 20)
+        Me.TxtBonoGerente.Size = New System.Drawing.Size(78, 20)
         Me.TxtBonoGerente.TabIndex = 4
+        '
+        'TxtBonoPorcent
+        '
+        Me.TxtBonoPorcent.Location = New System.Drawing.Point(308, 130)
+        Me.TxtBonoPorcent.Name = "TxtBonoPorcent"
+        Me.TxtBonoPorcent.Size = New System.Drawing.Size(78, 20)
+        Me.TxtBonoPorcent.TabIndex = 4
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(305, 113)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(43, 13)
+        Me.Label5.TabIndex = 3
+        Me.Label5.Text = "Bono %"
         '
         'AsignarGerentes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(453, 183)
+        Me.Controls.Add(Me.TxtBonoPorcent)
         Me.Controls.Add(Me.TxtBonoGerente)
+        Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.BtnGerenteDpto)
         Me.Controls.Add(Me.BtnGerenteEmpresa)
@@ -151,4 +171,6 @@ Partial Class AsignarGerentes
     Friend WithEvents BtnGerenteDpto As Button
     Friend WithEvents Label4 As Label
     Friend WithEvents TxtBonoGerente As TextBox
+    Friend WithEvents TxtBonoPorcent As TextBox
+    Friend WithEvents Label5 As Label
 End Class

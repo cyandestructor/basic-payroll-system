@@ -28,8 +28,8 @@ Partial Class Gerente
         Me.Menu_PD = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Permisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.menuSolicitarPermiso = New System.Windows.Forms.ToolStripMenuItem()
-        Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuVacaciones = New System.Windows.Forms.ToolStripMenuItem()
+        Me.menuRevisarPermisos = New System.Windows.Forms.ToolStripMenuItem()
         Me.UsuarioToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Password = New System.Windows.Forms.ToolStripMenuItem()
         Me.AgregarToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -38,6 +38,7 @@ Partial Class Gerente
         Me.Menu_Empresa = New System.Windows.Forms.ToolStripMenuItem()
         Me.Menu_Empleado = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuAsignarGerentes = New System.Windows.Forms.ToolStripMenuItem()
+        Me.MenuImpuestos = New System.Windows.Forms.ToolStripMenuItem()
         Me.VerToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmpleadosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuCalcularNomina = New System.Windows.Forms.ToolStripMenuItem()
@@ -89,20 +90,20 @@ Partial Class Gerente
         'menuSolicitarPermiso
         '
         Me.menuSolicitarPermiso.Name = "menuSolicitarPermiso"
-        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(180, 22)
+        Me.menuSolicitarPermiso.Size = New System.Drawing.Size(132, 22)
         Me.menuSolicitarPermiso.Text = "Solicitar"
-        '
-        'menuRevisarPermisos
-        '
-        Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
-        Me.menuRevisarPermisos.Size = New System.Drawing.Size(180, 22)
-        Me.menuRevisarPermisos.Text = "Revisar"
         '
         'MenuVacaciones
         '
         Me.MenuVacaciones.Name = "MenuVacaciones"
-        Me.MenuVacaciones.Size = New System.Drawing.Size(180, 22)
+        Me.MenuVacaciones.Size = New System.Drawing.Size(132, 22)
         Me.MenuVacaciones.Text = "Vacaciones"
+        '
+        'menuRevisarPermisos
+        '
+        Me.menuRevisarPermisos.Name = "menuRevisarPermisos"
+        Me.menuRevisarPermisos.Size = New System.Drawing.Size(132, 22)
+        Me.menuRevisarPermisos.Text = "Revisar"
         '
         'UsuarioToolStripMenuItem
         '
@@ -119,7 +120,7 @@ Partial Class Gerente
         '
         'AgregarToolStripMenuItem
         '
-        Me.AgregarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Puesto, Me.Menu_Departamento, Me.Menu_Empresa, Me.Menu_Empleado, Me.MenuAsignarGerentes})
+        Me.AgregarToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.Menu_Puesto, Me.Menu_Departamento, Me.Menu_Empresa, Me.Menu_Empleado, Me.MenuAsignarGerentes, Me.MenuImpuestos})
         Me.AgregarToolStripMenuItem.Name = "AgregarToolStripMenuItem"
         Me.AgregarToolStripMenuItem.Size = New System.Drawing.Size(61, 20)
         Me.AgregarToolStripMenuItem.Text = "Agregar"
@@ -127,32 +128,38 @@ Partial Class Gerente
         'Menu_Puesto
         '
         Me.Menu_Puesto.Name = "Menu_Puesto"
-        Me.Menu_Puesto.Size = New System.Drawing.Size(150, 22)
+        Me.Menu_Puesto.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Puesto.Text = "Puesto"
         '
         'Menu_Departamento
         '
         Me.Menu_Departamento.Name = "Menu_Departamento"
-        Me.Menu_Departamento.Size = New System.Drawing.Size(150, 22)
+        Me.Menu_Departamento.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Departamento.Text = "Departamento"
         '
         'Menu_Empresa
         '
         Me.Menu_Empresa.Name = "Menu_Empresa"
-        Me.Menu_Empresa.Size = New System.Drawing.Size(150, 22)
+        Me.Menu_Empresa.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Empresa.Text = "Empresa"
         '
         'Menu_Empleado
         '
         Me.Menu_Empleado.Name = "Menu_Empleado"
-        Me.Menu_Empleado.Size = New System.Drawing.Size(150, 22)
+        Me.Menu_Empleado.Size = New System.Drawing.Size(180, 22)
         Me.Menu_Empleado.Text = "Empleado"
         '
         'MenuAsignarGerentes
         '
         Me.MenuAsignarGerentes.Name = "MenuAsignarGerentes"
-        Me.MenuAsignarGerentes.Size = New System.Drawing.Size(150, 22)
+        Me.MenuAsignarGerentes.Size = New System.Drawing.Size(180, 22)
         Me.MenuAsignarGerentes.Text = "Gerentes"
+        '
+        'MenuImpuestos
+        '
+        Me.MenuImpuestos.Name = "MenuImpuestos"
+        Me.MenuImpuestos.Size = New System.Drawing.Size(180, 22)
+        Me.MenuImpuestos.Text = "Impuestos"
         '
         'VerToolStripMenuItem
         '
@@ -270,4 +277,5 @@ Partial Class Gerente
     Friend WithEvents DtpYear As DateTimePicker
     Friend WithEvents Label1 As Label
     Friend WithEvents BtnConsultarPagos As Button
+    Friend WithEvents MenuImpuestos As ToolStripMenuItem
 End Class

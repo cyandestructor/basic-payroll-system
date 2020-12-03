@@ -14,12 +14,12 @@
         End If
     End Sub
     Public Shared Sub LetterOnly(sender As Object, e As KeyPressEventArgs)
-        If Not Char.IsLetter(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
+        If Not Char.IsLetter(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsWhiteSpace(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub
     Public Shared Sub LetterDigitOnly(sender As Object, e As KeyPressEventArgs)
-        If Not Char.IsLetterOrDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) Then
+        If Not Char.IsLetterOrDigit(e.KeyChar) And Not Char.IsControl(e.KeyChar) And Not Char.IsWhiteSpace(e.KeyChar) Then
             e.Handled = True
         End If
     End Sub

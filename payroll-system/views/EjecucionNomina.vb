@@ -17,27 +17,30 @@ Public Class EjecucionNomina
         End If
     End Sub
     Private Sub GenerarNomina()
-        Dim idEmpresa = CbEmpresas.SelectedValue
-
+        Dim nominaDAO As New NominaDAO
         Dim empresaDAO As New EmpresaDAO
+
+        Dim idEmpresa = CbEmpresas.SelectedValue
         Dim empresa = empresaDAO.ObtenerEmpresa(idEmpresa)
+
+        Dim fecha = nominaDAO.UltimoPagoEmpresa(idEmpresa)
+        fecha = If(fecha = Date.MinValue, Date.Now, fecha.AddDays(empresa.FrecuenciaPago))
 
         Dim empleadoDAO As New EmpleadoDAO
         Dim empleadosEmpresa = empleadoDAO.VerEmpleadosEmpresa(idEmpresa)
 
-        Dim nominaDAO As New NominaDAO
         For Each empleado As Empleado In empleadosEmpresa
-            Dim today = Date.Now
             Dim nomina As New Nomina With {
                 .IDEmpleado = empleado.ID,
-                .InicioPeriodo = today.AddDays(-empresa.FrecuenciaPago),
-                .FinPeriodo = today
+                .InicioPeriodo = fecha.AddDays(-empresa.FrecuenciaPago - 1),
+                .FinPeriodo = fecha,
+                .FechaGeneracion = fecha
             }
             nominaDAO.Generar(nomina)
         Next
 
         Dim reporteDAO As New ReporteCalculoNominaDAO
-        DgvReporteCalculo.DataSource = reporteDAO.Generar(idEmpresa, Date.Now)
+        DgvReporteCalculo.DataSource = reporteDAO.Generar(idEmpresa, fecha)
     End Sub
     Private Sub BtnGenerarReporte_Click(sender As Object, e As EventArgs) Handles BtnGenerarReporte.Click
         If CbEmpresas.SelectedIndex <> -1 Then
@@ -56,8 +59,9 @@ Public Class EjecucionNomina
     End Sub
     Private Sub GenerarReporteCalculoNomina(ByVal filepath As String)
         Dim idEmpresa = CbEmpresas.SelectedValue
+        Dim fecha = DtpFechaNomina.Value
         Dim reporteDAO As New ReporteCalculoNominaDAO
-        Dim reporte = reporteDAO.Generar(idEmpresa, Date.Now)
+        Dim reporte = reporteDAO.Generar(idEmpresa, fecha)
 
         Select Case Path.GetExtension(filepath).ToLower
             Case ".csv"

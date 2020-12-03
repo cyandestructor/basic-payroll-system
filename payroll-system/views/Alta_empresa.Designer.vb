@@ -142,11 +142,12 @@ Partial Class Alta_empresa
         '
         'Txt_RFC_Emp
         '
+        Me.Txt_RFC_Emp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Txt_RFC_Emp.Location = New System.Drawing.Point(124, 167)
         Me.Txt_RFC_Emp.MaxLength = 12
         Me.Txt_RFC_Emp.Name = "Txt_RFC_Emp"
         Me.Txt_RFC_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_RFC_Emp.TabIndex = 9
+        Me.Txt_RFC_Emp.TabIndex = 6
         '
         'Txt_Pago_Emp
         '
@@ -154,15 +155,16 @@ Partial Class Alta_empresa
         Me.Txt_Pago_Emp.MaxLength = 3
         Me.Txt_Pago_Emp.Name = "Txt_Pago_Emp"
         Me.Txt_Pago_Emp.Size = New System.Drawing.Size(338, 20)
-        Me.Txt_Pago_Emp.TabIndex = 11
+        Me.Txt_Pago_Emp.TabIndex = 8
         '
         'Txt_RP_Emp
         '
+        Me.Txt_RP_Emp.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper
         Me.Txt_RP_Emp.Location = New System.Drawing.Point(124, 139)
         Me.Txt_RP_Emp.MaxLength = 11
         Me.Txt_RP_Emp.Name = "Txt_RP_Emp"
         Me.Txt_RP_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_RP_Emp.TabIndex = 12
+        Me.Txt_RP_Emp.TabIndex = 5
         '
         'Txt_Correo_Emp
         '
@@ -170,7 +172,7 @@ Partial Class Alta_empresa
         Me.Txt_Correo_Emp.MaxLength = 50
         Me.Txt_Correo_Emp.Name = "Txt_Correo_Emp"
         Me.Txt_Correo_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_Correo_Emp.TabIndex = 13
+        Me.Txt_Correo_Emp.TabIndex = 4
         '
         'Txt_Tel_Emp
         '
@@ -178,7 +180,7 @@ Partial Class Alta_empresa
         Me.Txt_Tel_Emp.MaxLength = 10
         Me.Txt_Tel_Emp.Name = "Txt_Tel_Emp"
         Me.Txt_Tel_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_Tel_Emp.TabIndex = 14
+        Me.Txt_Tel_Emp.TabIndex = 3
         '
         'TxtCalle
         '
@@ -186,7 +188,7 @@ Partial Class Alta_empresa
         Me.TxtCalle.MaxLength = 30
         Me.TxtCalle.Name = "TxtCalle"
         Me.TxtCalle.Size = New System.Drawing.Size(221, 20)
-        Me.TxtCalle.TabIndex = 15
+        Me.TxtCalle.TabIndex = 9
         '
         'Txt_RS_Emp
         '
@@ -194,7 +196,7 @@ Partial Class Alta_empresa
         Me.Txt_RS_Emp.MaxLength = 80
         Me.Txt_RS_Emp.Name = "Txt_RS_Emp"
         Me.Txt_RS_Emp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_RS_Emp.TabIndex = 16
+        Me.Txt_RS_Emp.TabIndex = 2
         '
         'Txt_NomEmp
         '
@@ -202,14 +204,14 @@ Partial Class Alta_empresa
         Me.Txt_NomEmp.MaxLength = 60
         Me.Txt_NomEmp.Name = "Txt_NomEmp"
         Me.Txt_NomEmp.Size = New System.Drawing.Size(350, 20)
-        Me.Txt_NomEmp.TabIndex = 17
+        Me.Txt_NomEmp.TabIndex = 1
         '
         'Btn_AgregarEmp
         '
         Me.Btn_AgregarEmp.Location = New System.Drawing.Point(700, 391)
         Me.Btn_AgregarEmp.Name = "Btn_AgregarEmp"
         Me.Btn_AgregarEmp.Size = New System.Drawing.Size(87, 27)
-        Me.Btn_AgregarEmp.TabIndex = 18
+        Me.Btn_AgregarEmp.TabIndex = 15
         Me.Btn_AgregarEmp.Text = "Registrar"
         Me.Btn_AgregarEmp.UseVisualStyleBackColor = True
         '
@@ -218,14 +220,14 @@ Partial Class Alta_empresa
         Me.DateTime_InicioOp.Location = New System.Drawing.Point(192, 199)
         Me.DateTime_InicioOp.Name = "DateTime_InicioOp"
         Me.DateTime_InicioOp.Size = New System.Drawing.Size(282, 20)
-        Me.DateTime_InicioOp.TabIndex = 19
+        Me.DateTime_InicioOp.TabIndex = 7
         '
         'Btn_Cancelar
         '
         Me.Btn_Cancelar.Location = New System.Drawing.Point(494, 391)
         Me.Btn_Cancelar.Name = "Btn_Cancelar"
         Me.Btn_Cancelar.Size = New System.Drawing.Size(97, 27)
-        Me.Btn_Cancelar.TabIndex = 30
+        Me.Btn_Cancelar.TabIndex = 17
         Me.Btn_Cancelar.Text = "Cancelar"
         Me.Btn_Cancelar.UseVisualStyleBackColor = True
         '
@@ -235,7 +237,7 @@ Partial Class Alta_empresa
         Me.LB_Empresa.Location = New System.Drawing.Point(494, 19)
         Me.LB_Empresa.Name = "LB_Empresa"
         Me.LB_Empresa.Size = New System.Drawing.Size(291, 238)
-        Me.LB_Empresa.TabIndex = 31
+        Me.LB_Empresa.TabIndex = 19
         '
         'GpbDomicilio
         '
@@ -309,7 +311,7 @@ Partial Class Alta_empresa
         Me.TxtCP.MaxLength = 8
         Me.TxtCP.Name = "TxtCP"
         Me.TxtCP.Size = New System.Drawing.Size(100, 20)
-        Me.TxtCP.TabIndex = 15
+        Me.TxtCP.TabIndex = 14
         '
         'TxtNumero
         '
@@ -317,7 +319,7 @@ Partial Class Alta_empresa
         Me.TxtNumero.MaxLength = 8
         Me.TxtNumero.Name = "TxtNumero"
         Me.TxtNumero.Size = New System.Drawing.Size(90, 20)
-        Me.TxtNumero.TabIndex = 15
+        Me.TxtNumero.TabIndex = 10
         '
         'TxtEstado
         '
@@ -325,7 +327,7 @@ Partial Class Alta_empresa
         Me.TxtEstado.MaxLength = 30
         Me.TxtEstado.Name = "TxtEstado"
         Me.TxtEstado.Size = New System.Drawing.Size(249, 20)
-        Me.TxtEstado.TabIndex = 15
+        Me.TxtEstado.TabIndex = 13
         '
         'TxtColonia
         '
@@ -333,7 +335,7 @@ Partial Class Alta_empresa
         Me.TxtColonia.MaxLength = 30
         Me.TxtColonia.Name = "TxtColonia"
         Me.TxtColonia.Size = New System.Drawing.Size(251, 20)
-        Me.TxtColonia.TabIndex = 15
+        Me.TxtColonia.TabIndex = 11
         '
         'TxtMunicipio
         '
@@ -341,14 +343,14 @@ Partial Class Alta_empresa
         Me.TxtMunicipio.MaxLength = 30
         Me.TxtMunicipio.Name = "TxtMunicipio"
         Me.TxtMunicipio.Size = New System.Drawing.Size(201, 20)
-        Me.TxtMunicipio.TabIndex = 15
+        Me.TxtMunicipio.TabIndex = 12
         '
         'BtnEditarEmpresa
         '
         Me.BtnEditarEmpresa.Location = New System.Drawing.Point(597, 391)
         Me.BtnEditarEmpresa.Name = "BtnEditarEmpresa"
         Me.BtnEditarEmpresa.Size = New System.Drawing.Size(97, 27)
-        Me.BtnEditarEmpresa.TabIndex = 30
+        Me.BtnEditarEmpresa.TabIndex = 16
         Me.BtnEditarEmpresa.Text = "Editar"
         Me.BtnEditarEmpresa.UseVisualStyleBackColor = True
         '
@@ -357,7 +359,7 @@ Partial Class Alta_empresa
         Me.BtnEliminarEmpresa.Location = New System.Drawing.Point(391, 391)
         Me.BtnEliminarEmpresa.Name = "BtnEliminarEmpresa"
         Me.BtnEliminarEmpresa.Size = New System.Drawing.Size(97, 27)
-        Me.BtnEliminarEmpresa.TabIndex = 30
+        Me.BtnEliminarEmpresa.TabIndex = 18
         Me.BtnEliminarEmpresa.Text = "Eliminar"
         Me.BtnEliminarEmpresa.UseVisualStyleBackColor = True
         '

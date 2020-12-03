@@ -86,7 +86,7 @@ Public Class IncidenciaDAO
             Dim fecha As New Date
             fecha = GetDateSafe(reader, 0)
 
-            If fecha.Day = 0 Or fecha.Year <> year Then
+            If fecha = Date.MinValue Or fecha.Year <> year Then
                 result = True
             End If
 

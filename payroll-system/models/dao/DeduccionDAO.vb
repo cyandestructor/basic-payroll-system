@@ -9,6 +9,7 @@ Public Class DeduccionDAO
         command.Parameters.AddWithValue("@Cant_Fija", deduccion.CantidadFija)
         command.Parameters.AddWithValue("@Cant_Porcent", deduccion.CantidadPorcentual)
         command.Parameters.AddWithValue("@ID_Empleado", deduccion.IDEmpleado)
+        command.Parameters.AddWithValue("@Fecha", deduccion.Fecha)
 
         connection.Open()
         command.ExecuteNonQuery()

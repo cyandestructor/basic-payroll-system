@@ -9,6 +9,7 @@ Public Class PercepcionDAO
         command.Parameters.AddWithValue("@Cant_Fija", percepcion.CantidadFija)
         command.Parameters.AddWithValue("@Cant_Porcent", percepcion.CantidadPorcentual)
         command.Parameters.AddWithValue("@ID_Empleado", percepcion.IDEmpleado)
+        command.Parameters.AddWithValue("@Fecha", percepcion.Fecha)
 
         connection.Open()
         command.ExecuteNonQuery()

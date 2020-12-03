@@ -27,6 +27,8 @@ Partial Class EjecucionNomina
         Me.DgvReporteCalculo = New System.Windows.Forms.DataGridView()
         Me.BtnEjecutar = New System.Windows.Forms.Button()
         Me.BtnGenerarReporte = New System.Windows.Forms.Button()
+        Me.DtpFechaNomina = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
         CType(Me.DgvReporteCalculo, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -74,11 +76,30 @@ Partial Class EjecucionNomina
         Me.BtnGenerarReporte.Text = "Generar Reporte"
         Me.BtnGenerarReporte.UseVisualStyleBackColor = True
         '
+        'DtpFechaNomina
+        '
+        Me.DtpFechaNomina.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtpFechaNomina.Location = New System.Drawing.Point(384, 31)
+        Me.DtpFechaNomina.Name = "DtpFechaNomina"
+        Me.DtpFechaNomina.Size = New System.Drawing.Size(177, 20)
+        Me.DtpFechaNomina.TabIndex = 4
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(384, 12)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(89, 13)
+        Me.Label2.TabIndex = 5
+        Me.Label2.Text = "Fecha de nómina"
+        '
         'EjecucionNomina
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(573, 328)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.DtpFechaNomina)
         Me.Controls.Add(Me.BtnGenerarReporte)
         Me.Controls.Add(Me.BtnEjecutar)
         Me.Controls.Add(Me.DgvReporteCalculo)
@@ -97,4 +118,6 @@ Partial Class EjecucionNomina
     Friend WithEvents DgvReporteCalculo As DataGridView
     Friend WithEvents BtnEjecutar As Button
     Friend WithEvents BtnGenerarReporte As Button
+    Friend WithEvents DtpFechaNomina As DateTimePicker
+    Friend WithEvents Label2 As Label
 End Class

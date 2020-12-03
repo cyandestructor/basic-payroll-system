@@ -141,6 +141,7 @@ CREATE TABLE Empresa_Dpto(
 	Gerente_Dpto	INT,
 	Inicio_Gestion	DATE,
 	Cant_Bono		FLOAT,
+	Porcent_Bono	FLOAT
 	Activo			BIT DEFAULT 1
 
 	CONSTRAINT PK_EmpresaDpto
@@ -211,6 +212,16 @@ CREATE TABLE Banco(
 	CONSTRAINT PK_Banco
 		PRIMARY KEY (ID_Banco)
 );
+
+-- Tablas auxiliares (Hacks)
+CREATE TABLE Impuestos (
+	Cant_ISR		FLOAT DEFAULT 0,
+	Porcent_ISR		FLOAT DEFAULT 0,
+	Cant_IMSS		FLOAT DEFAULT 0,
+	Porcent_IMSS	FLOAT DEFAULT 0
+)
+
+INSERT INTO Impuestos (Cant_ISR, Porcent_ISR, Cant_IMSS, Porcent_IMSS) VALUES (0, 0, 0, 0);
 
 -- Add Foreign Keys
 
